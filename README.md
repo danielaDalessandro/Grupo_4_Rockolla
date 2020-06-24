@@ -9,16 +9,17 @@ INTEGRANTES DEL EQUIPO
     
     2. // nombre: 
     
-    3. // nombre: 
+    3. Felipe Lopez Marsiglia: Tengo 21 años y estudio Abogacía. 
 
 SITIOS DE REFERENCIA
 
-    1. // agregar pag + url
+    1. Jarana Records: https://jaranarecords.com.ar/es/
     
-    2. // agregar pag + url
+    2. Music Jungle: https://musicjungle.cl/
     
-    3. // agregar pag + url
+    3. Amazon Music: https://www.amazon.es/Tienda-Vinilos/b?ie=UTF8&node=2384825031
     
-    4. // agregar pag + url
+    4. Baires Rocks: https://www.baires.rocks/
+
+    5. La Casa del Disco: https://www.lacasadeldisco.es/j/vargas-blues-band-camiseta-del-sur-portada/
     
-    5. // agregar pag + url
