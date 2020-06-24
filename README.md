@@ -3,7 +3,7 @@
 Proyecto del Grupo 4 del curso de Digital House Web Full Stack. El objetivo es crear una pagina web de ecomerce que se centre en la compra y venta de vinilos. 
 Esto sitio web apunta a todos los amantes de la musica. 
 
-## Público
+## PÚBLICO
 Con la revalorización que se le ha dado la música en vinilo, apuntamos a este mercado de gente que busca comprar música en un formato tangible y de excelente calidad analógica. Vemos en este mercado un nicho prometedor con potencial de crecimiento.
 
 ## INTEGRANTES DEL EQUIPO
