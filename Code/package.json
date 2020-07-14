@@ -1,0 +1,26 @@
+{
+  "name": "rockolla",
+  "version": "1.0.0",
+  "description": "App de e-comerce para una disquería. Proyecto integrador DH ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielaDalessandro/Grupo_4_Rockolla.git"
+  },
+  "author": "Daniela D'Alessandro, Facundo Erbin, Felipe Lopez Marsiglia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielaDalessandro/Grupo_4_Rockolla/issues"
+  },
+  "homepage": "https://github.com/danielaDalessandro/Grupo_4_Rockolla#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
