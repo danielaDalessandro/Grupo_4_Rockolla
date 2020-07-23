@@ -33,4 +33,7 @@ Con la revalorización que se le ha dado la música en vinilo, apuntamos a este 
 ## TECNOLOGÍAS
 
 El proyecto esta desarrollado en Javascript usando el runtime NodeJS para el Backend. Se utiliza un servidor web Express. Para iniciar el proyecto, instale las dependencias con "npm install" en la carpete /Code y luego ejecute el proyecto con "node app.js" o "npm run dev" para hacer uso del middleware Nodemon.
+
+## Tablero de Trabajo
+https://trello.com/b/yje419TK/grupo-4
     
