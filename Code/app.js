@@ -11,11 +11,27 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/views/index.html")
 });
 
-/*
-app.get("/route", (req, res) => {
-    res.sendFile(__dirname + "/views/route.html");
+
+//Detalle del Producto
+app.get("/detalle", (req, res) => {
+    res.sendFile(__dirname + "/views/productDetail.html")
 });
-*/
+
+
+//Detalle del Producto
+app.get("/carrito", (req, res) => {
+    res.sendFile(__dirname + "/views/productCart.html")
+});
+
+//Registro
+app.get("/registro", (req, res) => {
+    res.sendFile(__dirname + "/views/register.html")
+});
+
+//Login
+app.get("/login", (req, res) => {
+    res.sendFile(__dirname + "/views/login.html")
+});
 
 //Any other page
 app.get("/*", (req,res) =>{
