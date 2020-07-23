@@ -6,17 +6,16 @@ const port = 3000;
 //Static files to be used
 app.use(express.static('public'));
 
+
 //Landing page
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/views/index.html")
 });
 
-
 //Detalle del Producto
 app.get("/detalle", (req, res) => {
     res.sendFile(__dirname + "/views/productDetail.html")
 });
-
 
 //Detalle del Producto
 app.get("/carrito", (req, res) => {
