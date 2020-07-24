@@ -6,6 +6,46 @@ body {
 
 /*----------HEADER----------*/
 header {
+  display: flex;
+  flex-wrap: wrap;
 	width: 100%;
 	background-color: #E8E6E4 ; 
+}
+
+/* Estilos detalle del producto: */
+
+.main-productDetail{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.main-productDetail h3{
+width: 100%;
+margin-top: 8px;
+}
+
+.titulo-album{
+margin-top: 1px;
+}
+
+.ejemplo-disco-oasis{
+  height: 180px;
+  width: 200px;
+}
+
+.main-productDetail span{
+width: 100%;
+}
+
+.boton-carrito{
+  color: white;
+  background-color: red;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 0px; 
+  cursor: pointer;
 }
