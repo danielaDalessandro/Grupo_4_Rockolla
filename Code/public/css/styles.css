@@ -1,5 +1,11 @@
 /*styles.css*/
 body {
-  margins:0px;
+  margin: 0px;
   font-family: 'Heebo', sans-serif;
+}
+
+/*----------HEADER----------*/
+header {
+	width: 100%;
+	background-color: #E8E6E4 ; 
 }
