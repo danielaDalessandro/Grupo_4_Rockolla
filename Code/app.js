@@ -1,4 +1,5 @@
 const express = require ("express");
+const favicon = require('serve-favicon');
 
 const app = express();
 const port = 3000;
@@ -6,6 +7,8 @@ const port = 3000;
 //Static files to be used
 app.use(express.static('public'));
 
+//favicon
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 //Landing page
 app.get("/", (req, res) => {
