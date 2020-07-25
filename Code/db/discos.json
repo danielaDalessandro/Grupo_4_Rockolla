@@ -1,0 +1,15 @@
+{
+	"discos": {
+		"1": {
+			 "titulo" : "(What's The Story) Morning Glory?",
+			 "artista" : "Oasis",
+			 "sello" : "Big Brother",
+			 "formato" : "2 × Vinyl, LP, Album, Reissue, Remastered",
+			 "pais" : "UK, Europe & US",
+			 "publicado" : "26 Sep 2014",
+			 "género" : "Rock",
+			 "estilo" : "Brit Pop",
+			 "tapa" : "url-tapa" 
+		},
+	}
+}

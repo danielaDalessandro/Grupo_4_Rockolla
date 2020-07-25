@@ -10,6 +10,8 @@ GRIS FONDO TONO OSCURO: #D9D6D3
 body {
 	margin: 0px;
 	font-family: 'Heebo', sans-serif;
+	position: relative;
+	min-height: 100vh;
 }
 
 /*----------HEADER----------*/
@@ -24,11 +26,11 @@ header {
 
 .header-logo {
 	width: 70%;
-	text-align: center;
 }
 
 .logo {
 	width: 60vw;
+	max-width: 240px;
 }
 
 .header-login {
@@ -98,3 +100,15 @@ a.boton-login:hover {
 }
 
 /*----------MAIN----------*/
+.banner {
+	width:100%;
+	object-fit: contain;
+}
+
+/*----------FOOTER----------*/
+footer {
+	background-color: #E8E6E4;
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+}
