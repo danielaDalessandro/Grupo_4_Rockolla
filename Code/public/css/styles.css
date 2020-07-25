@@ -18,6 +18,8 @@ body {
 header {
 	display: flex;
 	flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 	align-items: flex-start;
 	width: 100%;
 	padding: 10px 5px;
@@ -111,4 +113,45 @@ footer {
 	width: 100%;
 	position: absolute;
 	bottom: 0px;
+}
+
+/*----------MAIN----------*/
+
+/* Estilos main detalle del producto: */
+
+.main-productDetail{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	text-align: center;
+}
+
+.main-productDetail h3{
+width: 100%;
+margin-top: 8px;
+}
+
+.titulo-album{
+margin-top: 1px;
+}
+
+.ejemplo-disco-oasis{
+	height: 180px;
+	width: 200px;
+}
+
+.main-productDetail span{
+width: 100%;
+}
+
+.boton-carrito{
+	color: white;
+	background-color: red;
+	padding: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	border: 0px; 
+	cursor: pointer;
+>>>>>>> bbb0950c3c4c5a492e6ca325d13ad5dbbe8129a2
 }
