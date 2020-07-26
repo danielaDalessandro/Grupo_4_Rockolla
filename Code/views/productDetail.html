@@ -4,23 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <title>Detalle del producto</title>
 </head>
 <body>
-    <header>
-        <img class="logo" src="/images/logo.svg" alt="Logo de Rockolla">
-        <div>LOG IN</div>
-    </header>
+        <header>
+            <section class="header-logo">
+                <img class="logo" src="images/logo.svg">
+            </section><!--
+        --><section class="header-login">
+                <a class="boton-login" href="/login">Log in <i class="fas fa-user"></i></a>
+            </section>
+    
+            <section class="header-hamburguesa">
+                <button class="boton-hamburguesa">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </section><!--
+        --><section class="header-busqueda">
+                <form action="/" method="POST">
+                    <input class="input-buscador" type="text" name="search" id="search" placeholder="¿Qué disco estas buscando?">
+                    <button class="boton-buscador" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </section>
+        </header>
+
     <main class="main-productDetail">
         <h2>SU SELECCIÓN: </h2>
         <img class="ejemplo-disco-oasis" src="/images/ejemplo-disco-oasis.jpg" alt="Ejemplo disco de Oasis">
         <h3>Oasis</h3>
-        <h3 clas="titulo-album">(What's the story?) Morning Glory</h3>
-        <span>Descripción del producto</span>
-        <span>$XXXXX</span>
+        <h3 class="titulo-album">(What's the story?) Morning Glory</h3>
+        <span class="precio-producto">$XXXXX</span>
+        <span class="descripcion-producto">Descripción del producto</span>
         <span>Tamaño en pulgadas (")</span>
-        <span>Hay/No hay existencias</span>
+        <span class="existencias">Hay/No hay existencias</span>
         <form>
         <input type="button" name="minus" id="minus" value="-">
         <input type="number" name="requests" id="requests" step="1" min="1" max="5" placeholder="1">
