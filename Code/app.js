@@ -35,7 +35,7 @@ app.get("/login", (req, res) => {
     res.sendFile(__dirname + "/views/login.html")
 });
 
-//Any other page
+//Culaquier otra página
 app.get("/*", (req,res) =>{
 	res.sendFile(__dirname + "/views/404.html")
 });
