@@ -33,6 +33,7 @@ header {
 .logo {
 	width: 60vw;
 	max-width: 240px;
+	cursor: pointer;
 }
 
 .header-login {
@@ -86,6 +87,11 @@ a.boton-login:hover {
 	border: none;
 }
 
+.input-buscador:focus,  
+.boton-hamburguesa:focus {
+	outline-color: #D9D6D3;
+}
+
 .boton-buscador {
 	position: absolute;
 	top: 15px;
@@ -102,17 +108,80 @@ a.boton-login:hover {
 }
 
 /*----------MAIN----------*/
+.section-banner {
+	width:100%;
+}
+
 .banner {
 	width:100%;
 	object-fit: contain;
+}
+
+.main-home {
+	display:flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: center;
+}
+
+.home-section {
+	width:80%;
+	padding-bottom: 30px;
+}
+
+.home-section:nth-child(n+2){
+	border-top: 2px solid #D9D6D3;
+}
+
+.home-section-title {
+	padding: 20px 0px;
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+
+.descripcion-disco {
+	text-align: center;
+}
+
+.owl-carousel {
+	position: relative;
+}
+
+.owl-next, 
+.owl-prev{
+	height: 75%;
+	width: 50px;
+	position: absolute;
+	top:0px;
+	font-weight: 700;
+}
+
+.owl-next {
+	right: 0px;
+}
+
+.owl-prev {
+	left:0px;
+}
+
+.owl-next:focus,
+.owl-prev:focus {
+	outline:none;
 }
 
 /*----------FOOTER----------*/
 footer {
 	background-color: #E8E6E4;
 	width: 100%;
-	position: absolute;
-	bottom: 0px;
+	padding: 10px;
+}
+
+.social-links {
+	color: black;
+	font-size: 2rem;
+	margin: 10px;
+	text-decoration: none;
 }
 
 /*----------MAIN----------*/
@@ -153,5 +222,4 @@ width: 100%;
 	border-radius: 5px;
 	border: 0px; 
 	cursor: pointer;
->>>>>>> bbb0950c3c4c5a492e6ca325d13ad5dbbe8129a2
 }
