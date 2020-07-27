@@ -20,7 +20,7 @@ app.get("/detalle", (req, res) => {
     res.sendFile(__dirname + "/views/productDetail.html")
 });
 
-//Detalle del Producto
+//Carrito de compras
 app.get("/carrito", (req, res) => {
     res.sendFile(__dirname + "/views/productCart.html")
 });

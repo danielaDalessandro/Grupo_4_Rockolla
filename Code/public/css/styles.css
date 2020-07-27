@@ -10,12 +10,14 @@ GRIS FONDO TONO OSCURO: #D9D6D3
 body {
 	margin: 0px;
 	font-family: 'Heebo', sans-serif;
+	position: relative;
+	min-height: 100vh;
 }
 
 /*----------HEADER----------*/
 header {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-start;
@@ -26,11 +28,11 @@ header {
 
 .header-logo {
 	width: 70%;
-	text-align: center;
 }
 
 .logo {
 	width: 60vw;
+	max-width: 240px;
 }
 
 .header-login {
@@ -99,16 +101,29 @@ a.boton-login:hover {
 	background-color: transparent;
 }
 
+/*----------MAIN----------*/
+.banner {
+	width:100%;
+	object-fit: contain;
+}
+
+/*----------FOOTER----------*/
+footer {
+	background-color: #E8E6E4;
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+}
 
 /*----------MAIN----------*/
 
 /* Estilos main detalle del producto: */
 
 .main-productDetail{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	text-align: center;
 }
 
 .main-productDetail h3{
@@ -117,8 +132,8 @@ margin: 0px;
 }
 
 .ejemplo-disco-oasis{
-  height: 180px;
-  width: 200px;
+	height: 180px;
+	width: 200px;
 }
 
 .main-productDetail span{
@@ -131,24 +146,184 @@ width: 100%;
 
 .precio-producto{
   margin-top: 10px;
+  font-size: 20px;
 }
 
 .descripcion-producto{
   margin-top: 20px;
 }
 
-.existencias{
+.tamaño{
   border-bottom: solid 1px rgba(0,0,0,.2);
   padding-bottom: 6px;
 }
 
+.existencias{
+  color: green;
+  font-size: 14px;
+  margin-top: 10px;
+  position: relative;
+  top: 20px;
+  right: 75px;
+}
+
 .boton-carrito{
-  color: white;
-  background-color: red;
-  padding: 10px;
+	color: white;
+	background-color: #F93001;
+	padding: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	border: 0px; 
+	cursor: pointer;
+/* >>>>>>> bbb0950c3c4c5a492e6ca325d13ad5dbbe8129a2 */
+}
+
+.boton-carrito:hover{
+  background-color: #A43015;
+}
+
+
+/* Estilos main carrito de compras: */
+
+.aviso{
+color: #2DF505
+}
+
+
+.carrito-disco-oasis{
+  height: 128px;
+  width: 138px;
+  margin-bottom: 8px;
+}
+
+.imagen-carrito{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #EFF3EF;
+}
+
+.eliminar-objeto{
+  position: relative;
+  left: 60px;
+  bottom: 10px;
+  font-size: 25px;
+}
+
+
+.caja-carrito{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #EFF3EF;
+}
+
+.producto{
+  width: 50%;
+  padding-left: 22px;
+}
+
+.nombre-disco{
+  width: 50%;
+  padding-right: 22px;
+}
+
+.precio{
+  width: 50%;
+  padding-left: 22px;
   margin-top: 20px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  border: 0px; 
-  cursor: pointer;
+}
+
+.precio-valor{
+  width: 50%;
+  padding-right: 22px;
+  margin-top: 20px;
+}
+
+.cantidad{
+  width: 50%;
+  padding-left: 22px;
+  margin-top: 20px;
+}
+
+.valor-cantidad{
+  width: 50%;
+  padding-right: 22px;
+  margin-top: 20px;
+}
+
+.boton-cantidad{
+  height: 30px;
+  width: 30px;
+}
+
+.subtotal{
+  width: 50%;
+  padding-left: 22px;
+  margin-top: 20px;
+}
+
+.subtotal-valor{
+  width: 50%;
+  padding-right: 22px;
+  margin-top: 20px;
+}
+
+.caja-total{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #EFF3EF;
+}
+
+.subtotal-total{
+  width: 50%;
+  padding-left: 22px;
+}
+
+.subtotalTotal-valor{
+  width: 50%;
+  padding-right: 22px;
+}
+
+.envio{
+  width: 50%;
+  padding-left: 22px;
+  margin-top: 20px;
+}
+
+.direccion-envio{
+  width: 50%;
+  padding-right: 22px;
+  margin-top: 20px;
+}
+
+.total{
+  width: 50%;
+  padding-left: 22px;
+  margin-top: 20px;
+}
+
+.total-valor{
+  width: 50%;
+  padding-right: 22px;
+  margin-top: 20px;
+}
+
+ .boton-finalizar-align{
+  margin-left: 22px;
+}
+
+.boton-finalizarCompra{
+  color: white;
+  font-size: 20px;
+	background-color: #F93001;
+	padding: 10px;
+	margin-top: 30px;
+	border-radius: 5px;
+	border: 0px; 
+	cursor: pointer;
+}
+
+.boton-finalizarCompra:hover{
+  background-color: #A43015
 }

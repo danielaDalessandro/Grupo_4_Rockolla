@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <title>Carrito de compras</title>
+</head>
+<body>
+    <header>
+        <section class="header-logo">
+            <img class="logo" src="images/logo.svg">
+        </section><!--
+    --><section class="header-login">
+            <a class="boton-login" href="/login">Log in <i class="fas fa-user"></i></a>
+        </section>
+
+        <section class="header-hamburguesa">
+            <button class="boton-hamburguesa">
+                <i class="fas fa-bars"></i>
+            </button>
+        </section><!--
+    --><section class="header-busqueda">
+            <form action="/" method="POST">
+                <input class="input-buscador" type="text" name="search" id="search" placeholder="¿Qué disco estas buscando?">
+                <button class="boton-buscador" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </section>
+    </header>
+    <main>
+        <div class="aviso"><i class="fas fa-check-circle"></i> Has añadido satisfactoriamente "Oasis - (What's the story?) Morning Glory" a tu carrito de compras</div>
+
+        <h2>CARRITO: </h2>
+
+        <div class="imagen-carrito">
+        <img class="carrito-disco-oasis" src="/images/ejemplo-disco-oasis.jpg" alt="Ejemplo disco de Oasis">
+        <i class="fas fa-times-circle eliminar-objeto"></i>
+    </div>
+        <div class="caja-carrito">
+        <div class="producto"><strong>Producto: </strong> </div>
+        <span class="nombre-disco">Oasis - (What's the story?) Morning Glory</span>
+        <div class="precio"><strong>Precio: </strong></div>
+        <div class="precio-valor" >$XXXXXXX</div>
+        <div class= "cantidad"><strong>Cantidad: </strong></div>
+        <div class="valor-cantidad"><input class="boton-cantidad" type="number" name="requests" id="requests" step="1" min="1" max="5" placeholder="1"></div>
+        <div class="subtotal"><strong> Subtotal: </strong></div>
+        <div class= "subtotal-valor"> $XXXXXXX</div>
+        </div>
+
+        <h2>TOTAL DEL CARRITO: </h2>
+        <div class="caja-total">
+        <div class="subtotal-total"><strong> Subtotal: </strong></div>
+        <div class= "subtotalTotal-valor"> $XXXXXXX</div>
+        <div class= "envio"><strong>Envío: </strong></div>
+        <div class="direccion-envio">Introduzca dirreccion de envío</div>
+        <div class="total"><strong> Total: </strong></div>
+        <div class= "total-valor"> $XXXXXXX</div>
+    </div>
+    </div>
+    <div class="boton-finalizar-align">
+        <button class="boton-finalizarCompra" type="submit">FINALIZAR COMPRA</button>
+    </main>
+</body>
+</html>
