@@ -1,42 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600&display=swap" rel="stylesheet"> 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-        <link rel="stylesheet" type="text/css" href="/css/styles.css">
-        <title>Detalle del producto</title>
-    </head>
-    <body>
-            <header>
-                <section class="header-logo">
-                    <img class="logo" src="images/logo.svg">
-                </section><!--
-            --><section class="header-login">
-                    <a class="boton-login" href="/login">Log in <i class="fas fa-user"></i></a>
-                </section>
-        
-                <section class="header-hamburguesa">
-                    <button class="boton-hamburguesa">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </section><!--
-            --><section class="header-busqueda">
-                    <form action="/" method="POST">
-                        <input class="input-buscador" type="text" name="search" id="search" placeholder="¿Qué disco estas buscando?">
-                        <button class="boton-buscador" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                </section>
-            </header>
+<html>
+<head>  
+	<title>Rockolla</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" />
+
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+	<header>
+		<section class="header-logo">
+			<a href="/">
+				<img class="logo" src="images/logo.svg">
+			</a>
+		</section><!--
+		
+	--><section class="header-login">
+			<a class="boton-login" href="/carrito"><i class="fas  fa-shopping-cart "></i></a>
+			<a class="boton-login" href="/login">Log in <i class="fas fa-user"></i></a>
+		</section>
+
+		<section class="header-hamburguesa">
+			<button class="boton-hamburguesa">
+				<i class="fas fa-bars"></i>
+			</button>
+		</section><!--
+
+	--><section class="header-busqueda">
+			<form action="/" method="POST">
+				<input class="input-buscador" type="text" name="search" id="search" placeholder="¿Qué disco estas buscando?">
+				<button class="boton-buscador" type="submit">
+					<i class="fas fa-search"></i>
+				</button>
+			</form>
+		</section>
+	</header>
 
     <main class="main-Login">
 
         <h2 class= ""> Ingresar </h2>
 
-        <form action="" method="POST">
+        <form action="/login" method="POST">
             <div class="formulario-email">
                 <input type="email" name="email" id="email" placeholder="Email"
                     autocomplete="true" required>
@@ -65,10 +72,27 @@
 
     </main>
 
-    <footer>
+	<footer>
+		<div class="social-networks">
+			<a class="social-links" href="https://www.facebook.com">
+				<i class="fab fa-facebook-square"></i>
+			</a>
+			<a class="social-links" href="https://www.instagram.com">
+				<i class="fab fa-instagram"></i>
+			</a>
+			<a class="social-links" href="https://www.twitter.com">
+				<i class="fab fa-twitter-square"></i>
+			</a>
+		</div>
 		<div>
 			Copyright © 2020 Rockolla S.A.
 		</div>
 	</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+	<script src="js/index.js"></script>
+
 </body>
 </html>
+

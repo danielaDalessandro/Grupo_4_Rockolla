@@ -30,9 +30,17 @@ app.get("/registro", (req, res) => {
     res.sendFile(__dirname + "/views/registro.html")
 });
 
+app.post("/registro", (req, res) => {
+    res.sendFile(__dirname + "/views/index.html")
+});
+
 //Login
 app.get("/login", (req, res) => {
     res.sendFile(__dirname + "/views/login.html")
+});
+
+app.post("/login", (req, res) => {
+    res.sendFile(__dirname + "/views/index.html")
 });
 
 //Culaquier otra página
@@ -43,3 +51,4 @@ app.get("/*", (req,res) =>{
 app.listen(port, () => {
     console.log("Servidor escuchando en el puerto: ", port);
 });
+
