@@ -14,6 +14,10 @@ body {
 	min-height: 100vh;
 }
 
+main {
+		padding-bottom: 100px;
+}
+
 /*----------HEADER----------*/
 header {
 	display: flex;
@@ -27,7 +31,7 @@ header {
 }
 
 .header-logo {
-	width: 70%;
+	width: 60%;
 }
 
 .logo {
@@ -37,7 +41,7 @@ header {
 }
 
 .header-login {
-	width: 30%;
+	width: 40%;
 	text-align: right;
 }
 
@@ -122,7 +126,6 @@ a.boton-login:hover {
 	flex-wrap: wrap;
 	flex-direction: column;
 	align-items: center;
-	padding-bottom: 100px;
 }
 
 .home-section {
@@ -201,11 +204,25 @@ footer {
 	flex-wrap: wrap;
 	justify-content: center;
 	text-align: center;
+	flex-direction: column;
+}
+	
+
+.titulo-suSeleccion{
+	width: 100%;
+	text-align: center;
+}
+
+section .product-tapa {
+	width:100%;
+}
+
+section .product-detail {
+	width:100%;
 }
 
 .main-productDetail h3{
 width: 100%;
-margin: 0px;
 }
 
 .ejemplo-disco-oasis{
@@ -239,9 +256,6 @@ width: 100%;
   color: green;
   font-size: 14px;
   margin-top: 10px;
-  position: relative;
-  top: 20px;
-  right: 75px;
 }
 
 .boton-carrito{
@@ -260,76 +274,37 @@ width: 100%;
 }
 
 @media(min-width: 426px){
+.main-productDetail{
+	flex-direction: row;
+}
+
 .titulo-album{
 border-bottom: 1px solid rgba(0,0,0,.2);
 padding: 10px;
 }
-
-.titulo-suSeleccion{
-	width: 100%;
-}
 }
 
 @media(min-width: 800px){
-	.titulo-suSeleccion{
-		position: absolute;
-		right: 450px;
-		top: 160px;
+	section .product-tapa {
+		width:50%;
 	}
 
-	.ejemplo-disco-oasis{
-		position: absolute;
-		left: 150px;
-		bottom: 250px;
-		height: 250px;
-		width: 250px;
+	section .product-tapa {
+		width:50%;
 	}
 
-	.banda{
-		font-size: 23px;
-		position: absolute;
-		bottom: 520px;
-	}
-
-	.titulo-album{
-		font-size: 30px;
-		border: none;
-		margin: 100px;
-		position: absolute;
-		bottom: 450px;
-	  }
-
-	  .precio-producto{
-		  position: absolute;
-		  bottom: 400px;
-	  }
-
-	  .descripcion-producto{
-		position: absolute;
-		bottom: 340px;
-	  }
-	
-	  .tamaño{
-		border: none;
-		position: absolute;
-		bottom: 300px;
-	  }
-
-	  .existencias{
+	.existencias{
 		color: green;
 		font-size: 14px;
 		margin-top: 10px;
-		position: relative;
-		top: 335px;
-		right: 90px;
-	  }
+	}
 	
-	  .formulario-añadirCarrito{
+	.formulario-añadirCarrito{
 		position: absolute;
 		bottom: 180px;
-	  }
+	}
 
-	  .boton-carrito{
+	.boton-carrito{
 		color: white;
 		font-size: 20px;
 		background-color: #F93001;
@@ -340,10 +315,6 @@ padding: 10px;
 		border: 0px; 
 		cursor: pointer;
 	}
-
-	  .footer-detalle{
-		  margin-top: 400px;
-	  }
 }
 /* Estilos main carrito de compras: */
 

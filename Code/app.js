@@ -35,6 +35,10 @@ app.get("/login", (req, res) => {
     res.sendFile(__dirname + "/views/login.html")
 });
 
+app.post("/login", (req, res) => {
+    res.sendFile(__dirname + "/views/index.html")
+});
+
 //Culaquier otra página
 app.get("/*", (req,res) =>{
 	res.sendFile(__dirname + "/views/404.html")
