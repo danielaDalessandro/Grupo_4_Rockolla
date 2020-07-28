@@ -524,7 +524,7 @@ margin-left: 22px;
 	font-size: 20px;
 	background-color: #F93001;
 	padding: 10px;
-	margin-top: 30px;
+	margin-top: 20px;
 	border-radius: 5px;
 	border: 0px; 
 	cursor: pointer;
@@ -540,7 +540,7 @@ margin-left: 22px;
 	font-size: 20px;
 	background-color: #F93001;
 	padding: 10px;
-	margin-top: 30px;
+	margin-top: 20px;
 	border-radius: 5px;
 	border: 0px; 
 	cursor: pointer;
@@ -554,6 +554,7 @@ margin-left: 22px;
 
 .olvide-contraseña{
 	margin: 15px;
+	margin-top: 30px;
 }
 
 .ir-a-registro{
@@ -593,7 +594,7 @@ margin-left: 22px;
 	font-size: 20px;
 	background-color: #F93001;
 	padding: 10px;
-	margin-top: 30px;
+	margin-top: 20px;
 	border-radius: 5px;
 	border: 0px; 
 	cursor: pointer;
@@ -602,4 +603,8 @@ margin-left: 22px;
 
 .boton-registrarse:hover{
 	background-color: #A43015
+}
+
+.ir-a-login{
+	margin: 15px;
 }
