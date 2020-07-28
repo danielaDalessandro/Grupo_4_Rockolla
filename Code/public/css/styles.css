@@ -253,14 +253,98 @@ width: 100%;
 	border-radius: 5px;
 	border: 0px; 
 	cursor: pointer;
-/* >>>>>>> bbb0950c3c4c5a492e6ca325d13ad5dbbe8129a2 */
 }
 
 .boton-carrito:hover{
   background-color: #A43015;
 }
 
+@media(min-width: 426px){
+.titulo-album{
+border-bottom: 1px solid rgba(0,0,0,.2);
+padding: 10px;
+}
 
+.titulo-suSeleccion{
+	width: 100%;
+}
+}
+
+@media(min-width: 800px){
+	.titulo-suSeleccion{
+		position: absolute;
+		right: 450px;
+		top: 160px;
+	}
+
+	.ejemplo-disco-oasis{
+		position: absolute;
+		left: 150px;
+		bottom: 250px;
+		height: 250px;
+		width: 250px;
+	}
+
+	.banda{
+		font-size: 23px;
+		position: absolute;
+		bottom: 520px;
+	}
+
+	.titulo-album{
+		font-size: 30px;
+		border: none;
+		margin: 100px;
+		position: absolute;
+		bottom: 450px;
+	  }
+
+	  .precio-producto{
+		  position: absolute;
+		  bottom: 400px;
+	  }
+
+	  .descripcion-producto{
+		position: absolute;
+		bottom: 340px;
+	  }
+	
+	  .tamaño{
+		border: none;
+		position: absolute;
+		bottom: 300px;
+	  }
+
+	  .existencias{
+		color: green;
+		font-size: 14px;
+		margin-top: 10px;
+		position: relative;
+		top: 335px;
+		right: 90px;
+	  }
+	
+	  .formulario-añadirCarrito{
+		position: absolute;
+		bottom: 180px;
+	  }
+
+	  .boton-carrito{
+		color: white;
+		font-size: 20px;
+		background-color: #F93001;
+		padding: 10px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		border-radius: 5px;
+		border: 0px; 
+		cursor: pointer;
+	}
+
+	  .footer-detalle{
+		  margin-top: 400px;
+	  }
+}
 /* Estilos main carrito de compras: */
 
 .aviso{
@@ -387,7 +471,7 @@ color: #2DF505
 }
 
  .boton-finalizar-align{
-  margin-left: 22px;
+margin-left: 22px;
 }
 
 .boton-finalizarCompra{
@@ -395,7 +479,8 @@ color: #2DF505
   font-size: 20px;
 	background-color: #F93001;
 	padding: 10px;
-	margin-top: 30px;
+	margin-top: 20px;
+	margin-bottom: 10px;
 	border-radius: 5px;
 	border: 0px; 
 	cursor: pointer;
