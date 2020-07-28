@@ -482,6 +482,137 @@ margin-left: 22px;
   background-color: #A43015
 }
 
+@media(min-width: 767px){
+
+	.carrito-disco-oasis{
+		height: 151px;
+		width: 164px;
+		margin-bottom: 8px;
+	  }	
+
+	.eliminar-objeto{
+	position: relative;
+	left: 213px;
+	bottom: 13px;
+	font-size: 27px;
+	}
+}
+
+@media(min-width: 1023px){
+
+.producto{
+	width: 50%;
+	padding-left: 50px;
+	font-size: 20px;
+	}
+
+.nombre-disco{
+	width: 50%;
+	padding-right: 22px;
+	font-size: 20px;
+}
+
+.carrito-disco-oasis{
+		height: 190px;
+		width: 213px;
+		margin-bottom: 8px;
+}	
+
+
+.eliminar-objeto{
+	position: relative;
+	left: 340px;
+	bottom: 15px;
+	font-size: 33px;
+  }
+}
+
+.precio{
+	width: 50%;
+	padding-left: 50px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .precio-valor{
+	width: 50%;
+	padding-right: 22px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .cantidad{
+	width: 50%;
+	padding-left: 50px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .valor-cantidad{
+	width: 50%;
+	padding-right: 22px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .boton-cantidad{
+	height: 30px;
+	width: 30px;
+  }
+  
+  .subtotal{
+	width: 50%;
+	padding-left: 50px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .subtotal-valor{
+	width: 50%;
+	padding-right: 22px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .subtotal-total{
+	width: 50%;
+	padding-left: 50px;
+	font-size: 20px;
+  }
+  
+  .subtotalTotal-valor{
+	width: 50%;
+	padding-right: 22px;
+	font-size: 20px;
+  }
+  
+  .envio{
+	width: 50%;
+	padding-left: 50px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .direccion-envio{
+	width: 50%;
+	padding-right: 22px;
+	margin-top: 20px;
+  }
+  
+  .total{
+	width: 50%;
+	padding-left: 50px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .total-valor{
+	width: 50%;
+	padding-right: 22px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+
 /* Estilos main Log in */
 
 .main-Login{
@@ -516,7 +647,7 @@ margin-left: 22px;
 	font-size: 20px;
 	background-color: #F93001;
 	padding: 10px;
-	margin-top: 30px;
+	margin-top: 20px;
 	border-radius: 5px;
 	border: 0px; 
 	cursor: pointer;
@@ -532,7 +663,7 @@ margin-left: 22px;
 	font-size: 20px;
 	background-color: #F93001;
 	padding: 10px;
-	margin-top: 30px;
+	margin-top: 20px;
 	border-radius: 5px;
 	border: 0px; 
 	cursor: pointer;
@@ -546,6 +677,7 @@ margin-left: 22px;
 
 .olvide-contraseña{
 	margin: 15px;
+	margin-top: 30px;
 }
 
 .ir-a-registro{
@@ -585,7 +717,7 @@ margin-left: 22px;
 	font-size: 20px;
 	background-color: #F93001;
 	padding: 10px;
-	margin-top: 30px;
+	margin-top: 20px;
 	border-radius: 5px;
 	border: 0px; 
 	cursor: pointer;
@@ -594,4 +726,8 @@ margin-left: 22px;
 
 .boton-registrarse:hover{
 	background-color: #A43015
+}
+
+.ir-a-login{
+	margin: 15px;
 }
