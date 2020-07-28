@@ -32,21 +32,30 @@
             </section>
         </header>
 
-    <main class="main-productDetail">
+    <main>
         <h2 class="titulo-suSeleccion">SU SELECCIÓN: </h2>
-        <img class="ejemplo-disco-oasis" src="/images/ejemplo-disco-oasis.jpg" alt="Ejemplo disco de Oasis">
-        <h3 class= "banda">Oasis</h3>
-        <h3 class="titulo-album">(What's the story?) Morning Glory</h3>
-        <span class="precio-producto"><strong>$XXXXX</strong></span>
-        <span class="descripcion-producto">Descripción del producto</span>
-        <span class="tamaño">Tamaño en pulgadas (")</span>
-        <span class="existencias"><i class="fas fa-thumbs-up"></i>Hay existencias</span>
-        <form class= "formulario-añadirCarrito">
-        <input type="button" name="minus" id="minus" value="-">
-        <input type="number" name="requests" id="requests" step="1" min="1" max="5" placeholder="1">
-        <input type="button" name="plus" id="plus" value="+">
-        <button class="boton-carrito" type="submit">Añadir al carrito</button>
-        </form>
+
+        <div class="main-productDetail">
+            <section class="product-tapa">
+            <img class="ejemplo-disco-oasis" src="/images/ejemplo-disco-oasis.jpg" alt="Ejemplo disco de Oasis">
+            </section>
+            
+            <section class="product-detail">
+                <h3 class= "banda">Oasis</h3>
+                <h3 class="titulo-album">(What's the story?) Morning Glory</h3>
+                <div class="precio-producto"><strong>$XXXXX</strong></div>
+                <div class="descripcion-producto">Descripción del producto</div>
+                <div class="tamaño">Tamaño en pulgadas (")</div>
+                <div class="existencias"><i class="fas fa-thumbs-up"></i>Hay existencias</div>
+            </section>
+
+            <form class= "formulario-añadirCarrito">
+            <input type="button" name="minus" id="minus" value="-">
+            <input type="number" name="requests" id="requests" step="1" min="1" max="5" placeholder="1">
+            <input type="button" name="plus" id="plus" value="+">
+            <button class="boton-carrito" type="submit">Añadir al carrito</button>
+            </form>
+        </div>
     </main>
     <footer class="footer-detalle">
 		<div class="social-networks">
