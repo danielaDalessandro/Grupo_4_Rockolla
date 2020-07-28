@@ -461,7 +461,7 @@ margin-left: 22px;
   background-color: #A43015
 }
 
-@media(min-width: 767px){
+@media(min-width: 768px){
 
 	.carrito-disco-oasis{
 		height: 151px;
@@ -477,7 +477,7 @@ margin-left: 22px;
 	}
 }
 
-@media(min-width: 1023px){
+  @media(min-width: 1024px){
 
 .producto{
 	width: 50%;
@@ -504,7 +504,7 @@ margin-left: 22px;
 	bottom: 15px;
 	font-size: 33px;
   }
-}
+
 
 .precio{
 	width: 50%;
@@ -590,6 +590,19 @@ margin-left: 22px;
 	padding-right: 22px;
 	margin-top: 20px;
 	font-size: 20px;
+  }
+
+  .boton-finalizarCompra{
+	color: white;
+	font-size: 30px;
+	  background-color: #F93001;
+	  padding: 10px;
+	  margin-top: 20px;
+	  margin-bottom: 10px;
+	  border-radius: 5px;
+	  border: 0px; 
+	  cursor: pointer;
+  } 
   }
 
 /* Estilos main Log in */
