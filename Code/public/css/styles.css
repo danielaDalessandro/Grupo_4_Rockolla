@@ -259,7 +259,7 @@ width: 100%;
   background-color: #A43015;
 }
 
-@media(min-width: 426px){
+@media(min-width: 321px){
 .titulo-album{
 border-bottom: 1px solid rgba(0,0,0,.2);
 padding: 10px;
@@ -273,14 +273,14 @@ padding: 10px;
 @media(min-width: 800px){
 	.titulo-suSeleccion{
 		position: absolute;
-		right: 450px;
-		top: 160px;
+		right: 31%;
+		top: 20%;
 	}
 
 	.ejemplo-disco-oasis{
 		position: absolute;
-		left: 150px;
-		bottom: 250px;
+		left: 4%;
+		bottom: 30%;
 		height: 250px;
 		width: 250px;
 	}
@@ -288,7 +288,8 @@ padding: 10px;
 	.banda{
 		font-size: 23px;
 		position: absolute;
-		bottom: 520px;
+		bottom: 66%;
+		left: 11%;
 	}
 
 	.titulo-album{
@@ -296,7 +297,8 @@ padding: 10px;
 		border: none;
 		margin: 100px;
 		position: absolute;
-		bottom: 450px;
+		bottom: 54%;
+		left: 16%;
 	  }
 
 	  .precio-producto{
@@ -306,13 +308,15 @@ padding: 10px;
 
 	  .descripcion-producto{
 		position: absolute;
-		bottom: 340px;
+		bottom: 44%;
+		left: 9%;
 	  }
 	
 	  .tamaño{
 		border: none;
 		position: absolute;
-		bottom: 300px;
+		bottom: 39%;
+		left: 9%;
 	  }
 
 	  .existencias{
@@ -341,9 +345,6 @@ padding: 10px;
 		cursor: pointer;
 	}
 
-	  .footer-detalle{
-		  margin-top: 400px;
-	  }
 }
 /* Estilos main carrito de compras: */
 
@@ -489,6 +490,137 @@ margin-left: 22px;
 .boton-finalizarCompra:hover{
   background-color: #A43015
 }
+
+@media(min-width: 767px){
+
+	.carrito-disco-oasis{
+		height: 151px;
+		width: 164px;
+		margin-bottom: 8px;
+	  }	
+
+	.eliminar-objeto{
+	position: relative;
+	left: 213px;
+	bottom: 13px;
+	font-size: 27px;
+	}
+}
+
+@media(min-width: 1023px){
+
+.producto{
+	width: 50%;
+	padding-left: 50px;
+	font-size: 20px;
+	}
+
+.nombre-disco{
+	width: 50%;
+	padding-right: 22px;
+	font-size: 20px;
+}
+
+.carrito-disco-oasis{
+		height: 190px;
+		width: 213px;
+		margin-bottom: 8px;
+}	
+
+
+.eliminar-objeto{
+	position: relative;
+	left: 340px;
+	bottom: 15px;
+	font-size: 33px;
+  }
+}
+
+.precio{
+	width: 50%;
+	padding-left: 50px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .precio-valor{
+	width: 50%;
+	padding-right: 22px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .cantidad{
+	width: 50%;
+	padding-left: 50px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .valor-cantidad{
+	width: 50%;
+	padding-right: 22px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .boton-cantidad{
+	height: 30px;
+	width: 30px;
+  }
+  
+  .subtotal{
+	width: 50%;
+	padding-left: 50px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .subtotal-valor{
+	width: 50%;
+	padding-right: 22px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .subtotal-total{
+	width: 50%;
+	padding-left: 50px;
+	font-size: 20px;
+  }
+  
+  .subtotalTotal-valor{
+	width: 50%;
+	padding-right: 22px;
+	font-size: 20px;
+  }
+  
+  .envio{
+	width: 50%;
+	padding-left: 50px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .direccion-envio{
+	width: 50%;
+	padding-right: 22px;
+	margin-top: 20px;
+  }
+  
+  .total{
+	width: 50%;
+	padding-left: 50px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
+  
+  .total-valor{
+	width: 50%;
+	padding-right: 22px;
+	margin-top: 20px;
+	font-size: 20px;
+  }
 
 /* Estilos main Log in */
 
