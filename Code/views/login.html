@@ -1,46 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-	<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600&display=swap" rel="stylesheet"> 
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
-    <title>Log In</title>
-</head>
-<body> 
-    <header>
-		<section class="header-logo">
-			<img class="logo" src="images/logo.svg">
-		</section>
-    </header>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+        <title>Detalle del producto</title>
+    </head>
+    <body>
+            <header>
+                <section class="header-logo">
+                    <img class="logo" src="images/logo.svg">
+                </section><!--
+            --><section class="header-login">
+                    <a class="boton-login" href="/login">Log in <i class="fas fa-user"></i></a>
+                </section>
+        
+                <section class="header-hamburguesa">
+                    <button class="boton-hamburguesa">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </section><!--
+            --><section class="header-busqueda">
+                    <form action="/" method="POST">
+                        <input class="input-buscador" type="text" name="search" id="search" placeholder="¿Qué disco estas buscando?">
+                        <button class="boton-buscador" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </section>
+            </header>
 
-    <main>
+    <main class="main-Login">
 
-        <h1> Ingresar </h1>
+        <h2 class= ""> Ingresar </h2>
 
         <form action="" method="POST">
-            <div>
+            <div class="formulario-email">
                 <input type="email" name="email" id="email" placeholder="Email"
                     autocomplete="true" required>
             </div>
         
-            <div>
+            <div class="formulario-contraseña">
                 <input type="password" name="password" id="password" placeholder="Contraseña"
                     autocomplete="true" required>
             </div>
 
-            <div>
+            <div class="formulario-recordar">
                 <input type="checkbox" name="recordar contraseña" value="recordar contraseña"> Recordar mi Contraseña
             </div>
 
             <div>
-                <button type="submit"> Ingresar </button>
-                <button type="reset"> Borrar</button>
+                <button class= "boton-Ingresar" type="submit"> Ingresar </button>
+                <button class= "boton-borrar" type="reset"> Borrar</button>
             </div>
 
-            <a href="">Olvidé mi contraseña.</a> <br>
-            <a href="/views/registro.html">¿No tenés cuenta? Registrate acá</a>
+            <a class="olvide-contraseña" href="">Olvidé mi contraseña.</a> <br>
+            <a  class="ir-a-registro" href="/views/registro.html">¿No tenés cuenta? Registrate acá</a>
 
 
         </form>

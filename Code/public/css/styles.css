@@ -481,3 +481,117 @@ margin-left: 22px;
 .boton-finalizarCompra:hover{
   background-color: #A43015
 }
+
+/* Estilos main Log in */
+
+.main-Login{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	text-align: center;
+}
+
+
+.main-Login h2{
+	width: 100%;
+	margin: 15px;
+	background-color: #E8E6E4;
+}
+
+.formulario-email{
+	margin: 15px;
+}
+
+.formulario-contraseña{
+	margin: 15px;
+}
+
+.formulario-recordar{
+	margin: 15px;
+}
+
+
+.boton-Ingresar{
+	color: white;
+	font-size: 20px;
+	background-color: #F93001;
+	padding: 10px;
+	margin-top: 30px;
+	border-radius: 5px;
+	border: 0px; 
+	cursor: pointer;
+	margin-right: 10px;
+}
+  
+.boton-Ingresar:hover{
+	background-color: #A43015
+}
+
+.boton-borrar{
+	color: white;
+	font-size: 20px;
+	background-color: #F93001;
+	padding: 10px;
+	margin-top: 30px;
+	border-radius: 5px;
+	border: 0px; 
+	cursor: pointer;
+	margin-left: 10px;
+}
+  
+.boton-borrar:hover{
+	background-color: #A43015
+}
+
+
+.olvide-contraseña{
+	margin: 15px;
+}
+
+.ir-a-registro{
+	margin: 15px;
+}
+
+/* Estilos main Registro*/
+
+.main-registro{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	text-align: center;
+}
+
+
+.main-registro h2{
+	width: 100%;
+	margin: 15px;
+	background-color: #E8E6E4;
+}
+
+.formulario-nombre{
+	margin: 15px
+}
+
+.formulario-apellido{
+	margin: 15px
+}
+
+.formulario-repetir{
+	margin: 15px
+}
+
+.boton-registrarse{
+	color: white;
+	font-size: 20px;
+	background-color: #F93001;
+	padding: 10px;
+	margin-top: 30px;
+	border-radius: 5px;
+	border: 0px; 
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+.boton-registrarse:hover{
+	background-color: #A43015
+}
