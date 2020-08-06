@@ -22,6 +22,9 @@ app.use('/product', productRoutes);
 const userRoutes = require('./routes/user');
 app.use('/user', userRoutes);
 
+const adminRoutes = require('./routes/admin');
+app.use('/admin', adminRoutes);
+
 //---------------PAGINA_DE_ERROR---------------//
 app.get("/*", (req,res) =>{
 	res.render(path.join(__dirname + '/views/404'))
