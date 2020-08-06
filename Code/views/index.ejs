@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>  
+	<title>Rockolla</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" />
+	<%- include('./partials/head')%>
+</head>
+<body>
+
+	<%- include('./partials/header') %>
+
+	<section class="section-banner">
+		<img class="banner" src="images/home-banner.jpg">
+	</section>
+
+	<main class="main-home">
+		<section class="home-section">
+			<div class="home-section-title">Novedades</div>
+			
+			<div class="owl-carousel"> 
+				<% for (let i=0; i<=10; i++) {%>
+					<div class="disco-home-card">
+						<a href="/product/detail">
+							<section class="portada-disco">
+								<img src="/images/ejemplo-disco-oasis.jpg">
+							</section>
+							<section class="descripcion-disco">
+								<div>Oasis</div>
+								<div>(What's the Story) Morning Glory?</div>
+							</section>
+						</a>
+					</div>
+				<%}%>
+			</div>
+		</section>
+
+
+		<section class="home-section">
+			<div class="home-section-title">Los Más Buscado</div>
+			
+			<div class="owl-carousel"> 
+				<% for (let i=0; i<=10; i++) {%>
+					<div class="disco-home-card">
+						<a href="/product/detail">
+							<section class="portada-disco">
+								<img src="/images/ejemplo-disco-oasis.jpg">
+							</section>
+							<section class="descripcion-disco">
+								<div>Oasis</div>
+								<div>(What's the Story) Morning Glory?</div>
+							</section>
+						</a>
+					</div>
+				<%}%>
+			</div>
+		</section>
+	</main>
+
+	<%- include('./partials/footer') %>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+	<script src="js/index.js"></script>
+
+</body>
+</html>

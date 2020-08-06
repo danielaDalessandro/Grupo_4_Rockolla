@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Detalle del producto</title>
+	<%- include('../partials/head') %>
+</head>
+<body>
+	<%- include('../partials/header') %>
+
+    <main>
+        <h2 class="titulo-suSeleccion">SU SELECCIÓN: </h2>
+
+        <div class="main-productDetail">
+            <section class="product-tapa">
+            <img class="ejemplo-disco-oasis" src="/images/ejemplo-disco-oasis.jpg" alt="Ejemplo disco de Oasis">
+            </section>
+            
+            <section class="product-detail">
+                <h3 class= "banda">Oasis</h3>
+                <h3 class="titulo-album">(What's the story?) Morning Glory</h3>
+                <div class="precio-producto"><strong>$XXXXX</strong></div>
+                <div class="descripcion-producto">Descripción del producto</div>
+                <div class="tamaño">Tamaño en pulgadas (")</div>
+                <div class="existencias"><i class="fas fa-thumbs-up"></i>Hay existencias</div>
+            </section>
+
+            <form class= "formulario-añadirCarrito">
+            <input type="number" name="requests" id="requests" step="1" min="1" max="5" placeholder="1">
+            <button class="boton-carrito" type="submit">Añadir al carrito</button>
+            </form>
+        </div>
+    </main>
+
+	<%- include('../partials/footer') %>
+
+</body>
+</html>

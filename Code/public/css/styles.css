@@ -111,6 +111,27 @@ a.boton-login:hover {
 	background-color: transparent;
 }
 
+@media(min-width:800px) {
+	.header-logo {
+		width: 30%;
+	}
+
+	.header-login {
+		width:20%;
+		order:4;
+	}
+
+	.header-hamburguesa{
+		width:5%;
+		order:3;
+	}
+
+	.header-busqueda {
+		width: 45%;
+		order:2;
+	}
+}
+
 /*----------MAIN----------*/
 .section-banner {
 	width:100%;

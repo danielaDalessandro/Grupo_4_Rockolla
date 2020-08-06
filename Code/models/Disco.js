@@ -18,5 +18,4 @@ module.exports = {
 
       canciones: {type: 'Canciones'}
     },
-  };
-  
+};

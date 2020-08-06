@@ -1,4 +1,4 @@
-# retrospectiva
+# retrospectiva 1
 ## link: https://jamboard.google.com/d/12GWxP24ANMUo1Z7FA1Pfs7782kW3pJGD9ZoOhwzrfSA/viewer?f=0
 
 Luego de una discusión larga entre los miembros del equipo, llegamos a la conclusión de que estos son los aspectos principales en los cuales queremos basar nuestra retrospectiva: 
@@ -10,4 +10,9 @@ Dos aspectos creemos que encuadran bajo este titulo. En primer lugar, consideram
 ## 3. Continuar haciendo
 Entre los puntos fuertes del trabajo en equipo hecho hasta el día de hoy, y que deberiamos seguir haciendo en un futuro, identificamos: Las reuniones por zoom, ser puntuales con las entregas, y seguir subiendo los archivos al repositorio de github cuando hay un cambio significativo. Además, creemos que la definicíon por mayoría de votos cuando estamos ante un desacuerdo es un buen método para resolver nuestras diferencias. 
 ## 4. Hacer menos ## 5. Dejar de hacer
-Coincidimos entre los miembros del grupo que el mayor problema que nos enfrentamos en la resolución de los sprints fue el tiempo. Nos pusimos como objetivo principal para las próximas entregas dejar de confiarnos con el tiempo. Esto significa, hacer reuniones y establecer la división de tareas cerca de la fecha de lanzamiento del sprint, así podemos ponernos a trabajar lo antes posible. Dado que esta retrospectiva la realizamos al final del sprint 2, reconocemos que deberiamos comenzar a hacerla al principio de los sprint y no al finalizar estos.
+Coincidimos entre los miembros del grupo que el mayor problema que nos enfrentamos en la resolución de los sprints fue el tiempo. Nos pusimos como objetivo principal para las próximas entregas dejar de confiarnos con el tiempo. Esto significa, hacer reuniones y establecer la división de tareas cerca de la fecha de lanzamiento del sprint, así podemos ponernos a trabajar lo antes posible.
+
+# retrospectiva 2
+
+## 1. Comenzar a hacer
+Creemos que lo principalmente debemos hacer es que la retrospectiva sea lo primero que hagamos al comienzo de un nuevo sprint. Esto se debe a que la retrospectica n º1 la hicimos al finaliza el sprint, por lo que terminan siendo iguales las retrospectivas del sprint 1 y 2. 
