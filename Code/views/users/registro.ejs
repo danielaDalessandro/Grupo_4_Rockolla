@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>  
+    <title>Rockolla</title>
+	<%- include('../partials/head')%>
+</head>
+<body>
+	<%- include('../partials/header') %>
+
+    <main class="main-registro"> 
+
+        <h2> Registrate</h2>
+
+        <form action="/user/registro" method="POST">
+
+            <div class= "formulario-nombre" >
+                <input type="text" id="nombre" name= "nombre" placeholder="Nombre" autocomplete="true" required>
+            </div>
+
+            <div class="formulario-apellido">
+                <input type="text" id="apellido" name= "apellido" placeholder="Apellido" autocomplete="true" required>
+            </div>
+
+            <div class="formulario-email">
+                <input type="email" name="Email" id="email" placeholder="Email"
+                    autocomplete="true" required>
+            </div>
+        
+            <div class="formulario-contraseña">
+                <input type="password" name="password" id="password" placeholder="Contraseña"
+                    autocomplete="true" required>
+            </div>
+
+            <div class="formulario-repetir">
+                <input type="password" name="password" id="password" placeholder="Repetir Contraseña"
+                    autocomplete="true" required>
+            </div>
+
+            <div class="formulario-recordar">
+                <input type="checkbox" name="recordar contraseña" value="recordar contraseña"> Recordar mi Contraseña
+            </div>
+
+            <div>
+                <button class="boton-registrarse" type="submit"> 
+                   <a href="/index"></a>  Registrate </button>
+                <button class="boton-borrar" type="reset"> Borrar</button>
+            </div>
+
+            <a class="olvide-contraseña" href="">Olvidé mi contraseña.</a> <br>
+
+            <a  class="ir-a-login" href="/user/login">¿Ya tenes cuenta? Ingresa aca</a>
+            
+
+
+        </form>
+
+
+
+    </main>
+
+	<%- include('../partials/footer') %>
+
+</body>
+</html>

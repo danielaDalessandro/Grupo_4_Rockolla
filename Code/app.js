@@ -1,54 +1,32 @@
 const express = require ("express");
 const favicon = require('serve-favicon');
+const path = require('path');
 
 const app = express();
 const port = 3000;
 
-//Static files to be used
+//----------ARCHIVOS_ESTÁTICOS----------//
 app.use(express.static('public'));
 
-//favicon
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
+//-------------MIDDLEWARES-------------//
+app.use(favicon(path.join(__dirname, '/public/images/favicon.ico')));
+app.set('view engine', 'ejs');
 
-//Landing page
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/views/index.html")
-});
+//---------------ROUTES---------------//
+const mainRoutes = require('./routes/index');
+app.use('/', mainRoutes);
 
-//Detalle del Producto
-app.get("/detalle", (req, res) => {
-    res.sendFile(__dirname + "/views/productDetail.html")
-});
+const productRoutes = require('./routes/product');
+app.use('/product', productRoutes);
 
-//Carrito de compras
-app.get("/carrito", (req, res) => {
-    res.sendFile(__dirname + "/views/productCart.html")
-});
+const userRoutes = require('./routes/user');
+app.use('/user', userRoutes);
 
-//Registro
-app.get("/registro", (req, res) => {
-    res.sendFile(__dirname + "/views/registro.html")
-});
-
-app.post("/registro", (req, res) => {
-    res.sendFile(__dirname + "/views/index.html")
-});
-
-//Login
-app.get("/login", (req, res) => {
-    res.sendFile(__dirname + "/views/login.html")
-});
-
-app.post("/login", (req, res) => {
-    res.sendFile(__dirname + "/views/index.html")
-});
-
-//Culaquier otra página
+//---------------PAGINA_DE_ERROR---------------//
 app.get("/*", (req,res) =>{
-	res.sendFile(__dirname + "/views/404.html")
+	res.render(path.join(__dirname + '/views/404'))
 });
 
 app.listen(port, () => {
     console.log("Servidor escuchando en el puerto: ", port);
 });
-
