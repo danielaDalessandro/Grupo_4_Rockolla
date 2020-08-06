@@ -642,17 +642,11 @@ margin-left: 22px;
 	background-color: #E8E6E4;
 }
 
-.formulario-email{
+.formulario-box{
 	margin: 15px;
 }
 
-.formulario-contraseña{
-	margin: 15px;
-}
 
-.formulario-recordar{
-	margin: 15px;
-}
 
 
 .boton-Ingresar{
@@ -711,18 +705,6 @@ margin-left: 22px;
 	width: 100%;
 	margin: 15px;
 	background-color: #E8E6E4;
-}
-
-.formulario-nombre{
-	margin: 15px
-}
-
-.formulario-apellido{
-	margin: 15px
-}
-
-.formulario-repetir{
-	margin: 15px
 }
 
 .boton-registrarse{
