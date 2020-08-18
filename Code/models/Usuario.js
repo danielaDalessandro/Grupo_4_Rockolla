@@ -4,14 +4,16 @@
 
 module.exports = {
     attributes: {
-        nombre: { type: 'string' },
+        fname: { type: 'string' },
 
-        mail: { type: 'string' },
+        lname: { type: 'string'},
 
-        contrasenia: { type: 'string' },
+        email: { type: 'string' },
 
-        genero: {type: 'Genero'},
+        password: { type: 'string' },
+
+        gender: {type: 'Genero'},
     
-        fechaNac: { type: 'Date' },
+        dob: { type: 'Date' },
     },
 };

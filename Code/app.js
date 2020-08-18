@@ -1,16 +1,29 @@
 const express = require ("express");
-const favicon = require('serve-favicon');
 const path = require('path');
-
 const app = express();
+
 const port = 3000;
 
-//----------ARCHIVOS_ESTÁTICOS----------//
-app.use(express.static('public'));
 
 //-------------MIDDLEWARES-------------//
+//Archivos Estáticos
+app.use(express.static('public'));
+//Favicon
+const favicon = require('serve-favicon');
 app.use(favicon(path.join(__dirname, '/public/images/favicon.ico')));
+//View Engine ejs
 app.set('view engine', 'ejs');
+//urlencoded para capturar información de formularios
+app.use(express.urlencoded( {extended: false} ));
+app.use(express.json());
+//method-override para poder usar put y delete
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+//Page not Found 404
+/* app.use((req, res, next) => {
+    res.status(404).render('404');
+}) */
+
 
 //---------------ROUTES---------------//
 const mainRoutes = require('./routes/index');
@@ -25,11 +38,11 @@ app.use('/user', userRoutes);
 const adminRoutes = require('./routes/admin');
 app.use('/admin', adminRoutes);
 
-//---------------PAGINA_DE_ERROR---------------//
-app.get("/*", (req,res) =>{
-	res.render(path.join(__dirname + '/views/404'))
-});
+app.get('*', (req, res) => {
+    res.render('404');
+})
 
+//---------------LISTEN---------------//
 app.listen(port, () => {
     console.log("Servidor escuchando en el puerto: ", port);
 });
