@@ -45,7 +45,7 @@ jsonDb = function (tableName) {
         
         writeTable(rows) {
             rows = JSON.stringify(rows);
-            fs.writeFileSync(this.tablePath, rows);
+            return fs.writeFileSync(this.tablePath, rows);
         },
         
         insert(rows) {

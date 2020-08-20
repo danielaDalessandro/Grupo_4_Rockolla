@@ -16,11 +16,15 @@
             </section>
             
             <section class="product-detail">
-                <h3 class= "banda">Oasis</h3>
-                <h3 class="titulo-album">(What's the story?) Morning Glory</h3>
-                <div class="precio-producto"><strong>$XXXXX</strong></div>
-                <div class="descripcion-producto">Descripción del producto</div>
-                <div class="tamaño">Tamaño en pulgadas (")</div>
+                <h3 class= "banda"><%= product.artista%></h3>
+                <h3 class="titulo-album"><%= product.titulo%></h3>
+                <h3 class="titulo-album"><%= product.sello%></h3>
+                <h3 class="titulo-album"><%= product.genero%></h3>
+                <div class="precio-producto"><strong>$ <%= product.precio%></strong></div>
+                <div class="descripcion-producto">Descripción del producto 
+                    <br> <%= product.descripcion%>
+                </div>
+                <div class="tamaño">Tamaño en pulgadas <%= product.pulgadas%>"</div>
                 <div class="existencias"><i class="fas fa-thumbs-up"></i>Hay existencias</div>
             </section>
 

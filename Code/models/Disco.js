@@ -14,8 +14,8 @@ module.exports = {
     
       fechaPublicacion: { type: 'Date' },
     
-      tapa: {type: 'Tapa'},
+      tapa: {type: 'jpg'},
 
-      canciones: {type: 'Canciones'}
+      descripcion: {type: 'string'}
     },
 };

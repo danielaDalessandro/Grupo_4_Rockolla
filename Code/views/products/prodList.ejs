@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Carrito de compras</title>
+        <%- include('../partials/head') %>
+    </head>
+<body>
+    <%- include('../partials/header') %>  
+    <main>
+        <ul>
+        <% products.forEach((product) => { %>
+            <li>
+                <p><%= product.id%></p>
+                <p><%= product.titulo%></p>
+                <p><%= product.artista%></p>
+                <p><%= product.genero%></p>
+                <p><%= product.sello%></p>
+                <p><%= product.descripcion%></p>
+            </li>
+        <%})%>
+        </ul>
+    </main>
+
+    <%- include('../partials/footer') %>   
+</body>
+</html>

@@ -18,6 +18,13 @@ main {
 	padding-bottom: 100px;
 }
 
+.flex-box {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	text-align: center;
+}
+
 /*----------HEADER----------*/
 header {
 	display: flex;
@@ -709,6 +716,16 @@ section .product-detail {
 .form-link{
 	margin: 15px;
 	margin-top: 30px;
+}
+
+/* Estilos rutas abm productos */
+.abm-products {
+	flex-direction: row;
+	justify-content: center;
+}
+
+.center {
+	text-align:center;
 }
 
 /*Grid Rules*/
