@@ -25,6 +25,10 @@ main {
 	text-align: center;
 }
 
+ul {
+	list-style-type: none;
+}
+
 /*----------HEADER----------*/
 header {
 	display: flex;
@@ -186,7 +190,10 @@ a.boton-login:hover {
 }
 
 .descripcion-disco {
+	font-size: 1.2rem;
 	text-align: center;
+	color: black;
+	text-decoration: none;
 }
 
 .disco-home-card a {
@@ -728,6 +735,28 @@ section .product-detail {
 	text-align:center;
 }
 
+/*Lista de Discos*/
+.list-main {
+	padding-top: 1rem;
+}
+
+.disco-list-card {
+
+	padding: 1rem;
+}
+
+.disco-list-card:hover {
+	background-color: #E8E6E4;
+}
+
+.disco-list-tapa {
+	width: 100%;
+
+}
+
+.discos-grid {
+	width: 66.66%;
+}
 /*Grid Rules*/
 /* For mobile phones: */
 [class*="col-"] {
@@ -750,7 +779,7 @@ section .product-detail {
 	.col-s-12 {width: 100%;}
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 769px) {
 	/* For desktop: */
 	.col-1 {width: 8.33%;}
 	.col-2 {width: 16.66%;}
@@ -764,4 +793,13 @@ section .product-detail {
 	.col-10 {width: 83.33%;}
 	.col-11 {width: 91.66%;}
 	.col-12 {width: 100%;}
+}
+
+.is-centered {
+	justify-content: center;
+}
+
+.test{
+	background-color:green;
+	border: 1px solid pink;
 }

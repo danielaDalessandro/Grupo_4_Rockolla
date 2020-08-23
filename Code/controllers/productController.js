@@ -7,8 +7,6 @@ module.exports = {
     list: (req, res) => {
         let products = productsModel.readAll();
 
-        console.log(typeof products);
-
         return res.render('./products/prodList', { products:products });
     },
 
@@ -21,7 +19,7 @@ module.exports = {
     },
 
     viewCreate: (req, res) => {
-
+        res.render('./admin/productCreate');
     },
 
     viewEdit: (req, res) => {
