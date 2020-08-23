@@ -17,7 +17,9 @@
         <% products.forEach((product) => { %>
             <div class="producto-carrito col-s-10 flex-box">
                 <section class="col-s-6 col-4">
-                    <img class="disco-list-tapa" src="/images/tapas/<%= product.tapa%>" alt="Tapa del disco">
+                    <a href="/products/<%= product.id%>">
+                        <img class="disco-list-tapa" src="/images/tapas/<%= product.tapa%>" alt="Tapa del disco">
+                    </a>
                 </section>
                 
                 <section class="col-s-6 col-7 detalle-producto is-relative">

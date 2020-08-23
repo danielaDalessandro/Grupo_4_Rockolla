@@ -22,7 +22,7 @@
                 <p><%= product.titulo%></p>
                 <p>$<%= product.precio%></p>
 
-                <form class="form-box center-align" action="/products/buy" method="POST">
+                <form class="form-box center-align" action="/products/cart" method="POST">
                     <input type="number" name="cantidad" id="cantidad" step="1" min="1" max="5" value="1">
                     <button class="boton-primary" type="submit">Añadir al carrito</button>
                     <div class="existencias">

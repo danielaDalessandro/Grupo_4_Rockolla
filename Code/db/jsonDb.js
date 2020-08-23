@@ -90,13 +90,11 @@ jsonDb = function (tableName) {
 
         //Elimina la fila según el id pasado por parámetro
         //devuelve el id de la fila eliminada
-        deleteById(id, value) {
-            let table = this.readAll();
-            let row = this.findById(id);
-            let index = table.indexOf(row)
-            
-            table.splice(index, 1);
-            this.writeTable(table);
+        deleteById(id) {
+            let row= [];
+            row.push(this.findById(id));
+            let updatedTable = row.filter(oneRow => oneRow.id != id); 
+            this.writeTable(updatedTable);
 
             return row.id;
         },

@@ -276,40 +276,11 @@ footer {
 	font-size: 1.5rem;
 }
 
-
-.caja-carrito{
-	display: flex;
-	flex-wrap: wrap;
-	background-color: #EFF3EF;
-}
-
 .producto{
 	width: 50%;
 	padding-left: 22px;
 }
 
-.nombre-disco{
-	width: 50%;
-	padding-right: 22px;
-}
-
-.precio{
-	width: 50%;
-	padding-left: 22px;
-	margin-top: 20px;
-}
-
-.precio-valor{
-	width: 50%;
-	padding-right: 22px;
-	margin-top: 20px;
-}
-
-.cantidad{
-	width: 50%;
-	padding-left: 22px;
-	margin-top: 20px;
-}
 
 .valor-cantidad{
 	width: 50%;
@@ -374,71 +345,9 @@ footer {
 	margin-top: 20px;
 }
 
-.boton-finalizar-align{
-	margin-left: 22px;
-}
 
-.boton-finalizarCompra{
-	color: white;
-	font-size: 20px;
-	background-color: #F93001;
-	padding: 10px;
-	margin-top: 20px;
-	margin-bottom: 10px;
-	border-radius: 5px;
-	border: 0px; 
-	cursor: pointer;
-}
 
-.boton-finalizarCompra:hover{
-	background-color: #A43015
-}
-
-@media(min-width: 768px){
-	
-	.carrito-disco-oasis{
-		height: 151px;
-		width: 164px;
-		margin-bottom: 8px;
-	}	
-}
-
-@media(min-width: 1024px){
-	
-	.producto{
-		width: 50%;
-		padding-left: 50px;
-		font-size: 20px;
-	}
-	
-	.nombre-disco{
-		width: 50%;
-		padding-right: 22px;
-		font-size: 20px;
-	}
-	
-	.carrito-disco-oasis{
-		height: 190px;
-		width: 213px;
-		margin-bottom: 8px;
-	}	
-
-	
-	
-	.precio{
-		width: 50%;
-		padding-left: 50px;
-		margin-top: 20px;
-		font-size: 20px;
-	}
-	
-	.precio-valor{
-		width: 50%;
-		padding-right: 22px;
-		margin-top: 20px;
-		font-size: 20px;
-	}
-	
+@media(min-width: 1024px){	
 	.cantidad{
 		width: 50%;
 		padding-left: 50px;
@@ -664,7 +573,11 @@ footer {
 	.col-10 {width: 83.33%;}
 	.col-11 {width: 91.66%;}
 	.col-12 {width: 100%;}
+
+	.is-second {order:2;}
 }
+
+
 
 .is-centered {
 	justify-content: center;

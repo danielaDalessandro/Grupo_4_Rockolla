@@ -23,13 +23,14 @@ router.get('/search', controller.search);
 router.post('/search', controller.search);
 
 router.get('/cart', controller.cart);
+router.post('/cart', controller.addToCart);
+
+router.delete('/:id', controller.productDelete);
 
 router.get('/:id', controller.detail);
 
-router.get('/:id/edit', controller.viewEdit);
+router.get('/:id/edit' ,controller.viewEdit);
 
-router.put('/:id', controller.edit);
-
-//router.delete('/:id', controller.delete);
+router.put('/:id', upload.single('tapa'), controller.edit);
 
 module.exports = router;
