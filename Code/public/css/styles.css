@@ -12,6 +12,7 @@ body {
 	font-family: 'Heebo', sans-serif;
 	position: relative;
 	min-height: 100vh;
+	padding-bottom: 4rem;
 }
 
 main {
@@ -230,8 +231,8 @@ a.boton-login:hover {
 /*----------FOOTER----------*/
 footer {
 	background-color: #E8E6E4;
+	height: 5rem;
 	width: 100%;
-	padding: 10px;
 	position: absolute;
 	bottom: 0px;
 }
@@ -727,13 +728,10 @@ section .product-detail {
 
 /* Estilos rutas abm productos */
 .abm-products {
-	flex-direction: row;
-	justify-content: center;
+	padding: 0rem 1rem;
 }
 
-.center {
-	text-align:center;
-}
+
 
 /*Lista de Discos*/
 .list-main {
@@ -741,12 +739,15 @@ section .product-detail {
 }
 
 .disco-list-card {
-
 	padding: 1rem;
 }
 
 .disco-list-card:hover {
 	background-color: #E8E6E4;
+}
+
+.disco-list-card a {
+	text-decoration: none;
 }
 
 .disco-list-tapa {
@@ -797,6 +798,14 @@ section .product-detail {
 
 .is-centered {
 	justify-content: center;
+}
+
+.left-align {
+	text-align: left;
+}
+
+.center-align {
+	text-align:center;
 }
 
 .test{
