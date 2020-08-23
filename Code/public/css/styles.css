@@ -264,25 +264,16 @@ footer {
 	color: #2DF505
 }
 
-
-.carrito-disco-oasis{
-	height: 128px;
-	width: 138px;
-	margin-bottom: 8px;
-}
-
-.imagen-carrito{
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+.producto-carrito:nth-child(odd){
 	background-color: #EFF3EF;
 }
 
 .eliminar-objeto{
-	position: relative;
-	left: 60px;
-	bottom: 10px;
-	font-size: 25px;
+	position: absolute;
+	color: black;
+	right: 1rem;
+	top: .2rem;
+	font-size: 1.5rem;
 }
 
 
@@ -410,13 +401,6 @@ footer {
 		width: 164px;
 		margin-bottom: 8px;
 	}	
-	
-	.eliminar-objeto{
-		position: relative;
-		left: 213px;
-		bottom: 13px;
-		font-size: 27px;
-	}
 }
 
 @media(min-width: 1024px){
@@ -438,14 +422,7 @@ footer {
 		width: 213px;
 		margin-bottom: 8px;
 	}	
-	
-	
-	.eliminar-objeto{
-		position: relative;
-		left: 340px;
-		bottom: 15px;
-		font-size: 33px;
-	}
+
 	
 	
 	.precio{
@@ -691,6 +668,10 @@ footer {
 
 .is-centered {
 	justify-content: center;
+}
+
+.is-relative {
+	position: relative;
 }
 
 .left-align {

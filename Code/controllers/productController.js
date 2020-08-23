@@ -57,6 +57,11 @@ module.exports = {
     },
 
     cart: (req, res) => {
-        res.render('./products/productCart');
+        let products = [
+            productsModel.findById('308'),
+            productsModel.findById('309'),
+            productsModel.findById('311')
+        ];
+        res.render('./products/productCart', { products });
     },
 }
