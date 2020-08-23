@@ -11,7 +11,22 @@ module.exports = {
     },
 
     create: (req, res) => {
+        let newProduct = {
+            id: productsModel.getNextId(),
+            titulo: req.body.titulo,
+            artista: req.body.artista,
+            sello: req.body.sello,
+            genero: req.body.genero,
+            fechaPublicacion: req.body.fechaPublicacion,
+            tapa: req.file.filename,
+            formato: req.body.formato,
+            precio: req.body.precio,
+            descripcion: req.body.descripcion
+        }
 
+        productsModel.createRow(newProduct);
+
+        res.redirect('/products/' + newProduct.id);
     },
 
     edit: (req, res) => {

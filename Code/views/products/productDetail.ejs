@@ -7,31 +7,41 @@
 <body>
 	<%- include('../partials/header') %>
 
-    <main>
-        <h2 class="titulo-suSeleccion">SU SELECCIÓN: </h2>
+    <main class="flex-box">
+        <h2 class="col-s-12 align-center detalle-descripcion">
+            <%= product.titulo%>
+        </h2>
 
-        <div class="main-productDetail">
-            <section class="product-tapa">
-            <img class="ejemplo-disco-oasis" src="/images/ejemplo-disco-oasis.jpg" alt="Ejemplo disco de Oasis">
+        <div class="col-10 flex-box is-centered">
+            <section class="col-s-10 col-6">
+                <img class="disco-list-tapa" src="/images/tapas/<%= product.tapa%>" alt="Tapa del disco">
             </section>
             
-            <section class="product-detail">
-                <h3 class= "banda"><%= product.artista%></h3>
-                <h3 class="titulo-album"><%= product.titulo%></h3>
-                <h3 class="titulo-album"><%= product.sello%></h3>
-                <h3 class="titulo-album"><%= product.genero%></h3>
-                <div class="precio-producto"><strong>$ <%= product.precio%></strong></div>
-                <div class="descripcion-producto">Descripción del producto 
-                    <br> <%= product.descripcion%>
-                </div>
-                <div class="tamaño">Tamaño en pulgadas <%= product.pulgadas%>"</div>
-                <div class="existencias"><i class="fas fa-thumbs-up"></i>Hay existencias</div>
-            </section>
+            <section class="detalle-product col-s-10 col-6">
+                <p><%= product.artista%></p>
+                <p><%= product.titulo%></p>
+                <p>$<%= product.precio%></p>
 
-            <form class= "formulario-añadirCarrito">
-            <input type="number" name="requests" id="requests" step="1" min="1" max="5" placeholder="1">
-            <button class="boton-carrito" type="submit">Añadir al carrito</button>
-            </form>
+                <form class="form-box center-align" action="/products/buy" method="POST">
+                    <input type="number" name="cantidad" id="cantidad" step="1" min="1" max="5" value="1">
+                    <button class="boton-primary" type="submit">Añadir al carrito</button>
+                    <div class="existencias">
+                        <i class="fas fa-thumbs-up"></i>Hay existencias
+                    </div>
+                </form>
+            </section>
+            <section class="col-s-10 flex-box left-align">
+                <div class="col-3">
+                <h3>Características</h3>
+                <p>Sello: <%= product.sello%></p>
+                <p>Formato: <%= product.pulgadas%>"</p>
+                <p>Genero: <%= product.genero%></p>
+            </div>
+            <div class="col-9">
+                <h3>Descripción</h3>
+                <p><%= product.descripcion%></p>
+            </div>
+            </section>
         </div>
     </main>
 

@@ -12,7 +12,7 @@
     </div>
 
     <main class="flex-box abm-products"> 
-        <form class="flex-box" action="/admin/products" method="POST">
+        <form class="flex-box" action="/products" method="POST" enctype="multipart/form-data">
             <div class="col-6">
                 <div class= "form-box left-align" >
                     <label>Título: </label>
@@ -56,7 +56,7 @@
             <div class="col-6">
                 <div class="form-box left-align">
                     <p> Agrega una imagen de la tapa del disco: </p>
-                    <input type="file" name="" id= "tapa" placeholder="Tapa del disco" required>
+                    <input type="file" name="tapa" id= "tapa" required>
                 </div>
 
                 <div class="form-box left-align">

@@ -41,7 +41,7 @@ jsonDb = function (tableName) {
                 errors.push('readAll()');
                 throw error;
             }
-            
+
             //Parseo la tabla y la devuelvo
             return table = JSON.parse(table);
         },
