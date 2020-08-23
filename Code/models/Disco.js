@@ -14,8 +14,12 @@ module.exports = {
     
       fechaPublicacion: { type: 'Date' },
     
-      tapa: {type: 'Tapa'},
+      tapa: {type: 'string'},
 
-      canciones: {type: 'Canciones'}
+      formato: {type: 'Formato'},
+
+      precio: {type: 'int'},
+
+      descripcion: {type: 'string'}
     },
 };
