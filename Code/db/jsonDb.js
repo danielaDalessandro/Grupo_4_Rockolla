@@ -75,30 +75,28 @@ jsonDb = function (tableName) {
             return table.filter((row) => row[query] == value);
         },
         
-        //Actualiza la fila con id igual al parámetro
+        //Actualiza la fila con id igual al del parámetro
         //devuelve el id de la fila actualizada
-        updateById(id, value) {
+        update(value) {
+            if (!value.id) {
+                return undefined;
+            }
             let table = this.readAll();
-            let row = this.findById(id);
-            let index = table.indexOf(row)
-            
-            table.splice(index, 1, value);
+            table = table.filter(row => row.id != value.id); 
+            table.push(value);
             this.writeTable(table);
 
-            return row.id;
+            return value.id;
         },
 
         //Elimina la fila según el id pasado por parámetro
         //devuelve el id de la fila eliminada
-        deleteById(id, value) {
+        deleteById(id) {
             let table = this.readAll();
-            let row = this.findById(id);
-            let index = table.indexOf(row)
-            
-            table.splice(index, 1);
+            table = table.filter(row => row.id != id); 
             this.writeTable(table);
 
-            return row.id;
+            return id;
         },
 
         //Crea una fila con el objeto recibido por parámetros

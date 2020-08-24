@@ -17,7 +17,9 @@
         <% products.forEach((product) => { %>
             <div class="producto-carrito col-s-10 flex-box">
                 <section class="col-s-6 col-4">
-                    <img class="disco-list-tapa" src="/images/tapas/<%= product.tapa%>" alt="Tapa del disco">
+                    <a href="/products/<%= product.id%>">
+                        <img class="disco-list-tapa" src="/images/tapas/<%= product.tapa%>" alt="Tapa del disco">
+                    </a>
                 </section>
                 
                 <section class="col-s-6 col-7 detalle-producto is-relative">
@@ -34,7 +36,7 @@
         <%})%>
         
         <div class="col-s-10">
-            <h2>TOTAL DEL CARRITO: </h2>
+            <h2>Total a pagar: </h2>
             <div class="caja-total">
                 <div class="subtotal-total"><strong> Subtotal: </strong></div>
                 <div class= "subtotalTotal-valor"> $XXXXXXX</div>
@@ -43,7 +45,7 @@
                 <div class="total"><strong> Total: </strong></div>
                 <div class= "total-valor"> $XXXXXXX</div>
             </div>
-            <button class="boton-primary" type="submit">Finalizar Compra</button>
+            <button class="boton boton-primary" type="submit">Finalizar Compra</button>
         </div>
     </main>
     

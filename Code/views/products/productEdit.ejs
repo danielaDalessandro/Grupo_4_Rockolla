@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rockolla</title>
+    <%- include('../partials/head')%>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    
+    <div class="center-align">
+        <h2>Editar producto:</h2>
+    </div>
+    
+    <main class="flex-box abm-products">
+        <form
+        class="flex-box"
+        action="/products/<%= product.id%>?_method=PUT"
+        method="POST"
+        enctype="multipart/form-data"
+        >
+        <div class="col-4">
+            <div>
+                <img
+                class="disco-list-tapa"
+                src="/images/tapas/<%= product.tapa%>"
+                alt="Tapa del disco"
+                />
+            </div>
+        </div>
+        
+        <div class="col-2"></div>
+        
+        <div class="col-4">
+            <div class="form-box left-align">
+                <label>Título: </label>
+                <input
+                type="text"
+                id="nombre"
+                name="titulo"
+                value="<%= product.titulo%>"
+                placeholder="Nombre del disco"
+                autocomplete="true"
+                required
+                />
+            </div>
+            
+            <div class="form-box left-align">
+                <label>Artista: </label>
+                <input
+                type="text"
+                id="artista"
+                name="artista"
+                value="<%= product.artista%>"
+                placeholder="Artista"
+                autocomplete="true"
+                required
+                />
+            </div>
+            
+            <div class="form-box left-align">
+                <label>Sello Discográfico: </label>
+                <input
+                type="text"
+                name="sello"
+                id="sello"
+                value="<%= product.sello%>"
+                placeholder="Sello discográfico"
+                autocomplete="true"
+                required
+                />
+            </div>
+            
+            <div class="form-box left-align">
+                <label>Género: </label>
+                <input
+                type="text"
+                name="genero"
+                id="genero"
+                value="<%= product.genero%>"
+                placeholder="Género musical"
+                autocomplete="true"
+                required
+                />
+            </div>
+            
+            <div class="form-box left-align">
+                <label>Fecha de Publicación: </label>
+                <input
+                type="date"
+                name="fechaPublicacion"
+                id="fechaPublicacion"
+                value="<%= product.fechaPublicacion%>"
+                placeholder="Fecha de publicación"
+                autocomplete="true"
+                required
+                />
+            </div>
+            
+            <div class="form-box left-align">
+                <label>Precio: </label>
+                <input
+                type="text"
+                name="precio"
+                id="precio"
+                value="<%= product.precio%>"
+                placeholder="Precio"
+                required
+                />
+            </div>
+            
+            <div class="form-box left-align">
+                <label>Formato: </label>
+                <input
+                type="text"
+                name="formato"
+                id="formato"
+                value="<%= product.formato%>"
+                placeholder="Pulgadas"
+                required
+                />
+            </div>
+            
+            <div class="form-box left-align">
+                <p>Agrega una imagen nueva a la tapa del disco:</p>
+                <input type="file" name="tapa" id="tapa" />
+            </div>
+        </div>
+        
+        <div class="col-s-10 form-box left-align">
+            <p>
+                <label>Descripción del producto: </label>
+            </p>
+            <textarea
+            class="form-textarea"
+            name="descripcion"
+            ><%= product.descripcion%>
+            </textarea>
+        </div>
+        
+        <div class="col-s-10 flex-box is-centered">
+            <button class="boton boton-primary" type="submit">Editar Producto</button>
+        </div>
+    </form>
+    
+    <div class="col-s-10 flex-box is-centered">
+        <form
+        class="flex-box"
+        action="/products/<%= product.id%>?_method=DELETE"
+        method="POST"
+        >
+        <button class="boton boton-secondary" type="submit">Borrar Producto</button>
+    </form>
+</div>
+</main>
+
+<%- include('../partials/footer') %>
+</body>
+</html>
