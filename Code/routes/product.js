@@ -20,18 +20,16 @@ router.post('/', upload.single('tapa'), controller.create);
 router.get('/create', controller.viewCreate);
 
 router.get('/search', controller.search);
-router.post('/search', controller.search);
 
 router.get('/cart', controller.viewCart);
 router.post('/cart', controller.viewCart);
 router.post('/cart/:id', controller.addToCart);
 
-router.delete('/:id', controller.productDelete);
-
 router.get('/:id', controller.detail);
 
 router.get('/:id/edit' ,controller.viewEdit);
-
 router.put('/:id', upload.single('tapa'), controller.edit);
+
+router.delete('/:id', controller.productDelete);
 
 module.exports = router;

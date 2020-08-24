@@ -1,4 +1,3 @@
-const { search } = require("../routes");
 const jsonDb = require("../db/jsonDb");
 
 const productsModel = jsonDb("products");
@@ -7,7 +6,11 @@ module.exports = {
     list: (req, res) => {
         let products = productsModel.readAll();
         
-        return res.render("./products/prodList", { products: products });
+        return res.render("./products/list", { products: products });
+    },
+    
+    viewCreate: (req, res) => {
+        res.render("./products/create");
     },
     
     create: (req, res) => {
@@ -29,6 +32,15 @@ module.exports = {
         res.redirect("/products/" + newProduct.id);
     },
     
+    viewEdit: (req, res) => {
+        let productToEdit = productsModel.findById(req.params.id);
+        if (productToEdit) {
+            res.render("./products/edit", { product: productToEdit });
+        } else {
+            res.render("./404");
+        }
+    },
+    
     edit: (req, res) => {
         let editedProduct = {
             id: req.params.id,
@@ -42,7 +54,7 @@ module.exports = {
             descripcion: req.body.descripcion,
         };
         let oldProduct = productsModel.findById(req.params.id);
-
+        
         if (req.file) {
             editedProduct.tapa = req.file.filename;
         } else {
@@ -52,21 +64,7 @@ module.exports = {
         res.redirect("/products/" + editedProduct.id);
     },
     
-    viewCreate: (req, res) => {
-        res.render("./admin/productCreate");
-    },
-    
-    viewEdit: (req, res) => {
-        let productToEdit = productsModel.findById(req.params.id);
-        if (productToEdit) {
-            res.render("./products/productEdit", { product: productToEdit });
-        } else {
-            res.render("./404");
-        }
-    },
-    
     productDelete: (req, res) => {
-        console.log("inside product delete");
         let id = req.params.id;
         productsModel.deleteById(id);
         
@@ -76,29 +74,33 @@ module.exports = {
     detail: (req, res) => {
         let product = productsModel.findById(req.params.id);
         if (product) {
-            res.render("./products/productDetail", { product });
+            res.render("./products/detail", { product });
         } else {
             res.redirect("/products");
         }
     },
     
     search: (req, res) => {
-        let query = req.query.search_query
-        let tableBandas = productsModel.filterBy("artista", query)
-        let tableDiscos = productsModel.filterBy("titulo", query)
-        let resultados = [...tableBandas, ...tableDiscos]
+        let query = req.query.search_query;
+        let tableBandas = productsModel.filterBy("artista", query);
+        let tableDiscos = productsModel.filterBy("titulo", query);
+        let resultados = [...tableBandas, ...tableDiscos];
         
-
-        res.render("./products/prodList", {products : resultados});
+        res.render("./products/list", { products: resultados });
     },
     
     viewCart: (req, res) => {
         let products = [
-            productsModel.findById("308"),
-            productsModel.findById("309"),
-            productsModel.findById("311"),
+            productsModel.findById("314"),
+            productsModel.findById("312"),
+            productsModel.findById("313"),
+            productsModel.findById("315"),
+            productsModel.findById("1"),
         ];
-        res.render("./products/productCart", { products });
+
+        let total = 0;
+        products.forEach(product => total += parseInt(product.precio));
+        res.render("./products/cart", { products, total });
     },
     
     addToCart: (req, res) => {

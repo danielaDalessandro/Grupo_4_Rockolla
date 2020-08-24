@@ -1,38 +1,14 @@
 const jsonDb = require('../db/jsonDb');
 
-const productsModel = jsonDb('products');
+const userModel = jsonDb('users');
 
 module.exports = {
-    productCreate: (req, res) => {
-        let newProduct = {
-            titulo: req.body.titulo,
-            artista: req.body.artista,
-            genero: req.body.genero,
-            sello: req.body.sello,
-            descripcion: req.body.descripcion,
-            precio: req.body.precio,
-            fechaPublicacion: req.body.fechaPublicacion,
-            pulgadas: req.body.pulgadas,
-            //tapa:
-        }
-
-        let products = productsModel.readAll();
-
-        newProduct.id = productsModel.getNextId();
-
-        products.push(newProduct);
-
-        productsModel.writeTable(products);
-
-        res.redirect('/product');
+    dashboard: (req, res) => {
+        res.render('./admin/dashboard');
     },
 
-    viewProductCreate: (req, res) => {
-        res.render('./admin/productCreate');
-    },
-
-    productEdit: (req, res) => {
-        let product = productsModel.findById(req.params.id);
-        res.render('./admin/productCreate', { product});
-    },
+    listUsers: (req, res) => {
+        let users = userModel.readAll();
+        res.render('./admin/list', { users });
+    }
 }
