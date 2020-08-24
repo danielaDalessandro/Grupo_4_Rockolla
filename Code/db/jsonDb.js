@@ -72,7 +72,7 @@ jsonDb = function (tableName) {
         filterBy(query, value) {
             let table = this.readAll();
             
-            return table.filter((row) => row[query] == value);
+            return table.filter((row) => row[query].toString().toLowerCase().includes(value.toLowerCase()));
         },
         
         //Actualiza la fila con id igual al del parámetro

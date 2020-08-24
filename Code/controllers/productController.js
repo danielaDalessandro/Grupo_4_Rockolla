@@ -83,7 +83,13 @@ module.exports = {
     },
     
     search: (req, res) => {
-        res.render("./products/productSearch");
+        let query = req.query.search_query
+        let tableBandas = productsModel.filterBy("artista", query)
+        let tableDiscos = productsModel.filterBy("titulo", query)
+        let resultados = [...tableBandas, ...tableDiscos]
+        
+
+        res.render("./products/prodList", {products : resultados});
     },
     
     viewCart: (req, res) => {
