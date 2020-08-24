@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Carrito de compras</title>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    
+    <main class="flex-box is-centered">
+        <div class="aviso col-s-10">
+            <i class="fas fa-check-circle"></i> Has añadido satisfactoriamente
+            "Oasis - (What's the story?) Morning Glory" a tu carrito de compras
+        </div>
+        
+        <section class="col-s-10">
+            <h2>Finalizá tu compra:</h2>
+        </section>
+        
+        <% products.forEach((product) => { %>
+            <div class="producto-carrito col-s-10 flex-box">
+                <section class="col-s-6 col-4">
+                    <a href="/products/<%= product.id%>">
+                        <img
+                        class="disco-list-tapa"
+                        src="/images/tapas/<%= product.tapa%>"
+                        alt="Tapa del disco"
+                        />
+                    </a>
+                </section>
+                
+                <section class="col-s-6 col-7 detalle-producto is-relative">
+                    <i class="fas fa-times-circle eliminar-objeto"></i>
+                    <p><%= product.artista%> - <%= product.titulo%></p>
+                    <p>$<%= product.precio%></p>
+                    <p>
+                        <strong>Cantidad: </strong>
+                        <input
+                        class="form-box"
+                        type="number"
+                        name="cantidad"
+                        id="cantidad"
+                        step="1"
+                        min="1"
+                        max="5"
+                        value="1"
+                        />
+                    </p>
+                    <p><strong>Subtotal: </strong> $<%= product.precio%></p>
+                </section>
+            </div>
+            <%})%>
+            
+            <div class="col-s-10 flex-box is-centered">
+                <h2 class="col-s-12">Total a pagar:</h2>
+                <form class="col-s-12 flex-box" action="/" method="GET">
+                        <div class="col-s-12 flex-box">
+                            <div class="col-s-6"><strong> Subtotal: </strong></div>
+                            <div class="col-s-6">
+                                $<%= total%>
+                            </div>
+                        </div>
+                        <div class="col-s-12 flex-box">
+                            <div class="col-s-6"><strong>Envío: </strong></div>
+                            <div class="col-s-6 flex-box form-box">
+                                <input class="col-" type="text" name="envio" id= "envio" placeholder="Dirección de envio..." required>
+                            </div>
+                        </div>
+                        <div class="col-s-12 flex-box">
+                            <div class="col-s-6"><strong> Total: </strong></div>
+                            <div class="col-s-6">
+                                $<%= total%>
+                            </div>
+                        </div>
+                    <button class="boton boton-primary" type="submit">
+                        Finalizar Compra
+                    </button>
+                </form>
+            </div>
+        </main>
+        
+        <%- include('../partials/footer') %>
+    </body>
+    </html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%= product.titulo%>></title>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    
+    <main class="flex-box">
+        <h2 class="col-s-12 align-center detalle-descripcion">
+            <%= product.titulo%>
+        </h2>
+        
+        <div class="col-10 flex-box is-centered">
+            <section class="col-s-10 col-4">
+                <img
+                class="disco-list-tapa"
+                src="/images/tapas/<%= product.tapa%>"
+                alt="Tapa del disco"
+                />
+            </section>
+            
+            <section class="detalle-product col-s-10 col-6">
+                <p><%= product.artista%></p>
+                <p><%= product.titulo%></p>
+                <p>$<%= product.precio%></p>
+                
+                <form
+                class="form-box center-align"
+                action="/products/cart"
+                method="POST"
+                >
+                    <input
+                    type="number"
+                    name="cantidad"
+                    id="cantidad"
+                    step="1"
+                    min="1"
+                    max="10"
+                    value="1"
+                    />
+                    <button class="boton boton-primary" type="submit">
+                        Añadir al carrito
+                    </button>
+                    <button class="boton boton-secondary" type="submit"> 
+                        Finalizar Compra
+                    </button>
+                </form>
+                <div class="existencias">
+                    <i class="fas fa-thumbs-up"></i>Hay existencias
+                </div>
+            </section>
+            <section class="col-s-10 flex-box left-align">
+                <div class="col-3">
+                    <h3>Características</h3>
+                    <p>Sello: <%= product.sello%></p>
+                    <p>Formato: <%= product.formato%></p>
+                    <p>Genero: <%= product.genero%></p>
+                </div>
+                <div class="col-9">
+                    <h3>Descripción</h3>
+                    <p><%= product.descripcion%></p>
+                </div>
+            </section>
+        </div>
+</main>
+
+<%- include('../partials/footer') %>
+</body>
+</html>
