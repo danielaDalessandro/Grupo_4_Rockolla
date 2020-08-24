@@ -12,7 +12,7 @@ body {
 	font-family: 'Heebo', sans-serif;
 	position: relative;
 	min-height: 100vh;
-	padding-bottom: 4rem;
+	padding-bottom: 5rem;
 }
 
 main {
@@ -464,41 +464,33 @@ footer {
 	border: 1px solid #D9D6D3;	
 }
 
-.buttons {
-	padding: 1rem 0px;
+.form-textarea {
+	width: 100%;
+	border-radius: .5rem;
+	color: black;
+	border: 1px solid #D9D6D3;
+	resize: none;
+	min-height: 5rem;
 }
 
-.boton-primary{
+.boton {
 	color: white;
-	font-size: 20px;
-	background-color: #F93001;
-	padding: 10px;
-	margin-top: 20px;
-	border-radius: 5px;
-	border: 0px; 
+	text-align: center;
+	font-size: 1.2rem;
+	padding: .8rem;
+	margin: .5rem;
+	border-radius: .3rem;
+	border: 0px;
 	cursor: pointer;
-	margin-right: 10px;
 }
 
-.boton-primary:hover{
-	background-color: #A43015
-}
+.boton-primary{background-color: #F93001;}
 
-.boton-secondary{
-	color: white;
-	font-size: 20px;
-	background-color: #F93001;
-	padding: 10px;
-	margin-top: 20px;
-	border-radius: 5px;
-	border: 0px; 
-	cursor: pointer;
-	margin-left: 10px;
-}
+.boton-primary:hover{background-color: #A43015}
 
-.boton-secondary:hover{
-	background-color: #A43015
-}
+.boton-secondary{background-color: #F93001;}
+
+.boton-secondary:hover{background-color: #A43015}
 
 .form-link{
 	margin: 15px;

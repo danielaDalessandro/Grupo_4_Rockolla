@@ -22,8 +22,9 @@ router.get('/create', controller.viewCreate);
 router.get('/search', controller.search);
 router.post('/search', controller.search);
 
-router.get('/cart', controller.cart);
-router.post('/cart', controller.addToCart);
+router.get('/cart', controller.viewCart);
+router.post('/cart', controller.viewCart);
+router.post('/cart/:id', controller.addToCart);
 
 router.delete('/:id', controller.productDelete);
 
