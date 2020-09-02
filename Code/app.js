@@ -19,6 +19,9 @@ app.use(express.json());
 //method-override para poder usar put y delete
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
+// Session:
+const session = require("express-session")
+app.use(session({secret: "Admin de grupos"}))
 //Page not Found 404
 /* app.use((req, res, next) => {
     res.status(404).render('404');
