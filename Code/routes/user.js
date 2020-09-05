@@ -24,17 +24,25 @@ router.post('/login',[
     check("password")
         .notEmpty().withMessage("Por favor ingrese una contraseña").bail()
         .isLength({min: 8}).withMessage("La contraseña tiene que tener un mínimo de 8 caracteres").bail()
-        .isAlphanumeric().withMessage("La contraseña debe estar compuesta de mayúsculas y minúsuculas").bail(),
-
-    check("recordar-contraseña").isBoolean()
+        .isAlphanumeric().withMessage("La contraseña debe estar compuesta de mayúsculas y minúsuculas").bail()
 ], controller.processLogin);
 
 router.get('/registro', controller.registro);
 router.post('/registro',[
-    check("nombre").isAlpha(),
-    check("apellido").isAlpha(),
-    check("email").isEmail(),
-    check("password").isLength({min: 8}).isAlphanumeric()
+    check("nombre")
+        .notEmpty().withMessage("Debe completar un nombre válido").bail()
+        .isAlpha().withMessage("Este campo solo puede estar compuesto por letras"),
+    check("apellido")
+        .notEmpty().withMessage("Debe completar un apellido válido").bail()
+        .isAlpha().withMessage("Este campo solo puede estar compuesto por letras"),
+    check("email")
+        .notEmpty().withMessage("Por favor ingrese un email").bail()
+        .isEmail().withMessage("Debe completar un email válido"),
+
+    check("password")
+        .notEmpty().withMessage("Por favor ingrese una contraseña").bail()
+        .isLength({min: 8}).withMessage("La contraseña tiene que tener un mínimo de 8 caracteres").bail()
+        .isAlphanumeric().withMessage("La contraseña debe estar compuesta de mayúsculas y minúsuculas"),
 ], upload.single('avatar') , controller.createUser);
 
 module.exports = router;

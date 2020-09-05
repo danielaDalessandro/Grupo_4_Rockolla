@@ -11,19 +11,30 @@
         <div class="div-users">
             <h2 class= ""> Ingresar </h2>
 
+        
+    
+
             <form action="/user/login" method="POST">
                 <div class="form-box">
-                    <input type="email" name="email" id="email" placeholder="Email"
+                    <% if (locals.errors && errors.email){ %>
+                    <label><%= errors.email.msg %></label><br>
+                    <%}%> 
+                    <input type="text" name="email" id="email" placeholder="Email"
                     autocomplete="true" required>
                 </div>
                 
                 <div class="form-box">
+                    <% if (locals.errors && errors.password){ %>
+                        <label>
+                            <%= errors.password.msg %>
+                        </label>
+                        <%}%>
                     <input type="password" name="password" id="password" placeholder="Contraseña" autocomplete="true" required>
                 </div>
                 
-                <div class="form-box">
+               <!--  <div class="form-box">
                     <input type="checkbox" name="recordar-contraseña" value="recordar contraseña"> Recordar mi Contraseña
-                </div>
+                </div> -->
                 
                 <div>
                     <button class= "boton boton-primary" type="submit"> Ingresar </button>

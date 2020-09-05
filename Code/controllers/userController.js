@@ -20,29 +20,42 @@ module.exports = {
         if(errors.isEmpty()){
         let user = usersModel.findBy('email', req.body.email);
         if (!user) {
-            return res.redirect('/user/login');
+            errors.msg = "Hola"
+            console.log(errors)
+            return res.render('./users/login', {errors: errors.errors});
         }
 
         if (bcrypt.compareSync(req.body.password, user.password) ) {
-            return res.send('Succes');
+            delete user.password
+            req.session.user = user
+            res.redirect("/")
         }
         else {
             return res.send('Failed');
         }
+    } else {
+        console.log(errors.mapped())
+        res.render("./users/login", {errors:errors.mapped()})
     }
     },
 
 
     createUser: (req, res) => {
+        let errors = validationResult(req)
+        if(errors.isEmpty()){
         let newUser = {
             fname: req.body.nombre,
             lname: req.body.apellido,
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password, 10),
             avatar: req.file.filename
-        }
+            }
 
         usersModel.createRow(newUser);
-        return res.redirect('/user/login');
+        return res.redirect('/');
+        
+        } else {
+            res.render("./users/registro", {errors:errors.mapped()}) 
+        }
     }
 }
