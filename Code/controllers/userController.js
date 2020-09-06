@@ -17,23 +17,31 @@ module.exports = {
 
     processLogin: (req, res) => {
         let errors = validationResult(req)
+        // si no vinieron errores...
         if(errors.isEmpty()){
-        let user = usersModel.findBy('email', req.body.email);
-        if (!user) {
-            errors.msg = "Hola"
-            console.log(errors)
-            return res.render('./users/login', {errors: errors.errors});
-        }
+            // busco el usuario en la db
+            let user = usersModel.findBy('email', req.body.email);
 
-        if (bcrypt.compareSync(req.body.password, user.password) ) {
-            delete user.password
-            req.session.user = user
-            res.redirect("/")
+            // si el usuario existe y la contraseña es correcta
+            if (user && bcrypt.compareSync(req.body.password, user.password) ) {
+                // elimino la contraseña que vino en el req
+                delete user.password
+                // creo la sesion con el usuario
+                req.session.user = user
+                // redirijo al inicio
+                res.redirect("/")
+            }
+            // si hay error en los valores ingresados
+            else {
+                errors = {
+                    login: 
+                        {msg:'Por favor verifique los datos ingresados y vuelva a intentar'}
+                };
+                return res.render('./users/login', { errors });
+            }
         }
+        // si vinieron errores... 
         else {
-            return res.send('Failed');
-        }
-    } else {
         console.log(errors.mapped())
         res.render("./users/login", {errors:errors.mapped()})
     }

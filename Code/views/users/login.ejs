@@ -17,19 +17,27 @@
             <form action="/user/login" method="POST">
                 <div class="form-box">
                     <% if (locals.errors && errors.email){ %>
-                    <label><%= errors.email.msg %></label><br>
-                    <%}%> 
-                    <input type="text" name="email" id="email" placeholder="Email"
-                    autocomplete="true" required>
+                        <label class="form-error"><%= errors.email.msg %></label><br>
+                    <%}%>
+                    <% if (locals.errors && errors.login){ %>
+                        <label class="form-error"><%= errors.login.msg %></label><br>
+                    <%}%>
+                    <input type="email" name="email" id="email" placeholder="Email"
+                        autocomplete="true" required 
+                        <% if (locals.errors && (errors.email|| errors.login)){%>
+                            class="input-error"
+                        <%}%>>
                 </div>
                 
                 <div class="form-box">
                     <% if (locals.errors && errors.password){ %>
-                        <label>
-                            <%= errors.password.msg %>
-                        </label>
-                        <%}%>
-                    <input type="password" name="password" id="password" placeholder="Contraseña" autocomplete="true" required>
+                        <label class="form-error" id="password-error"><%= errors.password.msg %></label><br>
+                    <%}%>
+                    <input type="password" name="password" id="password" placeholder="Contraseña" 
+                        autocomplete="true" required
+                        <% if (locals.errors && (errors.password||errors.login)){%>
+                            class="input-error"
+                        <%}%>>
                 </div>
                 
                <!--  <div class="form-box">
@@ -48,7 +56,6 @@
     </main>
 
     <%- include('../partials/footer') %>
-    
 </body>
 </html>
 

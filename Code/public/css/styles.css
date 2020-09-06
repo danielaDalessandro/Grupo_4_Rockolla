@@ -464,6 +464,15 @@ footer {
 	border: 1px solid #D9D6D3;	
 }
 
+.form-box .form-error {
+	font-size: .8rem;
+	color: red;
+}
+
+.input-error {
+	background-color: lightpink;
+}
+
 .form-textarea {
 	width: 100%;
 	border-radius: .5rem;
