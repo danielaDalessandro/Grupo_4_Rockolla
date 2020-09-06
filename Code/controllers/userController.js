@@ -2,6 +2,7 @@ const jsonDb = require('../db/jsonDb');
 
 const usersModel = jsonDb('users');
 
+
 const bcrypt = require("bcryptjs")
 
 const { validationResult } = require("express-validator")
@@ -50,20 +51,25 @@ module.exports = {
 
     createUser: (req, res) => {
         let errors = validationResult(req)
+        // si no hay errores...
         if(errors.isEmpty()){
-        let newUser = {
-            fname: req.body.nombre,
-            lname: req.body.apellido,
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, 10),
-            avatar: req.file.filename
-            }
-
-        usersModel.createRow(newUser);
-        return res.redirect('/');
+            // creo el nuevo usuario
+            let newUser = {
+                fname: req.body.nombre,
+                lname: req.body.apellido,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+                avatar: req.file.filename
+                }
+            // lo guardo en db
+            usersModel.createRow(newUser);
+            // redirijo al login
+            return res.redirect('/user/login');
         
-        } else {
-            res.render("./users/registro", {errors:errors.mapped()}) 
+        } 
+        else { // si hay errores..
+            // retorno los errores en la misma vista
+            res.render("./users/registro", {errors:errors.mapped(), values: req.body}) 
         }
     }
 }

@@ -14,14 +14,18 @@ app.use(favicon(path.join(__dirname, '/public/images/favicon.ico')));
 //View Engine ejs
 app.set('view engine', 'ejs');
 //urlencoded para capturar información de formularios
-app.use(express.urlencoded( {extended: false} ));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 //method-override para poder usar put y delete
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 // Session:
 const session = require("express-session")
-app.use(session({secret: "Admin de grupos"}))
+app.use(session({
+    secret: "very secret password",
+    resave: false,
+    saveUninitialized: true,
+}))
 //Page not Found 404
 /* app.use((req, res, next) => {
     res.status(404).render('404');
@@ -39,6 +43,7 @@ const userRoutes = require('./routes/user');
 app.use('/user', userRoutes);
 
 const adminRoutes = require('./routes/admin');
+const bodyParser = require("body-parser");
 app.use('/admin', adminRoutes);
 
 app.get('*', (req, res) => {

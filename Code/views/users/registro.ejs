@@ -1,70 +1,141 @@
 <!DOCTYPE html>
 <html>
-<head>  
+  <head>
     <title>Registro</title>
     <%- include('../partials/head')%>
-</head>
-<body>
+  </head>
+  <body>
     <%- include('../partials/header') %>
-    
-    <main class="main-users">  
-        <div class="div-users">
-            <h2> Registrate</h2>
-            
-            <form action="/user/registro" method="POST" enctype="multipart/form-data">
-                <div class= "form-box" >
-                    <% if (locals.errors && errors.nombre){ %>
-                        <label><%= errors.nombre.msg %></label><br>
-                        <%}%> 
-                    <input type="text" id="nombre" name= "nombre" placeholder="Nombre" autocomplete="true">
-                </div>
-                
-                <div class="form-box">
-                    <% if (locals.errors && errors.apellido){ %>
-                        <label><%= errors.apellido.msg %></label><br>
-                        <%}%> 
-                    <input type="text" id="apellido" name= "apellido" placeholder="Apellido" autocomplete="true">
-                </div>
-                
-                <div class="form-box">
-                    <% if (locals.errors && errors.email){ %>
-                        <label><%= errors.email.msg %></label><br>
-                        <%}%> 
-                    <input type="text" name="email" id="email" placeholder="Email" autocomplete="true">
-                </div>
-                
-                <div class="form-box">
-                    <% if (locals.errors && errors.password){ %>
-                        <label><%= errors.password.msg %></label><br>
-                        <%}%> 
-                    <input type="password" name="password" id="password" placeholder="Contraseña"
-                    autocomplete="true" required>
-                </div>
-                
-                <div class="form-box">
-                    <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Repetir Contraseña"
-                    autocomplete="true" required>
-                </div>
 
-                <div class="form-box">
-                    <p> Agrega una foto de perfil: </p>
-                    <input type="file" name="avatar" id= "avatar" required>
-               </div>
-                
-                <div>
-                    <button class="boton boton-primary" type="submit">
-                        <a href="/index"></a>Registrate
-                    </button>
-                    <button class="boton boton-secondary" type="reset">Borrar</button>
-                </div>
+    <main class="main-users">
+      <div class="div-users">
+        <h2>Registrate</h2>
 
-                
-                 
-                    <a class="form-link" href="/user/login">¿Ya tenes cuenta? Ingresa aca</a>
-                </form>
-            </div>
-        </main>
-        <%- include('../partials/footer') %>
-        
-    </body>
-    </html>
+        <form
+          action="/user/registro"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="form-box">
+            <% if (locals.errors && errors.nombre){ %>
+            <label class="form-error"><%= errors.nombre.msg %></label><br />
+            <%}%>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Nombre"
+              autocomplete="true"
+              <% if (locals.errors && errors.nombre){ %>
+                class="input-error" 
+              <%}%>
+              <% if (locals.values && values.nombre){%>
+                value="<%= values.nombre%>" 
+              <%}%> 
+            >
+          </div>
+
+          <div class="form-box">
+            <% if (locals.errors && errors.apellido){ %>
+            <label class="form-error"><%= errors.apellido.msg %></label><br />
+            <%}%>
+            <input
+              type="text"
+              id="apellido"
+              name="apellido"
+              placeholder="Apellido"
+              autocomplete="true"
+              required
+              <% if (locals.errors && errors.apellido){%>
+                class="input-error" 
+              <%}%> 
+              <% if (locals.values && values.apellido){%>
+                value="<%= values.apellido%>" 
+              <%}%> 
+            >
+          </div>
+
+          <div class="form-box">
+            <% if (locals.errors && errors.email){ %>
+            <label class="form-error"><%= errors.email.msg %></label><br />
+            <%}%>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              placeholder="Email"
+              autocomplete="true"
+              required
+              <% if (locals.errors && errors.email){%>
+                class="input-error" 
+              <%}%> 
+              <% if (locals.values && values.email){%>
+                value="<%= values.email%>" 
+              <%}%> 
+            >
+          </div>
+
+          <div class="form-box">
+            <% if (locals.errors && errors.password){ %>
+            <label class="form-error"><%= errors.password.msg %></label><br />
+            <%}%>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Contraseña"
+              autocomplete="true"
+              required
+              <% if (locals.errors && errors.password){%>
+                class="input-error" 
+              <%}%> 
+            >
+          </div>
+
+          <div class="form-box">
+            <% if (locals.errors && errors.passwordConfirm){ %>
+            <label class="form-error"><%= errors.passwordConfirm.msg %></label
+            ><br />
+            <%}%>
+            <input
+              type="password"
+              name="passwordConfirm"
+              id="passwordConfirm"
+              placeholder="Repetir Contraseña"
+              autocomplete="true"
+              required
+              <% if (locals.errors && errors.passwordConfirm) {%>
+                class="input-error" 
+              <%}%> 
+            >
+          </div>
+
+          <div class="form-box">
+            <p>Agrega una foto de perfil:</p>
+            <input
+              type="file"
+              name="avatar"
+              id="avatar"
+              required
+              <% if (locals.errors && errors.passwordConfirm) {%>
+                class="input-error" 
+              <%}%> 
+            >
+          </div>
+
+          <div>
+            <button class="boton boton-primary" type="submit">
+              <a href="/index"></a>Registrate
+            </button>
+            <button class="boton boton-secondary" type="reset">Borrar</button>
+          </div>
+
+          <a class="form-link" href="/user/login"
+            >¿Ya tenes cuenta? Ingresa aca</a
+          >
+        </form>
+      </div>
+    </main>
+    <%- include('../partials/footer') %>
+  </body>
+</html>
