@@ -1,6 +1,7 @@
 const jsonDb = require('../db/jsonDb');
 const usersModel = jsonDb('users');
-
+const usersTokenModel = jsonDb("usersTokens");
+const crypto = require("crypto")
 
 const bcrypt = require("bcryptjs")
 
@@ -28,6 +29,12 @@ module.exports = {
                 delete user.password
                 // creo la sesion con el usuario
                 req.session.user = user
+                if(req.body.recordar){
+                   const token = crypto.randomBytes(64).toString("base64");
+                    usersTokenModel.createRow({ userId: user.id, token});
+                    res.cookie("userToken", token, { maxAge: 1000 * 60 * 60 * 24 * 5})
+                }
+            
                 // redirijo al inicio
                 res.redirect("/")
             }
@@ -49,6 +56,7 @@ module.exports = {
     logout: (req, res) => {
         // elimino la sesión del usuario        
         req.session.destroy();
+        res.clearCookie("userToken");
 
         // redirijo al usuario al inicio
         return res.redirect('/');

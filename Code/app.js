@@ -26,9 +26,15 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }))
+// Cookies: 
+const cookies = require("cookie-parser")
+app.use(cookies())
 // Autenticación de usuarios
 const authenticate = require('./middlewares/authUser');
 app.use(authenticate);
+// Recordar usuario
+const recordar = require("./middlewares/recordame")
+app.use(recordar)
 //Page not Found 404
 /* app.use((req, res, next) => {
     res.status(404).render('404');
