@@ -1,47 +1,49 @@
 <header>
-	<section class="header-logo">
-		<a href="/">
-			<img class="logo" src="/images/logo.svg" />
-		</a>
-	</section>
-	<!--
-		
-	-->
-	<section class="header-login">
-		<a class="boton-login" href="/user/login"
-		>Log in <i class="fas fa-user"></i
-			></a>
-		</section>
-		
-		<section class="header-hamburguesa">
-			<button class="boton-hamburguesa">
-				<i class="fas fa-bars"></i>
-			</button>
-		</section>
-		<!--
-			
-		-->
-		<section class="header-busqueda">
-			<form action="/products/search" method="GET">
-				<input
-				class="input-buscador"
-				type="text"
-				name="search_query"
-				id="search"
-				placeholder="¿Qué disco estas buscando?"
-				/>
-				<button class="boton-buscador" type="submit">
-					<i class="fas fa-search"></i>
-				</button>
-			</form>
-		</section>
-		<!--
-			
-		-->
-		<section class="header-cart">
-			<a class="boton-login" href="/products/cart"
-			><i class="fas fa-shopping-cart"></i
-				></a>
-			</section>
-		</header>
-		
+  <section class="header-logo">
+    <a href="/">
+      <img class="logo" src="/images/logo.svg" />
+    </a>
+  </section
+  
+  ><section class="header-login">
+	<% if (locals.user) { %>
+		<a class="boton-login" href="/user/logout"
+      		>Log out <i class="fas fa-user"></i
+		></a>
+	<% } else {%>
+    	<a class="boton-login" href="/user/login"
+      		>Log in <i class="fas fa-user"></i
+		></a>
+	<% }%>
+  </section
+  
+  ><section class="header-hamburguesa">
+    <button class="boton-hamburguesa">
+      <i class="fas fa-bars"></i>
+    </button>
+  </section
+  
+  ><section class="header-busqueda">
+    <form action="/products/search" method="GET">
+      <input
+        class="input-buscador"
+        type="text"
+        name="search_query"
+        id="search"
+        placeholder="¿Qué disco estas buscando?"
+      />
+      <button class="boton-buscador" type="submit">
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+  </section
+  
+  ><section class="header-cart">
+    <a class="boton-login" href="/products/cart"
+      ><i class="fas fa-shopping-cart"></i
+    ></a>
+  </section>
+  <script>
+	  console.log(locals.user);
+  </script>
+</header>

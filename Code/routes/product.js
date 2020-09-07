@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/productController');
 const path = require('path');
+const loggedRoute = require('../middlewares/loggedRoute');
 
 //multer para trabajar con archivos
 const multer = require('multer');
@@ -17,7 +18,7 @@ router.get('/', controller.list);
 
 router.post('/', upload.single('tapa'), controller.create);
 
-router.get('/create', controller.viewCreate);
+router.get('/create', loggedRoute, controller.viewCreate);
 
 router.get('/search', controller.search);
 

@@ -26,6 +26,9 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }))
+// Autenticación de usuarios
+const authenticate = require('./middlewares/authUser');
+app.use(authenticate);
 //Page not Found 404
 /* app.use((req, res, next) => {
     res.status(404).render('404');

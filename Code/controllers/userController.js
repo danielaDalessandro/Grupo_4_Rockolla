@@ -1,5 +1,4 @@
 const jsonDb = require('../db/jsonDb');
-
 const usersModel = jsonDb('users');
 
 
@@ -43,11 +42,17 @@ module.exports = {
         }
         // si vinieron errores... 
         else {
-        console.log(errors.mapped())
         res.render("./users/login", {errors:errors.mapped()})
     }
     },
 
+    logout: (req, res) => {
+        // elimino la sesión del usuario        
+        req.session.destroy();
+
+        // redirijo al usuario al inicio
+        return res.redirect('/');
+    },
 
     createUser: (req, res) => {
         let errors = validationResult(req)
