@@ -1,0 +1,25 @@
+module.exports = function(sequelize, dataTypes){
+    let alias = "Format";
+    let cols = {
+        id: {
+            type: dataTypes.INTEGER,
+            primaryKey: true,
+            autoincrement: true
+        },
+        name: {
+            type: dataTypes.STRING
+        },
+        inches: {
+            type: dataTypes.INTEGER
+        }
+        
+    }
+    
+    let config = {
+        tableName: "format",
+        timestamps: false
+    }
+
+    let Format = sequelize.define(alias, cols, config)
+    return Format
+}
