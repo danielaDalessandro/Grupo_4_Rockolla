@@ -1,29 +1,29 @@
-<header>
-  <section class="header-logo">
+<header class="is-aligned-center is-relative">
+  <div class="col-xs-9 col-s-10 col-3">
     <a href="/">
       <img class="logo" src="/images/logo.svg" />
     </a>
-  </section
+  </div>
   
-  ><section class="header-login">
-	<% if (locals.user) { %>
-		<a class="boton-login" href="/user/logout"
-      		>Log out <i class="fas fa-user"></i
-		></a>
-	<% } else {%>
-    	<a class="boton-login" href="/user/login"
-      		>Log in <i class="fas fa-user"></i
-		></a>
-	<% }%>
-  </section
+  <div class="col-xs-3 col-s-2 col-3 right-align is-order-1">
+    <% if (locals.user) { %>
+      <a class="boton-login" href="/user/logout"
+            >Log out <i class="fas fa-user"></i
+      ></a>
+    <% } else {%>
+        <a class="boton-login" href="/user/login"
+            >Log in <i class="fas fa-user"></i
+      ></a>
+    <% }%>
+  </div>
   
-  ><section class="header-hamburguesa">
-    <button class="boton-hamburguesa">
+  <div class="col-xs-2 header-hamburguesa">
+    <button class="boton-hamburguesa" id="hamburguer">
       <i class="fas fa-bars"></i>
     </button>
-  </section
-  
-  ><section class="header-busqueda">
+  </div>
+
+  <div class="col-xs-8 col-6 is-relative">
     <form action="/products/search" method="GET">
       <input
         class="input-buscador"
@@ -36,12 +36,40 @@
         <i class="fas fa-search"></i>
       </button>
     </form>
-  </section
-  
-  ><section class="header-cart">
-    <a class="boton-login" href="/products/cart"
-      ><i class="fas fa-shopping-cart"></i
-    ></a>
-  </section>
+  </div>
 
+  <div class="col-xs-2 col-1 right-align is-order-2">
+    <a class="boton-login" href="/products/cart">
+      <i class="fas fa-shopping-cart"></i>
+    </a>
+  </div>
+
+
+  <div class="col-11 nav-menu is-order-1" id="navbar-menu">
+    <div class="boton-navbar">
+      <a href="/">
+        Inicio
+      </a>
+    </div>
+    <div class="boton-navbar">
+      <a href="/products">
+        Productos
+      </a>
+    </div>
+    <div class="boton-navbar">
+      <a href="/user/registro">
+        Creá tu cuenta
+      </a>
+    </div>
+    <div class="boton-navbar">
+      <a href="/about">
+        Acerca de
+      </a>
+    </div>
+    <div class="boton-navbar">
+      <a href="/contact">
+        Contacto
+      </a>
+    </div>
+  </div>
 </header>

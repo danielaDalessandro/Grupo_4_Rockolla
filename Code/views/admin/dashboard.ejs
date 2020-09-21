@@ -7,7 +7,43 @@
 <body>
     <%- include('../partials/header') %>
 
-<main class="flex-box is-centered"> 
+<main class="flex-box is-centered is-aligned-center">
+    <div class="col-s-8 col-3 list-main">
+        <img class="discos-grid" src="/images/assets/vinyl.png" alt="Vinyl image">
+        <h2>Productos</h2>
+        <ul>
+            <li>
+                <a href="/products/create">Ingresar producto nuevo</a>
+            </li>
+            <li>
+                <a href="/products/">Editar/eliminar producto existente</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-s-8 col-3 list-main">
+        <img class="discos-grid" src="/images/assets/box.png" alt="Vinyl image">
+        <h2>Ventas</h2>
+        <ul>
+            <li>
+                <a href="/admin">Ver ventas pendientes de enviar</a>
+            </li>
+            <li>
+                <a href="/admin">Ver ventas realizadas</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-s-8 col-3 list-main">
+        <img class="discos-grid" src="/images/assets/users.png" alt="Vinyl image">
+        <h2>Usuarios</h2>
+        <ul>
+            <li>
+                <a href="/">Listar usuarios</a>
+            </li>
+            <li>
+                <a href="/">Listar administradores</a>
+            </li>
+        </ul>
+    </div>
     
 </main>
 

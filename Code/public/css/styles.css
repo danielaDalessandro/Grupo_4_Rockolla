@@ -15,6 +15,11 @@ body {
 	padding-bottom: 5rem;
 }
 
+a{
+	color: black;
+	text-decoration: none;
+}
+
 main {
 	padding-bottom: 100px;
 }
@@ -42,44 +47,25 @@ header {
 	background-color: #E8E6E4 ; 
 }
 
-.header-logo {
-	width: 60%;
-}
-
 .logo {
-	width: 60vw;
+	width: 90%;
 	max-width: 240px;
 	cursor: pointer;
 }
 
-.header-login {
-	width: 40%;
-	text-align: right;
-	padding-top: .5rem;
-}
-
-.header-cart {
-	width: 10%;
-	text-align: right;
-	padding-top: .5rem;
-}
-
 .boton-login {
 	color: black;
-	font-size: 1.4rem;
+	font-size: 1.2rem;
 	text-decoration: none;
 	padding: 5px;
 	border-radius: 5px;
 	background-color:#D9D6D3;
+	position: relative;
+	right: .5rem;
 }
 
 a.boton-login:hover {
 	background-color: #E8E6E4 ;
-}
-
-.header-hamburguesa {
-	width: 20%;
-	padding-left: 10px;
 }
 
 .boton-hamburguesa {
@@ -96,11 +82,30 @@ a.boton-login:hover {
 	margin: 10px auto;
 }
 
-.header-busqueda {
-	width: 70%;
-	text-align: right;
-	position: relative;
-	padding: 10px 5px;
+.nav-menu {
+	background-color: #E8E6E4;
+	position:absolute;
+	margin: 0;
+	top: 8rem;
+	left: -100vw;
+	transition: left 1s;
+}
+
+.nav-menu.is-active {
+	left: 0px;
+}
+
+.boton-navbar{
+	border: none;
+	padding: 0 1rem;
+	color: black;
+	font-size: 1.4rem;
+	text-align: center;
+	cursor: pointer;
+}
+
+.boton-navbar:hover{
+	background-color:#D9D6D3;
 }
 
 .input-buscador {
@@ -108,6 +113,7 @@ a.boton-login:hover {
 	height: 2rem;
 	border-radius: 10px;
 	border: none;
+	padding-left: .8rem;
 }
 
 .input-buscador:focus,  
@@ -117,8 +123,8 @@ a.boton-login:hover {
 
 .boton-buscador {
 	position: absolute;
-	top: 15px;
-	right: 5px;
+	top: 3px;
+	right: 0px;
 	font-size: 1.2rem;
 	color: #D9D6D3;
 	background-color: transparent;
@@ -130,7 +136,12 @@ a.boton-login:hover {
 	background-color: transparent;
 }
 
-@media(min-width:800px) {
+@media(min-width:600px) {
+	.input-buscador {font-size: 1rem;}
+}
+
+
+@media(min-width:769px) {
 	.header-logo {
 		width: 30%;
 	}
@@ -142,8 +153,7 @@ a.boton-login:hover {
 
 	
 	.header-hamburguesa{
-		width:5%;
-		order:3;
+		display:none;
 	}
 	
 	.header-busqueda {
@@ -154,6 +164,13 @@ a.boton-login:hover {
 	.header-cart {
 		width: 10%;
 		order: 4;
+	}
+
+	.nav-menu {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		position: static;
 	}
 }
 
@@ -347,7 +364,7 @@ footer {
 
 
 
-@media(min-width: 1024px){	
+@media(min-width: 769px){	
 	.cantidad{
 		width: 50%;
 		padding-left: 50px;
@@ -538,11 +555,58 @@ footer {
 .discos-grid {
 	width: 66.66%;
 }
+
+.is-active {
+	display: block;
+}
+
+.is-centered {
+	justify-content: center;
+}
+
+.is-aligned-center{
+	align-items: center;
+}
+
+.is-relative {
+	position: relative;
+}
+
+.left-align {
+	text-align: left;
+}
+
+.right-align {
+	text-align: right;
+}
+
+.center-align {
+	text-align:center;
+}
+
+.test{
+	background-color:green;
+	border: 1px solid pink;
+}
+
 /*Grid Rules*/
 /* For mobile phones: */
 [class*="col-"] {
 	width: 100%;
 }
+
+.col-xs-1 {width: 8.33%;}
+.col-xs-2 {width: 16.66%;}
+.col-xs-3 {width: 25%;}
+.col-xs-4 {width: 33.33%;}
+.col-xs-5 {width: 41.66%;}
+.col-xs-6 {width: 50%;}
+.col-xs-7 {width: 58.33%;}
+.col-xs-8 {width: 66.66%;}
+.col-xs-9 {width: 75%;}
+.col-xs-10 {width: 83.33%;}
+.col-xs-11 {width: 91.66%;}
+.col-xs-12 {width: 100%;}
 
 @media only screen and (min-width: 600px) {
 	/* For tablets: */
@@ -575,28 +639,6 @@ footer {
 	.col-11 {width: 91.66%;}
 	.col-12 {width: 100%;}
 
-	.is-second {order:2;}
-}
-
-
-
-.is-centered {
-	justify-content: center;
-}
-
-.is-relative {
-	position: relative;
-}
-
-.left-align {
-	text-align: left;
-}
-
-.center-align {
-	text-align:center;
-}
-
-.test{
-	background-color:green;
-	border: 1px solid pink;
+	.is-order-1 {order:1;}
+	.is-order-2 {order:2;}
 }
