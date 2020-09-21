@@ -88,7 +88,7 @@ a.boton-login:hover {
 	margin: 0;
 	top: 8rem;
 	left: -100vw;
-	transition: left 1s;
+	transition: left .5s;
 }
 
 .nav-menu.is-active {
