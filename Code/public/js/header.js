@@ -5,7 +5,6 @@ function () {
 
     hamburguer.addEventListener('click', 
     function () {
-        console.log('click');
         navMenu.classList.toggle("is-active"); 
     });
 
