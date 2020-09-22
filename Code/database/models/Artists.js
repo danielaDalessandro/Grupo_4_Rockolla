@@ -18,5 +18,11 @@ module.exports = function(sequelize, dataTypes){
     }
 
     let Artist = sequelize.define(alias, cols, config)
+    Artist.associate = function(models){
+        Artist.hasMany(models.Products, {
+            as: "product",
+            foreignKey: "artist_id"
+        })
+    }
     return Artist
 }

@@ -1,6 +1,8 @@
 const jsonDb = require("../db/jsonDb");
 
 const productsModel = jsonDb("products");
+const db = require("../database/models")
+
 
 module.exports = {
     list: (req, res) => {
@@ -14,20 +16,22 @@ module.exports = {
     },
     
     create: (req, res) => {
-        let newProduct = {
-            id: productsModel.getNextId(),
-            titulo: req.body.titulo,
-            artista: req.body.artista,
-            sello: req.body.sello,
-            genero: req.body.genero,
-            fechaPublicacion: req.body.fechaPublicacion,
-            tapa: req.file.filename,
-            formato: req.body.formato,
-            precio: req.body.precio,
-            descripcion: req.body.descripcion,
-        };
-        
-        productsModel.createRow(newProduct);
+    
+        db.Products.create(            /* id: productsModel.getNextId(), */
+        {title: req.body.titulo,
+        artist_id: 1,
+        label_id: 1,
+        genre_id: 1,
+        publishing_date: req.body.fechaPublicacion,
+        cover: req.file.filename,
+        format_id: 1,
+        price: req.body.precio,
+        description: req.body.descripcion,
+        views: 0,
+        stock: 1,
+        products_state_id: 1,
+    });
+        /* productsModel.createRow(newProduct); */
         
         res.redirect("/products/" + newProduct.id);
     },

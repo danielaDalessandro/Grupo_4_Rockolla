@@ -18,5 +18,11 @@ module.exports = function(sequelize, dataTypes){
     }
 
     let UsersToken = sequelize.define(alias, cols, config)
+    UsersToken.associate = function (models){
+        UsersToken.belongsTo(models.User, {
+            as: "user",
+            foreignKey: "user_id"
+        })
+    }
     return UsersToken
 }

@@ -44,7 +44,7 @@ module.exports = function(sequelize, dataTypes){
             foreignKey: "format_id"
         })
 
-        Product.belongsTo(models.Artist, {
+        Product.belongsTo(models.Artists, {
             as: "artist",
             foreignKey: "artist_id"
         })
@@ -54,15 +54,20 @@ module.exports = function(sequelize, dataTypes){
             foreignKey: "label_id"
         })
 
-        Product.belongsTo(models.Genre, {
+        Product.belongsTo(models.Genres, {
             as: "genre",
             foreignKey: "genre_id"
         })
 
-        Product.belongsTo(models.ProductsState, {
+        Product.belongsTo(models.Products_state, {
             as: "products_state",
             foreignKey: "products_state_id"
         })
+
+        Product.hasMany(models.Products_cart, {
+                as: "products_cart",
+                foreignKey: "product_id"
+            })
     }
 
     return Product

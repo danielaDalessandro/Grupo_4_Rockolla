@@ -59,6 +59,9 @@ app.get('*', (req, res) => {
     res.render('404');
 })
 
+const db = require("./database/models/index")
+
+
 //---------------LISTEN---------------//
 app.listen(port, () => {
     console.log("Servidor escuchando en el puerto: ", port);

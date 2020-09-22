@@ -21,5 +21,11 @@ module.exports = function(sequelize, dataTypes){
     }
 
     let Format = sequelize.define(alias, cols, config)
+    Format.associate = function(models){
+        Format.hasMany(models.Products, {
+            as: "products",
+            foreignKey: "format_id"
+        })
+    }
     return Format
 }

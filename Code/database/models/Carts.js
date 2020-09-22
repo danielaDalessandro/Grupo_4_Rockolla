@@ -1,5 +1,5 @@
 module.exports = function(sequelize, dataTypes){
-    let alias = "Carts";
+    let alias = "Cart";
     let cols = {
         id: {
             type: dataTypes.INTEGER,
@@ -7,7 +7,7 @@ module.exports = function(sequelize, dataTypes){
             autoincrement: true
         },
         date: {
-            type: dataTypes.DATETIME
+            type: dataTypes.DATE
         },
         total: {
             type: dataTypes.INTEGER
@@ -22,5 +22,27 @@ module.exports = function(sequelize, dataTypes){
     }
 
     let Cart = sequelize.define(alias, cols, config)
+    
+    Cart.associate = function(models){
+        Cart.belongsTo(models.Shipping, {
+            as: "shipping",
+            foreignKey: "shipping_id"
+        })
+
+        Cart.belongsTo(models.User, {
+            as: "user",
+            foreignKey: "user_id"
+        })
+        Cart.belongsTo(models.Carts_state, {
+            as: "carts_state",
+            foreignKey: "state_id"
+        })
+
+        Cart.hasMany(models.Products_cart, {
+            as: "products_cart",
+            foreignKey: "cart_id"
+        })
+
+    }
     return Cart
 }

@@ -18,5 +18,12 @@ module.exports = function(sequelize, dataTypes){
     }
 
     let cartsState = sequelize.define(alias, cols, config)
+    
+    cartsState.associate = function(models){
+    cartsState.hasMany(models.Cart, {
+        as: "cart",
+        foreignKey: "state_id"
+    })
+    }
     return cartsState
 }

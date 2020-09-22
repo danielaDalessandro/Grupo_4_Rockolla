@@ -1,5 +1,5 @@
 module.exports = function(sequelize, dataTypes){
-    let alias = "Users";
+    let alias = "User";
     let cols = {
         id: {
             type: dataTypes.INTEGER,
@@ -48,6 +48,22 @@ module.exports = function(sequelize, dataTypes){
         timestamps: false
     }
 
-    let Users = sequelize.define(alias, cols, config)
-    return Users
+    let User = sequelize.define(alias, cols, config)
+    User.associate = function(models){
+        User.belongsTo(models.Users_state, {
+            as: "user_state",
+            foreignKey: "state_id"
+        })
+    
+        User.hasMany(models.Cart, {
+            as: "cart",
+            foreignKey: "user_id"
+        })
+
+        User.hasMany(models.Users_token, {
+            as: "users_token",
+            foreignKey: "user_id"
+        })
+    }
+    return User
 }
