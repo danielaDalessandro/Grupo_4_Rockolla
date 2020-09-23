@@ -16,7 +16,7 @@ module.exports = function(sequelize, dataTypes){
     }
     
     let config = {
-        tableName: "format",
+        tableName: "Formats",
         timestamps: false
     }
 

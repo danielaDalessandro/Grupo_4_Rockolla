@@ -16,24 +16,58 @@ module.exports = {
     },
     
     create: (req, res) => {
+    let artist = db.Artists.findOne({where : { name : req.body.artista}})
+    let label = db.Label.findOne({where : {name: req.body.sello}})
+    let genre = db.Genres.findOne({where : {name: req.body.genero}})
+    let format = db.Format.findOne({where : {name: req.body.formato, inches : req.body.pulgadas}})
     
-        db.Products.create(            /* id: productsModel.getNextId(), */
-        {title: req.body.titulo,
-        artist_id: 1,
-        label_id: 1,
-        genre_id: 1,
-        publishing_date: req.body.fechaPublicacion,
-        cover: req.file.filename,
-        format_id: 1,
-        price: req.body.precio,
-        description: req.body.descripcion,
-        views: 0,
-        stock: 1,
-        products_state_id: 1,
-    });
-        /* productsModel.createRow(newProduct); */
-        
+    Promise.all([artist, label, genre, format])
+    .then(function([artist, label, genre, format]){
+       if(!artist){
+       artist = db.Artists.create({
+           name: req.body.artista 
+        })
+    }
+
+    if(!label){
+       label = db.Label.create({
+               name: req.body.sello 
+            })
+        }
+
+    if(!genre){
+      genre = db.Genres.create({
+           name: req.body.genero 
+        })
+    }
+    
+    if(!format){
+    format = db.Format.create({
+        name: req.body.formato,
+        inches: req.body.pulgadas
+         })
+    } 
+    return artist, label, genre, format  
+    })
+    Promise.all([artist, label, genre, format])
+    .then(function([artist, label, genre, format]){
+        let newProduct = db.Products.create(          
+            {title: req.body.titulo,
+            artist_id: artist.id,
+            label_id: label.id,
+            genre_id: genre.id,
+            publishing_date: req.body.fechaPublicacion,
+            cover: req.file.filename,
+            format_id: format.id,
+            price: req.body.precio,
+            description: req.body.descripcion,
+            views: 0,
+            stock: 1,
+            products_state_id: 1,
+        });
         res.redirect("/products/" + newProduct.id);
+    })
+     
     },
     
     viewEdit: (req, res) => {
