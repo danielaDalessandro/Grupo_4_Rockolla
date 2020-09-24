@@ -47,10 +47,8 @@ module.exports = {
         inches: req.body.pulgadas
          })
     } 
-    return artist, label, genre, format  
-    })
     Promise.all([artist, label, genre, format])
-    .then(function([artist, label, genre, format]){
+    .then(function(artist, label, genre, format) {
         let newProduct = db.Products.create(          
             {title: req.body.titulo,
             artist_id: artist.id,
@@ -66,8 +64,8 @@ module.exports = {
             products_state_id: 1,
         });
         res.redirect("/products/" + newProduct.id);
+    }) 
     })
-     
     },
     
     viewEdit: (req, res) => {
