@@ -1,11 +1,9 @@
 /**
  * Middleware para la autenticación de usuarios del sitio
  * verifica si el usuario esta logueado, y pone a disposición
- * de la vista su información en locals.session
+ * de la vista su información de req.session en locals.user
  */
 
-const jsonDb = require('../db/jsonDb');
-const usersModel = jsonDb('users');
 
 module.exports = (req, res, next) => {
     // si el usuario tiene sesión iniciada

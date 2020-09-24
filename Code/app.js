@@ -52,15 +52,11 @@ const userRoutes = require('./routes/user');
 app.use('/user', userRoutes);
 
 const adminRoutes = require('./routes/admin');
-const bodyParser = require("body-parser");
 app.use('/admin', adminRoutes);
 
 app.get('*', (req, res) => {
     res.render('404');
 })
-
-const db = require("./database/models/index")
-
 
 //---------------LISTEN---------------//
 app.listen(port, () => {

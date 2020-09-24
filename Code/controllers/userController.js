@@ -2,20 +2,25 @@ const jsonDb = require('../db/jsonDb');
 const usersModel = jsonDb('users');
 const usersTokenModel = jsonDb("usersTokens");
 const crypto = require("crypto")
+const fs = require('fs');
+const path = require('path');
 
 const bcrypt = require("bcryptjs")
 
 const { validationResult } = require("express-validator")
 
 module.exports = {
+    // Muestra la vista del Login 
     login: (req, res) => {
         res.render('./users/login');
     },
 
+    // Muestra la vista del registro
     registro: (req, res) => {
         res.render('./users/registro');
     },
 
+    // Procesa el login
     processLogin: (req, res) => {
         let errors = validationResult(req)
         // si no vinieron errores...
@@ -53,6 +58,7 @@ module.exports = {
     }
     },
 
+    // Procesa el logout
     logout: (req, res) => {
         // elimino la sesión del usuario        
         req.session.destroy();
@@ -62,6 +68,7 @@ module.exports = {
         return res.redirect('/');
     },
 
+    // Crea nuevo usuario y devuelve al inicio con sesión iniciada
     createUser: (req, res) => {
         let errors = validationResult(req)
         // si no hay errores...
@@ -72,17 +79,42 @@ module.exports = {
                 lname: req.body.apellido,
                 email: req.body.email,
                 password: bcrypt.hashSync(req.body.password, 10),
-                avatar: req.file.filename
                 }
+            // si subio un avatar
+            if (req.file && req.file.filename){
+                newUser.avatar = req.file.filename;
+            }
+            // si no le asigno uno por defecto
+            else { 
+                newUser.avatar = 'default.jpg';
+            }
             // lo guardo en db
             usersModel.createRow(newUser);
-            // redirijo al login
-            return res.redirect('/user/login');
+
+             // elimino la contraseña que vino en el req
+             delete newUser.password
+             // creo la sesion con el usuario
+             req.session.user = newUser
+            // redirijo al inicio
+            return res.redirect('/');
         
         } 
         else { // si hay errores..
-            // retorno los errores en la misma vista
-            res.render("./users/registro", {errors:errors.mapped(), values: req.body}) 
+            // elimino el archivo que se subió
+            if (req.file) {
+                fs.unlink(req.file.path, ()=>{
+                    // retorno los errores en la misma vista
+                    res.render("./users/registro", {errors:errors.mapped(), values: req.body});
+                });
+            } else {
+                // si no hay archivo retorno los errores en la misma vista
+                res.render("./users/registro", {errors:errors.mapped(), values: req.body});
+            }
         }
+    },
+
+    // Muestra la vista del perfil de usuario
+    profile: (req, res) => {
+        res.render('./users/profile');
     }
 }

@@ -1,24 +1,24 @@
-<header class="is-aligned-center is-relative">
-  <div class="col-xs-9 col-s-10 col-3">
+<header class="flex-box is-space-between is-aligned-center is-relative">
+  <div class="col-xs-10 col-3 left-align">
     <a href="/">
       <img class="logo" src="/images/logo.svg" />
     </a>
   </div>
   
-  <div class="col-xs-3 col-s-2 col-3 right-align is-order-1">
+  <div class="col-xs-2 col-1 flex-box is-centered is-order-1">
     <% if (locals.user) { %>
-      <a class="boton-login" href="/user/logout"
-            >Log out <i class="fas fa-user"></i
+      <a class="boton-navbar" href="/user/logout"
+            ><i class="fas fa-user"></i
       ></a>
     <% } else {%>
-        <a class="boton-login" href="/user/login"
-            >Log in <i class="fas fa-user"></i
-      ></a>
+        <a class="boton-navbar" style="background-image: '/images/users/default.jpg';" href="/user/login"
+            > <i class="fas fa-user"></i
+      > </a>
     <% }%>
   </div>
   
-  <div class="col-xs-2 header-hamburguesa">
-    <button class="boton-hamburguesa" id="hamburguer">
+  <div class="col-xs-2 header-hamburguesa flex-box is-centered">
+    <button class="boton-navbar" id="hamburguer">
       <i class="fas fa-bars"></i>
     </button>
   </div>
@@ -38,35 +38,41 @@
     </form>
   </div>
 
-  <div class="col-xs-2 col-1 right-align is-order-2">
-    <a class="boton-login" href="/products/cart">
+  <div class="col-xs-2 col-1 flex-box is-centered is-order-2">
+    <a class="boton-navbar" href="/products/cart">
       <i class="fas fa-shopping-cart"></i>
     </a>
   </div>
 
 
   <div class="col-11 nav-menu is-order-1" id="navbar-menu">
-    <div class="boton-navbar">
+    <div class="item-navbar">
       <a href="/">
         Inicio
       </a>
     </div>
-    <div class="boton-navbar">
+    <div class="item-navbar">
       <a href="/products">
         Productos
       </a>
     </div>
-    <div class="boton-navbar">
-      <a href="/user/registro">
-        Creá tu cuenta
-      </a>
+    <div class="item-navbar">
+      <% if (locals.user) { %>
+        <a href="/user">
+          Mi Perfil
+        </a>
+      <% } else {%>
+        <a href="/user/registro">
+          Creá tu cuenta
+        </a>
+      <% }%>
     </div>
-    <div class="boton-navbar">
+    <div class="item-navbar">
       <a href="/about">
         Acerca de
       </a>
     </div>
-    <div class="boton-navbar">
+    <div class="item-navbar">
       <a href="/contact">
         Contacto
       </a>

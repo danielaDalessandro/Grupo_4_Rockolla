@@ -1,14 +1,19 @@
+/**
+ * Middleware para manejar la subida de archivos al sitio
+ * recibe el nombre del directorio a utilizar y el nombre a 
+ * que utilizaran los archivos. Almacena en /public/images/
+ */
+
 //multer para trabajar con archivos
 const multer = require('multer');
 const path = require('path');
 
-
-module.exports = (dirName) => {
+module.exports = (dirName, fileName) => {
     // configuro el almacenamiento
     const storage = multer.diskStorage({
         destination: path.join(__dirname, '../public/images/', dirName),
         filename: (req, file, callback) => {
-            callback(null, 'avatar-' + Date.now() + path.extname(file.originalname))
+            callback(null, fileName + '-' + Date.now() + path.extname(file.originalname))
         }
     })
     // configuro la subida de imagenes
