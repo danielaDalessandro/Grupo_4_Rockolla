@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title><%= product.titulo%></title>
+    <title><%= product.title%></title>
     <%- include('../partials/head') %>
 </head>
 <body>
@@ -9,22 +9,22 @@
     
     <main class="flex-box">
         <h2 class="col-s-12 align-center detalle-descripcion">
-            <%= product.titulo%>
+            <%= product.title%>
         </h2>
         
         <div class="col-10 flex-box is-centered">
             <section class="col-s-10 col-4">
                 <img
                 class="disco-list-tapa"
-                src="/images/tapas/<%= product.tapa%>"
+                src="/images/tapas/<%= product.cover%>"
                 alt="Tapa del disco"
                 />
             </section>
             
             <section class="detalle-product col-s-10 col-6">
-                <p><%= product.artista%></p>
-                <p><%= product.titulo%></p>
-                <p>$<%= product.precio%></p>
+                <p><%= product.artist.name%></p>
+                <p><%= product.title%></p>
+                <p>$<%= product.price%></p>
                 
                 <form
                 class="form-box center-align"
@@ -54,13 +54,13 @@
             <section class="col-s-10 flex-box left-align">
                 <div class="col-3">
                     <h3>Características</h3>
-                    <p>Sello: <%= product.sello%></p>
-                    <p>Formato: <%= product.formato%></p>
-                    <p>Genero: <%= product.genero%></p>
+                    <p>Sello: <%= product.label.name%></p>
+                    <p>Formato: <%= product.format.name%><%= product.format.inches%></p>
+                    <p>Genero: <%= product.genre.name%></p>
                 </div>
                 <div class="col-9">
                     <h3>Descripción</h3>
-                    <p><%= product.descripcion%></p>
+                    <p><%= product.description%></p>
                 </div>
             </section>
         </div>
