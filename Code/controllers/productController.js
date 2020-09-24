@@ -6,9 +6,10 @@ const db = require("../database/models")
 
 module.exports = {
     list: (req, res) => {
-        let products = productsModel.readAll();
-        
-        return res.render("./products/list", { products: products });
+        let products = db.Products.findAll();
+        products.then(function(products){
+            return res.render("./products/list", { products: products });
+        })
     },
     
     viewCreate: (req, res) => {
@@ -110,12 +111,16 @@ module.exports = {
     },
     
     detail: (req, res) => {
-        let product = productsModel.findById(req.params.id);
-        if (product) {
-            res.render("./products/detail", { product });
-        } else {
-            res.redirect("/products");
-        }
+        let product = db.Products.findByPk(req.params.id, {
+            include : [{association: "format"}, {association: "artist"}, {association: "label"}, {association: "genre"}, {association: "products_state"}, {association: "products_cart"}]
+        })
+            .then(function (product){
+                if (product) {
+                res.render("./products/detail", { product });
+            } else {
+                res.redirect("/products");
+            }
+        })
     },
     
     search: (req, res) => {
