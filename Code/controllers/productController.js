@@ -1,12 +1,12 @@
 const jsonDb = require("../db/jsonDb");
 
 const productsModel = jsonDb("products");
-const db = require("../database/models")
+const db = require("../database/models");
 
 
 module.exports = {
     list: (req, res) => {
-        let products = db.Products.findAll();
+        let products = db.product.findAll();
         products.then(function(products){
             return res.render("./products/list", { products: products });
         })
@@ -15,67 +15,106 @@ module.exports = {
     viewCreate: (req, res) => {
         res.render("./products/create");
     },
-    
+
     create: (req, res) => {
-    let artist = db.Artists.findOne({where : { name : req.body.artista}})
-    let label = db.Label.findOne({where : {name: req.body.sello}})
-    let genre = db.Genres.findOne({where : {name: req.body.genero}})
-    let format = db.Format.findOne({where : {name: req.body.formato, inches : req.body.pulgadas}})
-    
-    Promise.all([artist, label, genre, format])
-    .then(function([artist, label, genre, format]){
-       if(!artist){
-       artist = db.Artists.create({
-           name: req.body.artista 
-        })
-    }
+        let request = req.body;
 
-    if(!label){
-       label = db.Label.create({
-               name: req.body.sello 
+        // verifico si existe el genero
+        let artist = db.Artists.findOne({where : { name : request.artista}})
+        .then( function(response) {
+            if (response == null) {
+                return db.Artists.create({
+                    name: request.artista
+                 });
+            }
+            else {
+                return response;
+            }
+        })
+        .catch( e =>{console.log('artist create error: ', e)});
+
+        // verifico si existe el genero
+        let label = db.Artists.findOne({where : { name : request.sello}})
+        .then( function(response) {
+            if (response == null) {
+                return db.Label.create({
+                    name: request.sello 
+                 });
+            }
+            else {
+                return response;
+            }
+        })
+        .catch( e =>{console.log('label create error: ', e)});
+
+        // verifico si existe el genero
+        let genre = db.Genres.findOne({where : { name : request.genero}})
+        .then( function(response) {
+            if (response == null) {
+                return db.Genres.create({
+                    name: request.genero 
+                 });
+            }
+            else {
+                return response;
+            }
+        })
+        .catch( e =>{console.log('genre create error: ', e)});
+
+        // Una vez resuelto todo, creo el producto
+        Promise.all([artist, label, genre])
+        .then( function (result){
+            console.log(result[1],' request', req.body);
+            return newProduct = db.Products.create(          
+                {title: request.titulo,
+                artist_id: result[0].dataValues.id,
+                label_id: 1/* result[1].dataValues.id */,
+                genre_id: result[2].dataValues.id,
+                publishing_date: request.fechaPublicacion,
+                cover: req.file.filename,
+                format_id: 1,
+                price: request.precio,
+                description: request.descripcion,
+                views: 0,
+                stock: 1,
+                products_state_id: 1,
+                }
+            ).then( function (newProduct){
+                console.log('\n\n',newProduct);
+                res.redirect("/products/" + newProduct.id);
             })
-        }
-
-    if(!genre){
-      genre = db.Genres.create({
-           name: req.body.genero 
         })
-    }
-    
-    if(!format){
-    format = db.Format.create({
-        name: req.body.formato,
-        inches: req.body.pulgadas
-         })
-    } 
-    Promise.all([artist, label, genre, format])
-    .then(function(artist, label, genre, format) {
-        let newProduct = db.Products.create(          
-            {title: req.body.titulo,
-            artist_id: artist.id,
-            label_id: label.id,
-            genre_id: genre.id,
-            publishing_date: req.body.fechaPublicacion,
-            cover: req.file.filename,
-            format_id: format.id,
-            price: req.body.precio,
-            description: req.body.descripcion,
-            views: 0,
-            stock: 1,
-            products_state_id: 1,
-        });
-        res.redirect("/products/" + newProduct.id);
-    }) 
-    })
     },
     
     viewEdit: (req, res) => {
-        let productToEdit = productsModel.findById(req.params.id);
-        if (productToEdit) {
-            res.render("./products/edit", { product: productToEdit });
-        } else {
-            res.render("./404");
-        }
+        db.Products.findByPk(req.params.id, {
+            include : ["format", 
+                "artist",
+                "label",
+                "genre"
+            ]
+        })
+        .then(function (product){
+            if (product) {
+                let productToEdit = {
+                    id: product.dataValues.id,
+                    title: product.dataValues.title,
+                    artist: product.artist.dataValues.name,
+                    cover: product.dataValues.cover,
+                    label: product.label.dataValues.name,
+                    genre: product.genre.dataValues.name,
+                    price: product.dataValues.price,
+                    format: product.format.dataValues.name,
+                    publishDate: product.dataValues.publishing_date,
+                    description: product.dataValues.description
+                }
+                console.log(productToEdit)
+                res.render("./products/edit", { product: productToEdit });
+            } else {
+                res.render("./404");
+            }
+        })
+        .catch( e => {console.log(e);})
     },
     
     edit: (req, res) => {
@@ -110,15 +149,22 @@ module.exports = {
     
     detail: (req, res) => {
         let product = db.Products.findByPk(req.params.id, {
-            include : [{association: "format"}, {association: "artist"}, {association: "label"}, {association: "genre"}, {association: "products_state"}, {association: "products_cart"}]
+            include : [{association: "format"}, 
+                {association: "artist"},
+                {association: "label"},
+                {association: "genre"}, 
+                {association: "products_state"},
+                {association: "products_cart"}
+            ]
         })
-            .then(function (product){
-                if (product) {
+        .then(function (product){
+            if (product) {
                 res.render("./products/detail", { product });
             } else {
                 res.redirect("/products");
             }
         })
+        .catch( e => {console.log(e);})
     },
     
     search: (req, res) => {

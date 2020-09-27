@@ -22,7 +22,7 @@
             <div>
                 <img
                 class="disco-list-tapa"
-                src="/images/tapas/<%= product.tapa%>"
+                src="/images/tapas/<%= product.cover%>"
                 alt="Tapa del disco"
                 />
             </div>
@@ -37,7 +37,7 @@
                 type="text"
                 id="nombre"
                 name="titulo"
-                value="<%= product.titulo%>"
+                value="<%= product.title%>"
                 placeholder="Nombre del disco"
                 autocomplete="true"
                 required
@@ -50,7 +50,7 @@
                 type="text"
                 id="artista"
                 name="artista"
-                value="<%= product.artista%>"
+                value="<%= product.artist%>"
                 placeholder="Artista"
                 autocomplete="true"
                 required
@@ -63,7 +63,7 @@
                 type="text"
                 name="sello"
                 id="sello"
-                value="<%= product.sello%>"
+                value="<%= product.label%>"
                 placeholder="Sello discográfico"
                 autocomplete="true"
                 required
@@ -76,7 +76,7 @@
                 type="text"
                 name="genero"
                 id="genero"
-                value="<%= product.genero%>"
+                value="<%= product.genre%>"
                 placeholder="Género musical"
                 autocomplete="true"
                 required
@@ -89,7 +89,7 @@
                 type="date"
                 name="fechaPublicacion"
                 id="fechaPublicacion"
-                value="<%= product.fechaPublicacion%>"
+                value="<%= product.publishDate%>"
                 placeholder="Fecha de publicación"
                 autocomplete="true"
                 required
@@ -102,7 +102,7 @@
                 type="text"
                 name="precio"
                 id="precio"
-                value="<%= product.precio%>"
+                value="<%= product.price%>"
                 placeholder="Precio"
                 required
                 />
@@ -114,7 +114,7 @@
                 type="text"
                 name="formato"
                 id="formato"
-                value="<%= product.formato%>"
+                value="<%= product.format%>"
                 placeholder="Pulgadas"
                 required
                 />
@@ -133,7 +133,7 @@
             <textarea
             class="form-textarea"
             name="descripcion"
-            ><%= product.descripcion%>
+            ><%= product.description%>
             </textarea>
         </div>
         

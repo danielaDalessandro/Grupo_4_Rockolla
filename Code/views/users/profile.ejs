@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Perfil</title>
+	<%- include('../partials/head')%>
+</head>
+<body>
+
+	<%- include('../partials/header') %>
+
+	<main class="flex-box">
+        <div class="col-xs-10 flex-box">
+            <div class="col-xs-8 col-s-6 col-4">
+                <img class="disco-list-tapa" src="/images/users/<%= user.avatar%>" alt="avatar">
+            </div>
+
+            <div class="col-xs-8 col-s-6 col-6 is-aligned-center">
+                <div>
+                    <h2>¡Hola <%= user.fname%>!</h2>
+                </div>
+
+                <div>
+                    <h3>Información de Usuario</h3>
+                    <ul>
+                        <li><strong>Nombre: </strong> <%= user.fname%> <%= user.lname%></li>
+                        <li><strong>Email: </strong> <%= user.email%></li>
+                        <li><strong>Dirección: </strong></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Historial</h3>
+                </div>
+
+            </div>
+
+        </div>
+	</main>
+
+	<%- include('../partials/footer') %>
+</body>
+</html>
