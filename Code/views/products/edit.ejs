@@ -107,9 +107,21 @@
                 required
                 />
             </div>
+
+            <div class="form-box left-align">
+                <label>Stock: </label>
+                <input
+                type="number"
+                name="stock"
+                id="stock"
+                value="<%= product.stock%>"
+                placeholder="Stock"
+                required
+                />
+            </div>
             
             <div class="form-box left-align">
-                <label>Formato: </label>
+                <label for="formato">Formato: </label>
                 <input
                 type="text"
                 name="formato"
@@ -118,6 +130,45 @@
                 placeholder="Pulgadas"
                 required
                 />
+            </div>
+
+            <div class="form-box left-align">
+                <label for="pulgadas">Pulgadas:</label>
+                <select name="pulgadas" id="pulgadas">
+                    <option value="7"
+                    <%if(product.diameter == 7) {%>
+                        selected
+                    <%}%>
+                    > 7"</option>
+                  <option value="10"
+                  <%if(product.diameter == 10) {%>
+                    selected
+                   <%}%>
+                  >10"</option>
+                  <option value="12"
+                  <%if(product.diameter == 12) {%>
+                    selected
+                  <%}%>
+                  >12"</option>
+                </select>
+                <label for="rpm">RPM's:</label>
+                <select name="rpm" id="rpm">
+                    <option value="33"
+                    <%if(product.rpm == 33) {%>
+                        selected
+                    <%}%>
+                    >33 1/3</option>
+                  <option value="45"
+                  <%if(product.rpm == 45) {%>
+                    selected
+                   <%}%>
+                  >45</option>
+                  <option value="78"
+                  <%if(product.rpm == 78) {%>
+                    selected
+                  <%}%>
+                  >78</option>
+                </select>
             </div>
             
             <div class="form-box left-align">

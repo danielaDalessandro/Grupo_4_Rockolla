@@ -87,7 +87,7 @@ module.exports = {
     },
     
     viewEdit: (req, res) => {
-        db.Products.findByPk(req.params.id, {
+        db.product.findByPk(req.params.id, {
             include : ["format", 
                 "artist",
                 "label",
@@ -95,6 +95,7 @@ module.exports = {
             ]
         })
         .then(function (product){
+            console.log(product);
             if (product) {
                 let productToEdit = {
                     id: product.dataValues.id,
@@ -104,7 +105,10 @@ module.exports = {
                     label: product.label.dataValues.name,
                     genre: product.genre.dataValues.name,
                     price: product.dataValues.price,
+                    stock: product.dataValues.stock,
                     format: product.format.dataValues.name,
+                    rpm: product.format.dataValues.rpm,
+                    diameter: product.format.dataValues.diameter,
                     publishDate: product.dataValues.publishing_date,
                     description: product.dataValues.description
                 }
@@ -120,24 +124,43 @@ module.exports = {
     edit: (req, res) => {
         let editedProduct = {
             id: req.params.id,
-            titulo: req.body.titulo,
-            artista: req.body.artista,
-            sello: req.body.sello,
-            genero: req.body.genero,
-            fechaPublicacion: req.body.fechaPublicacion,
-            formato: req.body.formato,
-            precio: req.body.precio,
-            descripcion: req.body.descripcion,
+            title: req.body.titulo,
+            price: req.body.precio,
+            publish_date: req.body.fechaPublicacion,
+            description: req.body.descripcion,
+            cover: req.file.filename,
+            cover: req.body.stock,
+            format: req.body.formato,
+            artist: req.body.artista,
+            label: req.body.sello,
+            genre: req.body.genero,
         };
-        let oldProduct = productsModel.findById(req.params.id);
+        db.product.findByPk(query, {
+            include: [
+                "format", 
+                "artist",
+                "label",
+                "genre"
+            ]
+        })
+        .then( function (oldProduct) {
+            if (req.file) {
+                editedProduct.cover = req.file.filename;
+            } else {
+                editedProduct.cover = oldProduct.cover;
+            }
+
+        })
         
-        if (req.file) {
-            editedProduct.tapa = req.file.filename;
-        } else {
-            editedProduct.tapa = oldProduct.tapa;
-        }
+        db.product.update({ editedProduct }, {
+            where: {
+              id: editedProduct.id
+            }
+          })
+        .then( function (editedProduct) {
+            res.redirect("/products/" + editedProduct.id);
+        })
         productsModel.update(editedProduct);
-        res.redirect("/products/" + editedProduct.id);
     },
     
     productDelete: (req, res) => {
@@ -168,11 +191,26 @@ module.exports = {
     
     search: (req, res) => {
         let query = req.query.search_query;
-        let tableBandas = productsModel.filterBy("artista", query);
+        db.product.findByPk(query, {
+            include: [
+                "format", 
+                "artist",
+                "label",
+                "genre"
+            ]
+        })
+        .then( function (product) {
+            console.log(product);
+        })
+        .then(function () {
+            res.redirect("/")
+        })
+    
+/*         let tableBandas = productsModel.filterBy("artista", query);
         let tableDiscos = productsModel.filterBy("titulo", query);
         let resultados = [...tableBandas, ...tableDiscos];
         
-        res.render("./products/list", { products: resultados });
+        res.render("./products/list", { products: resultados }); */
     },
     
     viewCart: (req, res) => {
