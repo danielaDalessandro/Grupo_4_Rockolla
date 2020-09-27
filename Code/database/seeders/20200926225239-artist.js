@@ -17,7 +17,8 @@ module.exports = {
       {name: 'Arctic Monkeys'},
       {name: 'Pink Floyd'},
       {name: 'David Bowie'},
-      {name: 'Queen'}
+      {name: 'Queen'},
+      {name: 'Led Zepelin'}
   ], {});
   },
 

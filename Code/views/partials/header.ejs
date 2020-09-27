@@ -39,9 +39,11 @@
   </div>
 
   <div class="col-xs-2 col-1 flex-box is-centered is-order-2">
-    <a class="boton-navbar" href="/products/cart">
-      <i class="fas fa-shopping-cart"></i>
-    </a>
+    <%if(!(locals.user && locals.user.role == 2)){%>
+      <a class="boton-navbar" href="/products/cart">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+    <%}%>
   </div>
 
 
@@ -73,9 +75,15 @@
       </a>
     </div>
     <div class="item-navbar">
-      <a href="/contact">
-        Contacto
-      </a>
+      <% if (locals.user && locals.user.role == 2) { %>
+        <a href="/admin">
+          Administración
+        </a>      
+      <% } else {%>
+        <a href="/contact">
+          Contacto
+        </a>
+      <%}%>
     </div>
   </div>
 </header>

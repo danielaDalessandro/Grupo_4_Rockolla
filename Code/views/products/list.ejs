@@ -9,24 +9,30 @@
     <main class="list-main flex-box">
         <div class="filter"></div>
         <div class="col-10 flex-box is-centered">
-            <% products.forEach((product) => { %>
-                <div class="disco-list-card col-3 col-s-6">
-                    <a href="/products/<%= product.id%>">
-                        <section>
-                            <img
-                            class="disco-list-tapa"
-                            src="/images/tapas/<%= product.cover%>"
-                            alt="Tapa del disco"
-                            />
-                        </section>
-                        <section class="descripcion-disco">
-                            <div><%= product.artist%></div>
-                            <div><%= product.title%></div>
-                            <div>$<%= product.price%></div>
-                        </section>
-                    </a>
+            <%if (products.length >0){%>
+                <% products.forEach((product) => { %>
+                    <div class="disco-list-card col-3 col-s-6">
+                        <a href="/products/<%= product.id%>">
+                            <section>
+                                <img
+                                class="disco-list-tapa"
+                                src="/images/tapas/<%= product.cover%>"
+                                alt="Tapa del disco"
+                                />
+                            </section>
+                            <section class="descripcion-disco">
+                                <div><%= product.artist%></div>
+                                <div><%= product.title%></div>
+                                <div>$<%= product.price%></div>
+                            </section>
+                        </a>
+                    </div>
+                <%})%>
+            <%} else {%>
+                <div>
+                    <h2>Perdon, no encontramos discos...</h2>
                 </div>
-            <%})%>
+            <%}%>
         </div>
     </main>
     <%- include('../partials/footer') %>

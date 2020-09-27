@@ -2,11 +2,26 @@ const jsonDb = require("../db/jsonDb");
 
 const productsModel = jsonDb("products");
 const db = require("../database/models");
+const Sequelize = require('sequelize');
+const { Op } = require("sequelize");
 
 
 module.exports = {
     list: (req, res) => {
-        let products = db.product.findAll();
+        let products = db.product.findAll({
+            attributes: [
+                'id',
+                'cover',
+                'title',
+                'price',
+                [Sequelize.col('artist.name'), 'artist']
+            ],
+            include : [
+                "artist"
+            ],
+            raw: true
+        }
+        );
         products.then(function(products){
             return res.render("./products/list", { products: products });
         })
@@ -19,11 +34,11 @@ module.exports = {
     create: (req, res) => {
         let request = req.body;
 
-        // verifico si existe el genero
-        let artist = db.Artists.findOne({where : { name : request.artista}})
+        // verifico si existe el artista
+        let artist = db.artist.findOne({where : { name : request.artista}})
         .then( function(response) {
             if (response == null) {
-                return db.Artists.create({
+                return db.artist.create({
                     name: request.artista
                  });
             }
@@ -33,11 +48,11 @@ module.exports = {
         })
         .catch( e =>{console.log('artist create error: ', e)});
 
-        // verifico si existe el genero
-        let label = db.Artists.findOne({where : { name : request.sello}})
+        // verifico si existe el sello
+        let label = db.label.findOne({where : { name : request.sello}})
         .then( function(response) {
             if (response == null) {
-                return db.Label.create({
+                return db.label.create({
                     name: request.sello 
                  });
             }
@@ -48,10 +63,10 @@ module.exports = {
         .catch( e =>{console.log('label create error: ', e)});
 
         // verifico si existe el genero
-        let genre = db.Genres.findOne({where : { name : request.genero}})
+        let genre = db.genre.findOne({where : { name : request.genero}})
         .then( function(response) {
             if (response == null) {
-                return db.Genres.create({
+                return db.genre.create({
                     name: request.genero 
                  });
             }
@@ -61,26 +76,42 @@ module.exports = {
         })
         .catch( e =>{console.log('genre create error: ', e)});
 
+        // verifico si existe el formato
+        let format = db.format.findOne({where : { 
+            name : request.formato, 
+            diameter: request.pulgadas,
+            rpm: request.rpm
+        }})
+        .then( function(response) {
+            if (response == null) {
+                return db.format.create({
+                    name: request.formato,
+                    diameter: request.pulgadas,
+                    rpm: request.rpm
+                 });
+            }
+            else {
+                return response;
+            }
+        })
+        .catch( e =>{console.log('format create error: ', e)});
+
         // Una vez resuelto todo, creo el producto
-        Promise.all([artist, label, genre])
+        Promise.all([artist, label, genre, format])
         .then( function (result){
-            console.log(result[1],' request', req.body);
-            return newProduct = db.Products.create(          
+            return newProduct = db.product.create(          
                 {title: request.titulo,
                 artist_id: result[0].dataValues.id,
-                label_id: 1/* result[1].dataValues.id */,
+                label_id: result[1].dataValues.id,
                 genre_id: result[2].dataValues.id,
-                publishing_date: request.fechaPublicacion,
+                publish_date: request.fechaPublicacion,
                 cover: req.file.filename,
-                format_id: 1,
+                format_id: result[3].dataValues.id,
                 price: request.precio,
                 description: request.descripcion,
-                views: 0,
-                stock: 1,
-                products_state_id: 1,
+                stock: request.stock
                 }
             ).then( function (newProduct){
-                console.log('\n\n',newProduct);
                 res.redirect("/products/" + newProduct.id);
             })
         })
@@ -95,7 +126,6 @@ module.exports = {
             ]
         })
         .then(function (product){
-            console.log(product);
             if (product) {
                 let productToEdit = {
                     id: product.dataValues.id,
@@ -112,7 +142,6 @@ module.exports = {
                     publishDate: product.dataValues.publishing_date,
                     description: product.dataValues.description
                 }
-                console.log(productToEdit)
                 res.render("./products/edit", { product: productToEdit });
             } else {
                 res.render("./404");
@@ -129,11 +158,13 @@ module.exports = {
             publish_date: req.body.fechaPublicacion,
             description: req.body.descripcion,
             cover: req.file.filename,
-            cover: req.body.stock,
+            stock: req.body.stock,
             format: req.body.formato,
+            diameter: req.body.pulgadas,
+            rpm: req.body.rpm,
             artist: req.body.artista,
             label: req.body.sello,
-            genre: req.body.genero,
+            genre: req.body.genero
         };
         db.product.findByPk(query, {
             include: [
@@ -144,12 +175,10 @@ module.exports = {
             ]
         })
         .then( function (oldProduct) {
-            if (req.file) {
-                editedProduct.cover = req.file.filename;
-            } else {
+            if (!editedProduct.cover) {
                 editedProduct.cover = oldProduct.cover;
             }
-
+            
         })
         
         db.product.update({ editedProduct }, {
@@ -171,6 +200,9 @@ module.exports = {
     },
     
     detail: (req, res) => {
+        if(req.session.user.role==2){
+            res.redirect("/products/" + req.params.id + "/edit");
+        }
         db.product.findByPk(req.params.id, {
             include : [
                 "format", 
@@ -191,45 +223,76 @@ module.exports = {
     
     search: (req, res) => {
         let query = req.query.search_query;
-        db.product.findByPk(query, {
-            include: [
-                "format", 
+
+        db.product.findAll({
+            attributes: [
+                'id',
+                'cover',
+                'title',
+                'price',
+                [Sequelize.col('artist.name'), 'artist'],
+                [Sequelize.col('genre.name'), 'genre']
+            ],
+            include : [
                 "artist",
-                "label",
                 "genre"
-            ]
+            ],
+            where: { 
+                [Op.or]: {
+                    title: { [Op.like]: '%'+query+'%' },
+                    '$artist.name$': { [Op.like]: '%'+query+'%'},
+                    '$genre.name$': { [Op.like]: '%'+query+'%'},
+                }
+            },
+            raw:true
+          })
+         .then(function (results) {
+            res.render("./products/list", { products: results });
         })
-        .then( function (product) {
-            console.log(product);
-        })
-        .then(function () {
-            res.redirect("/")
-        })
-    
-/*         let tableBandas = productsModel.filterBy("artista", query);
-        let tableDiscos = productsModel.filterBy("titulo", query);
-        let resultados = [...tableBandas, ...tableDiscos];
-        
-        res.render("./products/list", { products: resultados }); */
     },
     
     viewCart: (req, res) => {
-        let products = [
-            productsModel.findById("314"),
-            productsModel.findById("312"),
-            productsModel.findById("313"),
-            productsModel.findById("315"),
-            productsModel.findById("1"),
-        ];
+        if(req.session.cart) {
+            let cart = req.session.cart;
+            let ids = [];
+            cart.forEach(product => {
+                ids.push(product.id);   
+            });
+            db.product.findAll({
+                where: {
+                  id: {
+                    [Op.or]: [ ...ids]
+                  }
+                }
+              })
+            .then(function (products) {
+                let total = 0;
+                res.render('./products/cart', {products, cart, total})
+            })
+        }
+        else {
+            let products = [];
+            let total = 0; 
+            res.render('./products/cart', { products, total})
+        }
 
-        let total = 0;
+/*         let total = 0;
         products.forEach(product => total += parseInt(product.precio));
-        res.render("./products/cart", { products, total });
+        res.render("./products/cart", { products, total }); */
     },
     
     addToCart: (req, res) => {
-        let product = productsModel.findById(req.params.id);
         //Agregar a la cookie del usuario...
+        let productAdded = {
+            id: req.params.id,
+            ammount: req.body.cantidad
+        }; 
+        if (req.session && req.session.cart){
+            req.session.cart.push(productAdded);
+        }
+        else {
+            req.session.cart = [productAdded];
+        }     
         //Retornar al producto...
         res.redirect("/products/" + req.params.id);
     },

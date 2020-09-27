@@ -2,37 +2,38 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/productController');
 const path = require('path');
-const loggedRoute = require('../middlewares/loggedRoute');
+const clientRoute = require('../middlewares/clientRoute');
+const adminRoute = require("../middlewares/adminRoute");
 
 // middleware de multer para trabajar con archivos
 const multer = require('../middlewares/multerConfig');
 const upload = multer('tapas', 'tapa');
 
-// Listar productos
-router.get('/', controller.list);
+// Carrito
+router.get('/cart', clientRoute, controller.viewCart);
+router.post('/cart', clientRoute, controller.viewCart);
+router.post('/cart/:id', clientRoute, controller.addToCart);
 
 // Buscar productos
 router.get('/search', controller.search);
 
 // Crear productos
-router.get('/create', loggedRoute, controller.viewCreate);
-router.post('/', loggedRoute, upload.single('tapa'), controller.create);
+router.get('/create', adminRoute, controller.viewCreate);
+router.post('/', adminRoute, upload.single('tapa'), controller.create);
 
 // Detalle producto
 router.get('/:id', controller.detail);
 
 // Editar producto
-router.get('/:id/edit' ,controller.viewEdit);
-router.put('/:id', upload.single('tapa'), controller.edit);
+router.get('/:id/edit', adminRoute,controller.viewEdit);
+router.put('/:id', adminRoute, upload.single('tapa'), controller.edit);
 
 // Eliminar producto
-router.delete('/:id', loggedRoute, controller.productDelete);
+router.delete('/:id', adminRoute, controller.productDelete);
 
-// Carrito
-router.get('/cart', controller.viewCart);
-router.post('/cart', controller.viewCart);
-router.post('/cart/:id', controller.addToCart);
 
+// Listar productos
+router.get('/', controller.list);
 
 
 module.exports = router;

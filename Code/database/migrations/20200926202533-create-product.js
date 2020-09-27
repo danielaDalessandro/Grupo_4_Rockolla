@@ -32,6 +32,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       highlight: {
+        defaultValue: 0,
         type: Sequelize.INTEGER
       },
       created_at: {

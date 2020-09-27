@@ -32,7 +32,6 @@ module.exports = {
 
         check("password", "La contraseña tiene que tener un mínimo de 8 caracteres")
             .isLength({min: 7})
-            .matches(/^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/g)
             .escape(),
         
        check('passwordConfirm', 'Verifique que las contraseñas ingresadas coincidan')
@@ -59,7 +58,6 @@ module.exports = {
     
         check("password", 'Por favor verifique el la contraseña ingresada')
             .isLength({min: 7})
-            .matches(/^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/g)
             .escape(),
     ]    
 }

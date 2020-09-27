@@ -15,12 +15,12 @@ module.exports = {
       dispatch_date: {
         type: Sequelize.DATE
       },
-      createdAt: {
+      created_at: {
         defaultValue: new Date(),
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         defaultValue: new Date(),
         allowNull: false,
         type: Sequelize.DATE

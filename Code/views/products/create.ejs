@@ -48,9 +48,28 @@
                 </div>
 
                 <div class="form-box left-align">
+                    <label>Stock: </label>
+                    <input type="number" name="stock" id= "stock" value="1" min="1" required>
+                </div>
+
+                <div class="form-box left-align">
                     <label>Formato: </label>
                     <input type="text" name="formato" id= "formato" placeholder="Formato" required>
-                    <input type="text" name="pulgadas" id= "pulgadas" placeholder="Pulgadas" required>
+                </div>
+
+                <div class="form-box left-align">
+                    <label for="pulgadas">Pulgadas:</label>
+                    <select name="pulgadas" id="pulgadas">
+                        <option value="7">7"</option>
+                        <option value="10">10"</option>
+                        <option value="12">12"</option>
+                    </select>
+                    <label for="rpm">RPM's:</label>
+                    <select name="rpm" id="rpm">
+                        <option value="33">33 1/3</option>
+                        <option value="45">45</option>
+                        <option value="78">78</option>
+                    </select>
                 </div>
             </div>
 

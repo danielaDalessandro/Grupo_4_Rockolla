@@ -17,39 +17,45 @@
             <h2>Finalizá tu compra:</h2>
         </section>
         
-        <% products.forEach((product) => { %>
-            <div class="producto-carrito col-s-10 flex-box">
-                <section class="col-s-6 col-4">
-                    <a href="/products/<%= product.id%>">
-                        <img
-                        class="disco-list-tapa"
-                        src="/images/tapas/<%= product.tapa%>"
-                        alt="Tapa del disco"
-                        />
-                    </a>
-                </section>
-                
-                <section class="col-s-6 col-7 detalle-producto is-relative">
-                    <i class="fas fa-times-circle eliminar-objeto"></i>
-                    <p><%= product.artista%> - <%= product.titulo%></p>
-                    <p>$<%= product.precio%></p>
-                    <p>
-                        <strong>Cantidad: </strong>
-                        <input
-                        class="form-box"
-                        type="number"
-                        name="cantidad"
-                        id="cantidad"
-                        step="1"
-                        min="1"
-                        max="5"
-                        value="1"
-                        />
-                    </p>
-                    <p><strong>Subtotal: </strong> $<%= product.precio%></p>
-                </section>
-            </div>
-            <%})%>
+        <%if (products.length >0){%>
+            <% products.forEach((product) => { %>
+                <div class="producto-carrito col-s-10 flex-box">
+                    <section class="col-s-6 col-4">
+                        <a href="/products/<%= product.id%>">
+                            <img
+                            class="disco-list-tapa"
+                            src="/images/tapas/<%= product.cover%>"
+                            alt="Tapa del disco"
+                            />
+                        </a>
+                    </section>
+                    
+                    <section class="col-s-6 col-7 detalle-producto is-relative">
+                        <i class="fas fa-times-circle eliminar-objeto"></i>
+                        <p><%= product.artist%> - <%= product.title%></p>
+                        <p>$<%= product.price%></p>
+                        <p>
+                            <strong>Cantidad: </strong>
+                            <input
+                            class="form-box"
+                            type="number"
+                            name="cantidad"
+                            id="cantidad"
+                            step="1"
+                            min="1"
+                            max="5"
+                            <%cart.forEach( prod => {%>
+                                <% if (prod.id == product.id) {%>
+                                value="<%= prod.ammount%>"
+                                <%}%>
+                            <%})%>
+                            />
+                        </p>
+                        <p><strong>Subtotal: </strong> $<%= product.price%></p>
+                    </section>
+                </div>
+                <%})%>
+            <%}%>
             
             <div class="col-s-10 flex-box is-centered">
                 <h2 class="col-s-12">Total a pagar:</h2>

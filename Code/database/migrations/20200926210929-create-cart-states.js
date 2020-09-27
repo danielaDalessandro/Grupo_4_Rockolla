@@ -12,12 +12,12 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      createdAt: {
+      created_at: {
         defaultValue: new Date(),
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         defaultValue: new Date(),
         allowNull: false,
         type: Sequelize.DATE

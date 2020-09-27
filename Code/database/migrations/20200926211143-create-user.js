@@ -25,7 +25,6 @@ module.exports = {
         type: Sequelize.STRING
       },
       avatar: {
-        allowNull: false,
         type: Sequelize.STRING
       },
       street: {
@@ -46,12 +45,12 @@ module.exports = {
       province: {
         type: Sequelize.STRING
       },
-      createdAt: {
+      created_at: {
         defaultValue: new Date(),
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         defaultValue: new Date(),
         allowNull: false,
         type: Sequelize.DATE

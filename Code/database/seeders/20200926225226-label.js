@@ -15,7 +15,8 @@ module.exports = {
       {name: 'Decca'},
       {name: 'Capitol'},
       {name: 'Track'},
-      {name: 'Food'}
+      {name: 'Food'},
+      {name: 'Atlantic'}
   ], {});
   },
 

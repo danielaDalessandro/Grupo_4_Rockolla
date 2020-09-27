@@ -1,6 +1,7 @@
 const jsonDb = require('../db/jsonDb');
 const usersModel = jsonDb('users');
 const usersTokenModel = jsonDb("usersTokens");
+const db = require("../database/models");
 const crypto = require("crypto")
 const fs = require('fs');
 const path = require('path');
@@ -26,31 +27,38 @@ module.exports = {
         // si no vinieron errores...
         if(errors.isEmpty()){
             // busco el usuario en la db
-            let user = usersModel.findBy('email', req.body.email);
+            let user = db.user.findOne({where : { email: req.body.email}})
+            .then( function (user) {
+                // si el usuario existe y la contraseña es correcta
+                if (user && bcrypt.compareSync(req.body.password, user.dataValues.password) ) {
+                    // creo la sesion con el usuario
+                    req.session.user = {
+                        fname: user.dataValues.fname,
+                        lname: user.dataValues.lname,
+                        email: user.dataValues.email,
+                        role: user.dataValues.role_id,
+                        avatar: user.dataValues.avatar
+                    }
 
-            // si el usuario existe y la contraseña es correcta
-            if (user && bcrypt.compareSync(req.body.password, user.password) ) {
-                // elimino la contraseña que vino en el req
-                delete user.password
-                // creo la sesion con el usuario
-                req.session.user = user
-                if(req.body.recordar){
-                   const token = crypto.randomBytes(64).toString("base64");
-                    usersTokenModel.createRow({ userId: user.id, token});
-                    res.cookie("userToken", token, { maxAge: 1000 * 60 * 60 * 24 * 5})
+                    // si desea permanecer logueado
+                    if(req.body.recordar){
+                       const token = crypto.randomBytes(64).toString("base64");
+                        usersTokenModel.createRow({ userId: user.id, token});
+                        res.cookie("userToken", token, { maxAge: 1000 * 60 * 60 * 24 * 5})
+                    }
+                    // redirijo al inicio
+                    res.redirect("/")
                 }
-            
-                // redirijo al inicio
-                res.redirect("/")
-            }
-            // si hay error en los valores ingresados
-            else {
-                errors = {
-                    login: 
-                        {msg:'Por favor verifique los datos ingresados y vuelva a intentar'}
-                };
-                return res.render('./users/login', { errors });
-            }
+                // si hay error en los valores ingresados
+                else {
+                    errors = {
+                        login: 
+                            {msg:'Por favor verifique los datos ingresados y vuelva a intentar'}
+                    };
+                    return res.render('./users/login', { errors });
+                }
+            })
+            .catch( function (e){ console.log("error login: ", e)});            
         }
         // si vinieron errores... 
         else {

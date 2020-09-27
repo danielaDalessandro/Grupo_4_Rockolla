@@ -28,7 +28,7 @@
                 
                 <form
                 class="form-box center-align"
-                action="/products/cart"
+                action="/products/cart/<%= product.id%>"
                 method="POST"
                 >
                     <input
@@ -37,7 +37,7 @@
                     id="cantidad"
                     step="1"
                     min="1"
-                    max="10"
+                    max="<%= product.stock%>"
                     value="1"
                     /><br>
                     <button class="boton boton-primary" type="submit">
@@ -55,8 +55,10 @@
                 <div class="col-3">
                     <h3>Características</h3>
                     <p>Sello: <%= product.label.name%></p>
-                    <p>Formato: <%= product.format.name%><%= product.format.inches%></p>
+                    <p>Formato: <%= product.format.name%> <%= product.format.diameter%>" <%= product.format.rpm%> rpm </p>
                     <p>Genero: <%= product.genre.name%></p>
+                    <p>Fecha de Publicación:</p>
+                    <p><%= product.publish_date%></p>
                 </div>
                 <div class="col-9">
                     <h3>Descripción</h3>

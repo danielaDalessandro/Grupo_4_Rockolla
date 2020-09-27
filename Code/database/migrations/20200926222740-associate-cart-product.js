@@ -9,6 +9,14 @@ module.exports = {
         autoIncrement: true, 
         primaryKey: true 
       },
+      ammount: { 
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
+      },
+      price: { 
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       cart_id: { 
         type: Sequelize.INTEGER,
         allowNull: false,

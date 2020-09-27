@@ -16,22 +16,23 @@
 
 	<main class="main-home">
 		<section class="home-section">
-			<div class="home-section-title">Novedades</div>
+			<div class="home-section-title">Destacados</div>
 			
 			<div class="owl-carousel"> 
-				<% for (let i=0; i<=10; i++) {%>
+				<% destacados.forEach(product => {%>
 					<div class="disco-home-card">
-						<a href="/products/308">
+						<a href="/products/<%= product.id%>">
 							<section>
-								<img src="/images/ejemplo-disco-oasis.jpg">
+								<img src="/images/tapas/<%= product.cover%>">
 							</section>
 							<section class="descripcion-disco">
-								<div>Oasis</div>
-								<div>(What's the Story) Morning Glory?</div>
+								<div><%= product.artist%></div>
+								<div><%= product.title%></div>
+								<div>$ <%= product.price%></div>
 							</section>
 						</a>
 					</div>
-				<%}%>
+				<%})%>
 			</div>
 		</section>
 
