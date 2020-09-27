@@ -148,13 +148,12 @@ module.exports = {
     },
     
     detail: (req, res) => {
-        let product = db.Products.findByPk(req.params.id, {
-            include : [{association: "format"}, 
-                {association: "artist"},
-                {association: "label"},
-                {association: "genre"}, 
-                {association: "products_state"},
-                {association: "products_cart"}
+        db.product.findByPk(req.params.id, {
+            include : [
+                "format", 
+                "artist",
+                "label",
+                "genre"
             ]
         })
         .then(function (product){
