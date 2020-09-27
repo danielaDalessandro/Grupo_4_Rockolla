@@ -116,4 +116,6 @@ dist
 .pnp.*
 # Mac metadata
 .DS_Store*
-Code/database/config/config.json
+/Code/database/config/config.json
+database/config/config.json
+config.json
