@@ -200,7 +200,7 @@ module.exports = {
     },
     
     detail: (req, res) => {
-        if(req.session.user.role==2){
+        if(req.session && req.session.user.role==2){
             res.redirect("/products/" + req.params.id + "/edit");
         }
         db.product.findByPk(req.params.id, {
