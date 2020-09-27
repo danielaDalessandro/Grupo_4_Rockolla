@@ -4,7 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('products', [
       {title:'Yendo de la Cama al Living', price:1200, description:'Alguna descripcion...' ,cover:'tapa-1600989503914.jpeg',publish_date:"1995-10-02", stock:1, highlight:0, format_id:1, artist_id:4, label_id:1, genre_id:4},
-      {title:'(Whats the story?) Morning Glory', price:1600, description:'Alguna descripcion...' ,cover:'tapa-1600911903601.jpg',publish_date:"1995-10-02", stock:4, highlight:1, format_id:1, artist_id:1, label_id:7, genre_id:2},
+      {title:'(Whats the story?) Morning Glory', price:1600, description:'Alguna descripcion...' ,cover:'tapa-1600911903601.jpg',publish_date:"1995-10-02", stock:4, highlight:0, format_id:1, artist_id:1, label_id:7, genre_id:2},
       {title:'Let it be', price:1800, description:'Alguna descripcion...' ,cover:'tapa-1600985609780.jpeg',publish_date:"1995-10-02", stock:2, highlight:1, format_id:1, artist_id:7, label_id:8, genre_id:3},
       {title:'Sticky Fingers', price:1700, description:'Alguna descripcion...' ,cover:'tapa-1598296642968.jpeg',publish_date:"1995-10-02", stock:5, highlight:1, format_id:1, artist_id:3, label_id:9, genre_id:3},
       {title:'Exile on Main Street', price:2000, description:'Alguna descripcion...' ,cover:'tapa-1598222521389.jpeg',publish_date:"1995-10-02", stock:4, highlight:1, format_id:1, artist_id:3, label_id:9, genre_id:3},
