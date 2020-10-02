@@ -116,8 +116,5 @@ dist
 .pnp.*
 # Mac metadata
 .DS_Store*
-# Config files
+# DotEnv file
 .env
-/Code/database/config/config.json
-database/config/config.json
-config.json
