@@ -43,10 +43,12 @@ https://trello.com/b/yje419TK/grupo-4
     1. Instalar dependencias: desde la carpeta /Code ejecutar el comando
             npm install
     
-    2. Configurar base de datos: para el proyecto utilizamos una base de datos MySQL, primero deberas configurarla desde el archivo 
-    ./Code/database/config/config.json en la misma carpeta encontraras un archivo config.json.example, deberas copiar el contenido en el archivo config.json y 
-    cambiar el usuario y contraseña del mismo. Tener en cuenta que el usuario que ingrese debe existir en su instancia de MySQL y debe poseer privilegios para 
-    crear y modificar bases de datos.
+    2. Configurar base de datos: para el proyecto utilizamos una base de datos MySQL, 
+    primero deberas configurarla desde el archivo .env del directorio /Code, deberas crear 
+    el archivo .env y copiarle el contenido del archivo .envexample, luego modificar las 
+    variables de usuario y contraseña de base de datos del mismo. Tener en cuenta que el 
+    usuario que ingrese debe existir en su instancia de MySQL y debe poseer privilegios 
+    para crear y modificar bases de datos.
     
     3. Crear la base de datos: deberas contar con sequelize-cli instalado globalmente en el sistema (sudo npm install sequelize-cli -g). Luego desde la 
     carpeta /Code ejecutá los comandoa
