@@ -1,6 +1,5 @@
 const {check} = require('express-validator');
-const jsonDb = require('../db/jsonDb');
-const usersModel = jsonDb('users');
+const db = require("../database/models");
 
 module.exports = {
     registerForm: [
@@ -19,14 +18,21 @@ module.exports = {
         check("email", "Por favor ingrese un correo válido")
             .isEmail()
             .normalizeEmail()
-            .custom((value, {req}) => {
-                let emailTaken = usersModel.findBy('email', value)
-                if (emailTaken) {
-                    return false;
-                }
-                else {
-                    return true;
-                }
+            .custom(async (value, {req}) => {
+                await db.user.findOne({
+                    where: {
+                        email: value
+                    }
+                })
+                .then( (user) => {
+                    if(user){
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                })
+                .catch( e => console.log("EMAIL ERROR: \n", e));
             })
             .escape(),
 

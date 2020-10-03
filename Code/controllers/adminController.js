@@ -1,6 +1,4 @@
-const jsonDb = require('../db/jsonDb');
-
-const userModel = jsonDb('users');
+const db = require("../database/models");
 
 module.exports = {
     dashboard: (req, res) => {
@@ -8,7 +6,7 @@ module.exports = {
     },
 
     listUsers: (req, res) => {
-        let users = userModel.readAll();
-        res.render('./admin/list', { users });
+/*         let users = userModel.readAll();
+        res.render('./admin/list', { users }); */
     }
 }
