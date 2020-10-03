@@ -1,6 +1,3 @@
-const jsonDb = require('../db/jsonDb');
-const usersModel = jsonDb('users');
-const usersTokenModel = jsonDb("usersTokens");
 const db = require("../database/models");
 const crypto = require("crypto")
 const fs = require('fs');
@@ -28,7 +25,7 @@ module.exports = {
         if(errors.isEmpty()){
             // busco el usuario en la db
             let user = db.user.findOne({where : { email: req.body.email}})
-            .then( function (user) {
+            .then( async function (user) {
                 // si el usuario existe y la contraseña es correcta
                 if (user && bcrypt.compareSync(req.body.password, user.dataValues.password) ) {
                     // creo la sesion con el usuario
@@ -43,7 +40,12 @@ module.exports = {
                     // si desea permanecer logueado
                     if(req.body.recordar){
                        const token = crypto.randomBytes(64).toString("base64");
-                        usersTokenModel.createRow({ userId: user.id, token});
+                        let newToken = await db.user_token.create({ 
+                            user_id: user.id, 
+                            token
+                        })
+                        .catch( e => console.log("TOKEN ERROR: \n", e));        
+
                         res.cookie("userToken", token, { maxAge: 1000 * 60 * 60 * 24 * 5})
                     }
                     // redirijo al inicio
@@ -58,7 +60,7 @@ module.exports = {
                     return res.render('./users/login', { errors });
                 }
             })
-            .catch( function (e){ console.log("error login: ", e)});            
+            .catch( function (e){ console.log("ERROR LOGIN: \n", e)});            
         }
         // si vinieron errores... 
         else {
@@ -68,6 +70,16 @@ module.exports = {
 
     // Procesa el logout
     logout: (req, res) => {
+        // Si hay token lo elimino de la db
+        if(req.cookies && req.cookies.userToken){
+            db.user_token.destroy({
+                where: {
+                    token: req.cookies.userToken
+                }
+            })
+            .catch( e => console.log("COOKIE ERROR: \n", e));
+        }
+
         // elimino la sesión del usuario        
         req.session.destroy();
         res.clearCookie("userToken");
@@ -97,15 +109,20 @@ module.exports = {
                 newUser.avatar = 'default.jpg';
             }
             // lo guardo en db
-            usersModel.createRow(newUser);
-
-             // elimino la contraseña que vino en el req
-             delete newUser.password
-             // creo la sesion con el usuario
-             req.session.user = newUser
-            // redirijo al inicio
-            return res.redirect('/');
-        
+            db.user.create( newUser )
+            .then( (user) => {
+                // creo la sesion con el usuario
+                req.session.user = {
+                    fname: user.dataValues.fname,
+                    lname: user.dataValues.lname,
+                    email: user.dataValues.email,
+                    role: user.dataValues.role_id,
+                    avatar: user.dataValues.avatar
+                };
+               // redirijo al inicio
+               return res.redirect('/');
+            })
+            .catch( e => console.log("USER CREATE ERROR: ", e));
         } 
         else { // si hay errores..
             // elimino el archivo que se subió
