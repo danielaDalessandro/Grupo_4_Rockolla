@@ -1,12 +1,11 @@
-const jsonDb = require("../db/jsonDb");
-
-const productsModel = jsonDb("products");
 const db = require("../database/models");
 const Sequelize = require('sequelize');
 const { Op } = require("sequelize");
-
+const fs = require("fs");
+const path = require('path');
 
 module.exports = {
+    // Listar todos los productos
     list: (req, res) => {
         let products = db.product.findAll({
             attributes: [
@@ -27,10 +26,12 @@ module.exports = {
         })
     },
     
+    // Mostrar la vista de creación de productos
     viewCreate: (req, res) => {
         res.render("./products/create");
     },
 
+    // Crear producto nuevo
     create: (req, res) => {
         let request = req.body;
 
@@ -117,30 +118,34 @@ module.exports = {
         })
     },
     
+    // Mostrar la vista de edición de productos
     viewEdit: (req, res) => {
         db.product.findByPk(req.params.id, {
             include : ["format", 
                 "artist",
                 "label",
                 "genre"
-            ]
+            ],
+            raw: true,
+            nest: true
         })
         .then(function (product){
             if (product) {
                 let productToEdit = {
-                    id: product.dataValues.id,
-                    title: product.dataValues.title,
-                    artist: product.artist.dataValues.name,
-                    cover: product.dataValues.cover,
-                    label: product.label.dataValues.name,
-                    genre: product.genre.dataValues.name,
-                    price: product.dataValues.price,
-                    stock: product.dataValues.stock,
-                    format: product.format.dataValues.name,
-                    rpm: product.format.dataValues.rpm,
-                    diameter: product.format.dataValues.diameter,
-                    publishDate: product.dataValues.publishing_date,
-                    description: product.dataValues.description
+                    id: product.id,
+                    title: product.title,
+                    artist: product.artist.name,
+                    cover: product.cover,
+                    label: product.label.name,
+                    genre: product.genre.name,
+                    price: product.price,
+                    stock: product.stock,
+                    format: product.format.name,
+                    rpm: product.format.rpm,
+                    diameter: product.format.diameter,
+                    publishDate: product.publish_date,
+                    description: product.description,
+                    highlight: product.highlight
                 }
                 res.render("./products/edit", { product: productToEdit });
             } else {
@@ -150,59 +155,160 @@ module.exports = {
         .catch( e => {console.log(e);})
     },
     
-    edit: (req, res) => {
-        let editedProduct = {
-            id: req.params.id,
-            title: req.body.titulo,
-            price: req.body.precio,
-            publish_date: req.body.fechaPublicacion,
-            description: req.body.descripcion,
-            cover: req.file.filename,
-            stock: req.body.stock,
-            format: req.body.formato,
-            diameter: req.body.pulgadas,
-            rpm: req.body.rpm,
-            artist: req.body.artista,
-            label: req.body.sello,
-            genre: req.body.genero
-        };
-        db.product.findByPk(query, {
+    // Editar producto existente
+    edit: async (req, res) => {
+        // Guardo los datos del formulario
+        const body = req.body;
+        
+        // Traigo el producto a editar
+        let productToUpdate = await db.product.findByPk(req.params.id, {
             include: [
                 "format", 
                 "artist",
                 "label",
                 "genre"
-            ]
-        })
-        .then( function (oldProduct) {
-            if (!editedProduct.cover) {
-                editedProduct.cover = oldProduct.cover;
+            ], 
+            raw: true,
+            nest: true
+        });
+
+        // Actualizo con valores del formulario
+        productToUpdate.title= body.titulo;
+        productToUpdate.price= body.precio;
+        productToUpdate.publish_date= body.fechaPublicacion;
+        productToUpdate.description= body.descripcion;
+        productToUpdate.stock= body.stock;
+        productToUpdate.highlight = body.highlight
+
+        // Si hay que actualizar la tapa
+        if(req.file && req.file.filename) {
+            // Borro la tapa anterior
+            fs.unlinkSync(path.join(__dirname,'..','public','images','tapas',productToUpdate.cover))
+            // Guardo la nueva
+            productToUpdate.cover = req.file.filename;
+        }
+
+        // Si cambió el artista
+        if (productToUpdate.artist.name != body.artista){
+            // Busco si existe el nuevo artista
+            let newArtist = await db.artist.findOne(
+                {where : { name : body.artista}}
+            ).then( result => {
+                if (result) {
+                    return result
+                }
+                // Si no existe lo creo
+                return db.artist.create({
+                    name: body.artista
+                })
+            })
+            .catch( e => console.log('ARTIST ERROR: ', e))
+            // Guardo el id del nuevo artista
+            productToUpdate.artist_id = newArtist.id;
+        }
+
+        // Si cambió el sello
+        if (productToUpdate.label.name != body.sello){
+            // Busco si existe el sello nuevo
+            let newLabel = await db.label.findOne(
+                {where : { name : body.sello}}
+            ).then( result => {
+                if (result) {
+                    return result
+                }
+                // Si no existe lo creo
+                return db.label.create({
+                    name: body.sello
+                })
+            })
+            .catch( e => console.log('LABEL ERROR: ', e))
+            // Guardo el id del sello nuevo
+            productToUpdate.label_id = newLabel.id;
+        }
+
+        // Si cambió el genero
+        if (productToUpdate.genre.name != body.genero){
+            // Busco si existe el genero nuevo
+            let newGenre = await db.genre.findOne(
+                {where : { name : body.genero}}
+            ).then( result => {
+                if (result) {
+                    return result
+                }
+                // Si no existe lo creo
+                return db.genre.create({
+                    name: body.genero
+                })
+            })
+            .catch( e => console.log('GENRE ERROR: ', e))
+            // Guardo el id del genero nuevo
+            productToUpdate.genre_id = newGenre.id;
+        }
+
+        // Busco si cambio el formato
+        if (productToUpdate.format.name != body.formato ||
+            productToUpdate.format.rpm != body.rpm ||
+            productToUpdate.format.diameter != body.pulgadas){
+            // Busco si existe el nuevo formato
+            let newformat = await db.format.findOne(
+                {where : { 
+                    name : body.formato,
+                    rpm: body.rpm,
+                    diameter: body.pulgadas
+                }}
+            ).then( result => {
+                if (result) {
+                    return result
+                }
+                // Si no existe lo creo
+                return db.format.create({
+                    name: body.formato,
+                    rpm: body.rpm,
+                    diameter: body.pulgadas
+                })
+            })
+            .catch( e => console.log('FORMAT ERROR: ', e))
+            // Guardo el id del nuevo formato
+            productToUpdate.format_id = newformat.id;
+        }
+
+        // Actualizo el producto editado
+        db.product.update( 
+            productToUpdate,
+            {
+                where: { id:productToUpdate.id }
             }
-            
+        )
+        .then( result => {
+            // Redirijo a la pagina de productos
+            res.redirect(`/`);
         })
-        
-        db.product.update({ editedProduct }, {
-            where: {
-              id: editedProduct.id
-            }
-          })
-        .then( function (editedProduct) {
-            res.redirect("/products/" + editedProduct.id);
-        })
-        productsModel.update(editedProduct);
+        .catch( e => console.log('UPDATE ERROR: ',e));
+
     },
     
+    // Eliminar un producto existente
     productDelete: (req, res) => {
-        let id = req.params.id;
-        productsModel.deleteById(id);
-        
-        res.redirect("/products");
+        // Realizo soft-delete de producto
+        db.product.destroy({
+            where: {
+              id: req.params.id
+            }
+        })
+        .then( (result) => {
+            // Una vez eliminado redirijo a productos
+            res.redirect("/products");
+        })
+        .catch( e => console.log("DELETE ERROR: ", e));
     },
     
+    // Mostrar vista del detalle de producto
     detail: (req, res) => {
+        // Si es admin, lo redirijo a vista de edición
         if(req.session.user && req.session.user.role==2){
             res.redirect("/products/" + req.params.id + "/edit");
         }
+        // Busco el producto solicitado
         db.product.findByPk(req.params.id, {
             include : [
                 "format", 
@@ -213,14 +319,17 @@ module.exports = {
         })
         .then(function (product){
             if (product) {
+                // si existe lo muestro
                 res.render("./products/detail", { product });
             } else {
+                // si no redirijo a la lista de productos
                 res.redirect("/products");
             }
         })
         .catch( e => {console.log(e);})
     },
     
+    // Buscar productos y listar resultado
     search: (req, res) => {
         let query = req.query.search_query;
 
@@ -230,7 +339,7 @@ module.exports = {
                 'cover',
                 'title',
                 'price',
-                [Sequelize.col('artist.name'), 'artist'],
+                [Sequelize.col('artist.name'), 'artist'], // alias para artist.name as artist
                 [Sequelize.col('genre.name'), 'genre']
             ],
             include : [
@@ -251,19 +360,27 @@ module.exports = {
         })
     },
     
+    // Mostrar la vista del carrito de compras
     viewCart: (req, res) => {
         if(req.session.cart) {
+            // Busco el carro en sessión
             let cart = req.session.cart;
-            let ids = [];
+            let productIds = [];
+
+            // Por cada producto en el carro
             cart.forEach(product => {
-                ids.push(product.id);   
+                //  Pongo los ids en un array
+                productIds.push(product.id);   
             });
+
+            // Busco los productos con los ids
             db.product.findAll({
                 where: {
                   id: {
-                    [Op.or]: [ ...ids]
+                    [Op.or]: [ ...productIds]
                   }
-                }
+                },
+                raw: true
               })
             .then(function (products) {
                 let total = 0;
@@ -275,12 +392,9 @@ module.exports = {
             let total = 0; 
             res.render('./products/cart', { products, total})
         }
-
-/*         let total = 0;
-        products.forEach(product => total += parseInt(product.precio));
-        res.render("./products/cart", { products, total }); */
     },
     
+    // Añadir producto al carrito de compras
     addToCart: (req, res) => {
         //Agregar a la cookie del usuario...
         let productAdded = {

@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'artist',
+    paranoid:true
   });
   return Artist;
 };

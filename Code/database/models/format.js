@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'format',
+    paranoid:true
   });
   return Format;
 };

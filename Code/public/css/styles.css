@@ -126,7 +126,7 @@ a.boton-login:hover {
 }
 
 .input-buscador:focus,  
-.boton-hamburguesa:focus {
+.boton-navbar:focus {
 	outline-color: #D9D6D3;
 }
 
@@ -267,6 +267,21 @@ footer {
 	color: green;
 	font-size: .8rem;
 	margin-top: 1rem;
+}
+
+.boton-estrella {
+	position: absolute;
+	top: 0px;
+	right: -24px;
+	font-size: 2rem;
+	background-color: transparent;
+	border: none;
+	color: #D9D6D3;
+	cursor: pointer;
+}
+
+.boton-estrella.is-active {
+	color: yellow;
 }
 
 /* Estilos main carrito de compras: */

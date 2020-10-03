@@ -3,6 +3,7 @@
 <head>
     <title>Editar Producto</title>
     <%- include('../partials/head')%>
+
 </head>
 <body>
     <%- include('../partials/header') %>
@@ -30,8 +31,8 @@
         
         <div class="col-2"></div>
         
-        <div class="col-4">
-            <div class="form-box left-align">
+        <div class="col-xs-10 col-4">
+            <div class="form-box left-align is-relative">
                 <label>Título: </label>
                 <input
                 type="text"
@@ -42,6 +43,8 @@
                 autocomplete="true"
                 required
                 />
+                <input type="hidden" name="highlight" id="highlight" value="<%= product.highlight%>">
+                <button type="button" class="boton-estrella" id="star"><i class="fas fa-star"></i></button>
             </div>
             
             <div class="form-box left-align">
@@ -116,6 +119,7 @@
                 id="stock"
                 value="<%= product.stock%>"
                 placeholder="Stock"
+                min="0"
                 required
                 />
             </div>
@@ -205,5 +209,6 @@
 </main>
 
 <%- include('../partials/footer') %>
+<script src="/js/edit.js"></script>
 </body>
 </html>

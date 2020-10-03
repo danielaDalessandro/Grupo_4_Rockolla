@@ -21,16 +21,16 @@ router.get('/search', controller.search);
 router.get('/create', adminRoute, controller.viewCreate);
 router.post('/', adminRoute, upload.single('tapa'), controller.create);
 
-// Detalle producto
-router.get('/:id', controller.detail);
 
 // Editar producto
 router.get('/:id/edit', adminRoute,controller.viewEdit);
 router.put('/:id', adminRoute, upload.single('tapa'), controller.edit);
 
+// Detalle producto
+router.get('/:id', controller.detail);
+
 // Eliminar producto
 router.delete('/:id', adminRoute, controller.productDelete);
-
 
 // Listar productos
 router.get('/', controller.list);
