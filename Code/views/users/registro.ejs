@@ -3,6 +3,8 @@
   <head>
     <title>Registro</title>
     <%- include('../partials/head')%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.1.17/validator.min.js" integrity="sha512-p1b+doSyVwyKqVTZeU1+XJtjpBSkhllBca2L6QTxPUjZZ0ELeZIHkAeQdtfNulbXxLdCwN4uKYGPpp78xeqwfQ==" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/registro.js"></script>
   </head>
   <body>
     <%- include('../partials/header') %>
@@ -15,11 +17,13 @@
           action="/user/registro"
           method="POST"
           enctype="multipart/form-data"
+          id = "form-registro"
         >
           <div class="form-box">
             <% if (locals.errors && errors.nombre){ %>
-            <label class="form-error"><%= errors.nombre.msg %></label><br/>
+            <p class="form-error"><%= errors.nombre.msg %></p><br/>
             <%}%>
+            <p id="feedback-name" class="form-error"></p>
             <input
               type="text"
               id="nombre"
@@ -37,8 +41,9 @@
 
           <div class="form-box">
             <% if (locals.errors && errors.apellido){ %>
-            <label class="form-error"><%= errors.apellido.msg %></label><br />
+            <p class="form-error"><%= errors.apellido.msg %></p><br />
             <%}%>
+            <p id="feedback-last-name" class="form-error"></p>
             <input
               type="text"
               id="apellido"
@@ -57,8 +62,9 @@
 
           <div class="form-box">
             <% if (locals.errors && errors.email){ %>
-            <label class="form-error"><%= errors.email.msg %></label><br />
+            <p class="form-error"><%= errors.email.msg %></p><br/>
             <%}%>
+            <p id="feedback-email" class="form-error"></p>
             <input
               type="text"
               name="email"
@@ -77,8 +83,9 @@
 
           <div class="form-box">
             <% if (locals.errors && errors.password){ %>
-            <label class="form-error"><%= errors.password.msg %></label><br />
+            <p class="form-error"><%= errors.password.msg %></p><br />
             <%}%>
+            <p id="feedback-password" class="form-error"></p>
             <input
               type="password"
               name="password"
@@ -94,9 +101,9 @@
 
           <div class="form-box">
             <% if (locals.errors && errors.passwordConfirm){ %>
-            <label class="form-error"><%= errors.passwordConfirm.msg %></label
-            ><br />
+            <p class="form-error"><%= errors.passwordConfirm.msg %></p><br/>
             <%}%>
+            <p id="feedback-password-confirm" class="form-error"></p>
             <input
               type="password"
               name="passwordConfirm"
@@ -111,6 +118,7 @@
           </div>
 
           <div class="form-box">
+            <p id="feedback-avatar" for="avatar"></p>
             <p>Agrega una foto de perfil:</p>
             <input
               type="file"

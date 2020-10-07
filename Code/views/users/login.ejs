@@ -3,6 +3,8 @@
 <head>  
     <title>Login</title>
     <%- include('../partials/head')%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.1.17/validator.min.js" integrity="sha512-p1b+doSyVwyKqVTZeU1+XJtjpBSkhllBca2L6QTxPUjZZ0ELeZIHkAeQdtfNulbXxLdCwN4uKYGPpp78xeqwfQ==" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/login.js"></script>
 </head>
 <body>
     <%- include('../partials/header') %>
@@ -22,6 +24,7 @@
                     <% if (locals.errors && errors.login){ %>
                         <label class="form-error"><%= errors.login.msg %></label><br>
                     <%}%>
+                    <p id= "feedback-email" class="form-error"></p>
                     <input type="email" name="email" id="email" placeholder="Email"
                         autocomplete="true" required 
                         <% if (locals.errors && (errors.email|| errors.login)){%>
@@ -33,6 +36,7 @@
                     <% if (locals.errors && errors.password){ %>
                         <label class="form-error" id="password-error"><%= errors.password.msg %></label><br>
                     <%}%>
+                    <p id= "feedback-password" class="form-error"></p>
                     <input type="password" name="password" id="password" placeholder="Contraseña" 
                         autocomplete="true" required
                         <% if (locals.errors && (errors.password||errors.login)){%>
