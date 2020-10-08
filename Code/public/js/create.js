@@ -111,7 +111,7 @@ let validateRPM = function(){
             if(validator.isEmpty(description.value, {ignore_whitespace: true})){
                 feedback = "Por favor ingrese una descripción"
             } else if (!validator.isLength(title.value, {min : 20})) {
-                feedback = "Por favor la descripcióm debe tener más de 20 caracteres"
+                feedback = "Por favor la descripción debe tener más de 20 caracteres"
             }
             handleFeedback(description, "feedback-description", feedback)
         }

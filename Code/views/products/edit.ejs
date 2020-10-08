@@ -3,7 +3,8 @@
 <head>
     <title>Editar Producto</title>
     <%- include('../partials/head')%>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.1.17/validator.min.js" integrity="sha512-p1b+doSyVwyKqVTZeU1+XJtjpBSkhllBca2L6QTxPUjZZ0ELeZIHkAeQdtfNulbXxLdCwN4uKYGPpp78xeqwfQ==" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/edit.js"></script>
 </head>
 <body>
     <%- include('../partials/header') %>
@@ -34,9 +35,10 @@
         <div class="col-xs-10 col-4">
             <div class="form-box left-align is-relative">
                 <label>Título: </label>
+                <p id="feedback-title"></p>
                 <input
                 type="text"
-                id="nombre"
+                id="titulo"
                 name="titulo"
                 value="<%= product.title%>"
                 placeholder="Nombre del disco"
@@ -49,6 +51,7 @@
             
             <div class="form-box left-align">
                 <label>Artista: </label>
+                <p id="feedback-artist"></p>
                 <input
                 type="text"
                 id="artista"
@@ -62,6 +65,7 @@
             
             <div class="form-box left-align">
                 <label>Sello Discográfico: </label>
+                <p id="feedback-label"></p>
                 <input
                 type="text"
                 name="sello"
@@ -75,6 +79,7 @@
             
             <div class="form-box left-align">
                 <label>Género: </label>
+                <p id="feedback-genre"></p>
                 <input
                 type="text"
                 name="genero"
@@ -88,6 +93,7 @@
             
             <div class="form-box left-align">
                 <label>Fecha de Publicación: </label>
+                <p id="feedback-publishing-date"></p>
                 <input
                 type="date"
                 name="fechaPublicacion"
@@ -101,6 +107,7 @@
             
             <div class="form-box left-align">
                 <label>Precio: </label>
+                <p id="feedback-price"></p>
                 <input
                 type="text"
                 name="precio"
@@ -113,6 +120,7 @@
 
             <div class="form-box left-align">
                 <label>Stock: </label>
+                <p id="feedback-stock"></p>
                 <input
                 type="number"
                 name="stock"
@@ -126,6 +134,7 @@
             
             <div class="form-box left-align">
                 <label for="formato">Formato: </label>
+                <p id="feedback-format"></p>
                 <input
                 type="text"
                 name="formato"
@@ -138,6 +147,7 @@
 
             <div class="form-box left-align">
                 <label for="pulgadas">Pulgadas:</label>
+                <p id="feedback-inches"></p>
                 <select name="pulgadas" id="pulgadas">
                     <option value="7"
                     <%if(product.diameter == 7) {%>
@@ -156,6 +166,7 @@
                   >12"</option>
                 </select>
                 <label for="rpm">RPM's:</label>
+                <p id="feedback-rpm"></p>
                 <select name="rpm" id="rpm">
                     <option value="33"
                     <%if(product.rpm == 33) {%>
@@ -177,6 +188,7 @@
             
             <div class="form-box left-align">
                 <p>Agrega una imagen nueva a la tapa del disco:</p>
+                <p id="feedback-cover"></p>
                 <input type="file" name="tapa" id="tapa" />
             </div>
         </div>
@@ -185,9 +197,11 @@
             <p>
                 <label>Descripción del producto: </label>
             </p>
+            <p id="feedback-description"></p>
             <textarea
             class="form-textarea"
             name="descripcion"
+            id = "descripcion"
             ><%= product.description%>
             </textarea>
         </div>
@@ -209,6 +223,5 @@
 </main>
 
 <%- include('../partials/footer') %>
-<script src="/js/edit.js"></script>
 </body>
 </html>

@@ -3,6 +3,8 @@
 <head>  
     <title>Crear Producto</title>
     <%- include('../partials/head')%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.1.17/validator.min.js" integrity="sha512-p1b+doSyVwyKqVTZeU1+XJtjpBSkhllBca2L6QTxPUjZZ0ELeZIHkAeQdtfNulbXxLdCwN4uKYGPpp78xeqwfQ==" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/create.js"></script>
 </head>
 <body>
     <%- include('../partials/header') %>
@@ -16,55 +18,65 @@
             <div class="col-6">
                 <div class= "form-box left-align" >
                     <label>Título: </label>
+                    <p id="feedback-title"></p>
                     <input type="text" id="titulo" name= "titulo" placeholder="Nombre del disco" autocomplete="true" required>
                 </div>
 
                 <div class="form-box left-align">
                     <label>Artista: </label>
+                    <p id="feedback-artist"></p>
                     <input type="text" id="artista" name= "artista" placeholder="Artista" autocomplete="true" required>
                 </div>
 
                 <div class="form-box left-align">
                     <label>Sello Discográfico: </label>
+                    <p id="feedback-label"></p>
                     <input type="text" name="sello" id="sello" placeholder="Sello discográfico"
                     autocomplete="true" required>
                 </div>
 
                 <div class="form-box left-align">
                     <label>Género: </label>
+                    <p id="feedback-genre"></p>
                     <input type="text" name="genero" id="genero" placeholder="Género musical"
                     autocomplete="true" required>
                 </div>
 
                 <div class="form-box left-align">
                     <label>Fecha de Publicación: </label>
+                    <p id="feedback-publishing-date"></p>
                     <input type="date" name="fechaPublicacion" id="fechaPublicacion" placeholder="Fecha de publicación"
                     autocomplete="true" required>
                 </div>
 
                 <div class="form-box left-align">
                     <label>Precio: </label>
+                    <p id="feedback-price"></p>
                     <input type="text" name="precio" id= "precio" placeholder="Precio" required>
                 </div>
 
                 <div class="form-box left-align">
                     <label>Stock: </label>
+                    <p id="feedback-stock"></p>
                     <input type="number" name="stock" id= "stock" value="1" min="1" required>
                 </div>
 
                 <div class="form-box left-align">
                     <label>Formato: </label>
+                    <p id="feedback-format"></p>
                     <input type="text" name="formato" id= "formato" placeholder="Formato" required>
                 </div>
 
                 <div class="form-box left-align">
                     <label for="pulgadas">Pulgadas:</label>
+                    <p id="feedback-inches"></p>
                     <select name="pulgadas" id="pulgadas">
                         <option value="7">7"</option>
                         <option value="10">10"</option>
                         <option value="12">12"</option>
                     </select>
                     <label for="rpm">RPM's:</label>
+                    <p id="feedback-rpm"></p>
                     <select name="rpm" id="rpm">
                         <option value="33">33 1/3</option>
                         <option value="45">45</option>
@@ -76,6 +88,7 @@
             <div class="col-6">
                 <div class="form-box left-align">
                     <p> Agrega una imagen de la tapa del disco: </p>
+                    <p id="feedback-cover"></p>
                     <input type="file" name="tapa" id= "tapa" required>
                 </div>
 
@@ -83,6 +96,7 @@
                     <p>
                         <label>Descripción del producto: </label>
                     </p>
+                    <p id="feedback-description"></p>
                     <textarea name="descripcion" rows="10" cols="40" id="descripcion"></textarea> 
                 </div>
             </div>

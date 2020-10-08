@@ -497,6 +497,7 @@ footer {
 
 .input-error {
 	background-color: lightpink;
+	color: red;
 }
 
 .form-textarea {
