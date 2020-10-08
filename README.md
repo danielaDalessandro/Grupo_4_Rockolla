@@ -46,7 +46,7 @@ https://trello.com/b/yje419TK/grupo-4
     2. Configurar base de datos: para el proyecto utilizamos una base de datos MySQL, 
     primero deberas configurarla desde el archivo .env del directorio /Code, deberas crear 
     el archivo .env y copiarle el contenido del archivo .envexample, luego modificar las 
-    variables de usuario y contraseña de base de datos del mismo. Tener en cuenta que el 
+    variables de usuario, contraseña y puerto de base de datos del mismo. Tener en cuenta que el 
     usuario que ingrese debe existir en su instancia de MySQL y debe poseer privilegios 
     para crear y modificar bases de datos.
     
