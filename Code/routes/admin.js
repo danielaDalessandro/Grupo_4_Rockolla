@@ -5,5 +5,6 @@ const adminRoute = require("../middlewares/adminRoute");
 
 router.get('/', adminRoute,  controller.dashboard);
 
+router.get('/users', adminRoute,  controller.listUsers);
 
 module.exports = router;

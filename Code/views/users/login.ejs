@@ -16,7 +16,7 @@
         
     
 
-            <form action="/user/login" method="POST">
+            <form id="form" action="/user/login" method="POST">
                 <div class="form-box">
                     <% if (locals.errors && errors.email){ %>
                         <label class="form-error"><%= errors.email.msg %></label><br>

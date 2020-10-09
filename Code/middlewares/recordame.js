@@ -14,7 +14,9 @@ recordameMiddleware = async function(req, res, next){
         let token = await db.user_token.findOne({
             where: { 
                 token: req.cookies.userToken
-            } 
+            },
+            raw: true,
+            nest: true
         })
         .catch( e => console.log("TOKEN ERROR: \n", e));
         
@@ -31,10 +33,15 @@ recordameMiddleware = async function(req, res, next){
                 delete user.createdAt;
                 delete user.updatedAt;
                 delete user.deletedAt;
-
+                
                 // Creo la sesión y mando datos a la vista
-                req.session.user = user;
-                res.locals.user = user;
+                req.session.user = {
+                    fname: user.fname,
+                    lname: user.lname,
+                    email: user.email,
+                    role: user.role_id,
+                    avatar: user.avatar
+                };
             } 
             // si no encuentro el usuario
             else { 

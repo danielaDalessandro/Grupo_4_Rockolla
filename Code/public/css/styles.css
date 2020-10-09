@@ -167,7 +167,16 @@ a.boton-login:hover {
 		position: static;
 	}
 }
-
+/*----------DASHBOARD----------*/
+.item-dashboard {
+	width:80%;
+	background-color: #E8E6E4;
+	font-size: 1rem;
+	font-weight: 700;
+	min-height: 4rem;
+	margin: 1rem auto;
+	cursor: pointer;
+}
 /*----------MAIN----------*/
 .section-banner {
 	width:100%;

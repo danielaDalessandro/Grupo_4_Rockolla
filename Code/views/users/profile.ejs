@@ -29,7 +29,32 @@
                 </div>
 
                 <div>
-                    <h3>Historial</h3>
+                    <h3>Cambiar Contraseña</h3>
+                    <form class="form-box"action="/user/password" method="POST">
+                        <div>
+                            <input type="password" name="oldPassword" id="password" placeholder="Ingresa tu contraseña" 
+                            autocomplete="true" required
+                            <% if (locals.errors && (errors.password||errors.login)){%>
+                                class="input-error"
+                            <%}%>>
+    
+                            <input type="password" name="newPassword" id="password" placeholder="Nueva contraseña" 
+                            autocomplete="true" required
+                            <% if (locals.errors && (errors.password||errors.login)){%>
+                                class="input-error"
+                            <%}%>>
+    
+                            <input type="password" name="passwordConfirm" id="password" placeholder="Confirmá tu nueva contraseña" 
+                            autocomplete="true" required
+                            <% if (locals.errors && (errors.password||errors.login)){%>
+                                class="input-error"
+                            <%}%>>
+                        </div>
+
+                        <div>
+                            <button class= "boton boton-primary" type="submit"> Confirmar </button>
+                        </div>
+                    </form>
                 </div>
 
             </div>

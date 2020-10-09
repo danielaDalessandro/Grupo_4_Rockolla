@@ -24,17 +24,21 @@ module.exports = {
         // si no vinieron errores...
         if(errors.isEmpty()){
             // busco el usuario en la db
-            let user = db.user.findOne({where : { email: req.body.email}})
+            db.user.findOne({
+                where : { email: req.body.email},
+                nest:true,
+                raw:true
+            })
             .then( async function (user) {
                 // si el usuario existe y la contraseña es correcta
-                if (user && bcrypt.compareSync(req.body.password, user.dataValues.password) ) {
+                if (user && bcrypt.compareSync(req.body.password, user.password) ) {
                     // creo la sesion con el usuario
                     req.session.user = {
-                        fname: user.dataValues.fname,
-                        lname: user.dataValues.lname,
-                        email: user.dataValues.email,
-                        role: user.dataValues.role_id,
-                        avatar: user.dataValues.avatar
+                        fname: user.fname,
+                        lname: user.lname,
+                        email: user.email,
+                        role: user.role_id,
+                        avatar: user.avatar
                     }
 
                     // si desea permanecer logueado
@@ -45,7 +49,6 @@ module.exports = {
                             token
                         })
                         .catch( e => console.log("TOKEN ERROR: \n", e));        
-
                         res.cookie("userToken", token, { maxAge: 1000 * 60 * 60 * 24 * 5})
                     }
                     // redirijo al inicio
@@ -141,5 +144,25 @@ module.exports = {
     // Muestra la vista del perfil de usuario
     profile: (req, res) => {
         res.render('./users/profile');
+    },
+
+    changePassword: async (req, res) => {
+        if(req.session.user) {
+            console.log(req.session.user,'\n',req.body);
+            let user = await db.user.findOne({
+                where: {
+                    email: req.session.user.email
+                },
+                raw:true,
+            })
+            .catch( e => {console.log(e)});
+            console.log(user);
+           /*  await db.user.update({ password: newPassword }, {
+                where: {
+                  lastName: null
+                }
+              }); */
+            res.redirect('/user');
+        }
     }
 }
