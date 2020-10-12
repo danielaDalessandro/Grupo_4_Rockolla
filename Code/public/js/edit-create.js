@@ -1,4 +1,23 @@
 window.addEventListener("load", function () {
+  let starButton = document.getElementById("star");
+  let highlight = document.getElementById("highlight");
+
+  if (highlight && highlight.value == 1) {
+    starButton.classList.toggle("is-active");
+  }
+  if (starButton) {
+    starButton.addEventListener("click", function () {
+      starButton.classList.toggle("is-active");
+      if (starButton.classList.contains("is-active")) {
+        highlight.value = 1;
+      } else {
+        highlight.value = 0;
+      }
+    });
+  }
+
+  // Validaciones:
+
   let form = document.getElementById("form");
   let title = document.getElementById("titulo");
   let artist = document.getElementById("artista");
@@ -13,6 +32,14 @@ window.addEventListener("load", function () {
   let cover = document.getElementById("tapa");
   let description = document.getElementById("descripcion");
   const ALLOWED_IMAGES_EXT = ["jpeg", "jpg", "png", "gif"];
+
+  let handleFeedback = function (element, elementID, feedback) {
+    let feedbackElement = document.getElementById(elementID);
+    feedbackElement.innerHTML = feedback;
+    feedback
+      ? element.classList.add("input-error")
+      : element.classList.remove("input-error");
+  };
 
   let validateTitle = function () {
     let feedback = "";
@@ -109,7 +136,7 @@ window.addEventListener("load", function () {
   let validateCover = function () {
     let feedback = "";
     let ext = cover.value.split(".")[1];
-    if (!ALLOWED_IMAGES_EXT.includes(ext)) {
+    if (cover.value && !ALLOWED_IMAGES_EXT.includes(ext)) {
       feedback = "Tapa de formato inválido";
     }
     handleFeedback(cover, "feedback-cover", feedback);
@@ -120,12 +147,27 @@ window.addEventListener("load", function () {
     let feedback = "";
     if (validator.isEmpty(description.value, { ignore_whitespace: true })) {
       feedback = "Por favor ingrese una descripción";
-    } else if (!validator.isLength(title.value, { min: 20 })) {
+    } else if (!validator.isLength(description.value, { min: 20 })) {
       feedback = "Por favor la descripción debe tener más de 20 caracteres";
     }
     handleFeedback(description, "feedback-description", feedback);
     return feedback;
   };
+
+  if (window.location.href.includes("/products/edit")) {
+    validateTitle();
+    validateArtist();
+    validateLabel();
+    validateGenre();
+    validatePublishingDate();
+    validatePrice();
+    validateStock();
+    validateFormat();
+    validateInches();
+    validateRPM();
+    validateCover();
+    validateDescription();
+  }
 
   title.addEventListener("blur", validateTitle);
   artist.addEventListener("blur", validateArtist);
@@ -139,14 +181,6 @@ window.addEventListener("load", function () {
   rpm.addEventListener("blur", validateRPM);
   cover.addEventListener("blur", validateCover);
   description.addEventListener("blur", validateDescription);
-
-  let handleFeedback = function (element, elementID, feedback) {
-    let feedbackElement = document.getElementById(elementID);
-    feedbackElement.innerHTML = feedback;
-    feedback
-      ? element.classList.add("input-error")
-      : element.classList.remove("input-error");
-  };
 
   form.addEventListener("submit", function (submit) {
     if (

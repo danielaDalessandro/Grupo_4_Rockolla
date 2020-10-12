@@ -42,18 +42,6 @@ module.exports = {
         
        check('passwordConfirm', 'Verifique que las contraseñas ingresadas coincidan')
             .custom((value, {req}) => (value === req.body.password))
-
-        /* check('avatar', 'Por favor verifique que el archivo sea JPG')
-            .custom((value, {req}) => {
-                if (req.file.mimetype === 'image/jpeg') {
-                    console.log(req.file);
-                    return true;
-                }
-                else {
-                    console.log(req.file);
-                }
-                return false;
-            }) */
     ],
 
     loginForm: [

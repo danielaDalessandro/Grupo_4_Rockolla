@@ -5,6 +5,8 @@ const path = require('path');
 const clientRoute = require('../middlewares/clientRoute');
 const adminRoute = require("../middlewares/adminRoute");
 
+const validate = require("../validators/products.js");
+
 // middleware de multer para trabajar con archivos
 const multer = require('../middlewares/multerConfig');
 const upload = multer('tapas', 'tapa');
@@ -19,12 +21,12 @@ router.get('/search', controller.search);
 
 // Crear productos
 router.get('/create', adminRoute, controller.viewCreate);
-router.post('/', adminRoute, upload.single('tapa'), controller.create);
+router.post('/', adminRoute, upload.single('tapa'), validate.productForm, controller.create);
 
 
 // Editar producto
-router.get('/:id/edit', adminRoute,controller.viewEdit);
-router.put('/:id', adminRoute, upload.single('tapa'), controller.edit);
+router.get('/:id/edit', adminRoute, controller.viewEdit);
+router.put('/:id', adminRoute, upload.single('tapa'), validate.productForm, controller.edit);
 
 // Detalle producto
 router.get('/:id', controller.detail);

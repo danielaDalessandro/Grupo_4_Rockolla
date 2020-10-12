@@ -20,10 +20,11 @@
           id="form"
         >
           <div class="form-box">
-            <% if (locals.errors && errors.nombre){ %>
-            <p class="form-error"><%= errors.nombre.msg %></p><br/>
-            <%}%>
-            <p id="feedback-name" class="form-error"></p>
+            <p id="feedback-name" class="form-error">
+              <% if (locals.errors && errors.nombre){ %>
+                <%= errors.nombre.msg %>
+              <%}%>
+            </p>
             <input
               type="text"
               id="nombre"
@@ -40,10 +41,11 @@
           </div>
 
           <div class="form-box">
-            <% if (locals.errors && errors.apellido){ %>
-            <p class="form-error"><%= errors.apellido.msg %></p><br />
-            <%}%>
-            <p id="feedback-last-name" class="form-error"></p>
+            <p id="feedback-last-name" class="form-error">
+              <% if (locals.errors && errors.apellido){ %>
+                <%= errors.apellido.msg %>
+              <%}%>
+            </p>
             <input
               type="text"
               id="apellido"
@@ -61,10 +63,11 @@
           </div>
 
           <div class="form-box">
-            <% if (locals.errors && errors.email){ %>
-            <p class="form-error"><%= errors.email.msg %></p><br/>
-            <%}%>
-            <p id="feedback-email" class="form-error"></p>
+            <p id="feedback-email" class="form-error">
+              <% if (locals.errors && errors.email){ %>
+                <%= errors.email.msg %>
+              <%}%>
+            </p>
             <input
               type="text"
               name="email"
@@ -82,10 +85,11 @@
           </div>
 
           <div class="form-box">
-            <% if (locals.errors && errors.password){ %>
-            <p class="form-error"><%= errors.password.msg %></p><br />
-            <%}%>
-            <p id="feedback-password" class="form-error"></p>
+            <p id="feedback-password" class="form-error">
+              <% if (locals.errors && errors.password){ %>
+                <%= errors.password.msg %>
+              <%}%>
+            </p>
             <input
               type="password"
               name="password"
@@ -100,10 +104,11 @@
           </div>
 
           <div class="form-box">
-            <% if (locals.errors && errors.passwordConfirm){ %>
-            <p class="form-error"><%= errors.passwordConfirm.msg %></p><br/>
-            <%}%>
-            <p id="feedback-password-confirm" class="form-error"></p>
+            <p id="feedback-password-confirm" class="form-error">
+              <% if (locals.errors && errors.passwordConfirm){ %>
+                <%= errors.passwordConfirm.msg %>
+              <%}%>
+            </p>
             <input
               type="password"
               name="passwordConfirm"

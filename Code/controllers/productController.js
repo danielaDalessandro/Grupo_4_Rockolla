@@ -3,6 +3,7 @@ const Sequelize = require('sequelize');
 const { Op } = require("sequelize");
 const fs = require("fs");
 const path = require('path');
+const { validationResult } = require("express-validator")
 
 module.exports = {
     // Listar todos los productos
@@ -157,6 +158,8 @@ module.exports = {
     
     // Editar producto existente
     edit: async (req, res) => {
+        let errors = validationResult(req)
+        
         // Guardo los datos del formulario
         const body = req.body;
         
@@ -170,121 +173,145 @@ module.exports = {
             ], 
             raw: true,
             nest: true
-        });
-
-        // Actualizo con valores del formulario
-        productToUpdate.title= body.titulo;
-        productToUpdate.price= body.precio;
-        productToUpdate.publish_date= body.fechaPublicacion;
-        productToUpdate.description= body.descripcion;
-        productToUpdate.stock= body.stock;
-        productToUpdate.highlight = body.highlight
-
-        // Si hay que actualizar la tapa
-        if(req.file && req.file.filename) {
-            // Borro la tapa anterior
-            fs.unlinkSync(path.join(__dirname,'..','public','images','tapas',productToUpdate.cover))
-            // Guardo la nueva
-            productToUpdate.cover = req.file.filename;
-        }
-
-        // Si cambió el artista
-        if (productToUpdate.artist.name != body.artista){
-            // Busco si existe el nuevo artista
-            let newArtist = await db.artist.findOne(
-                {where : { name : body.artista}}
-            ).then( result => {
-                if (result) {
-                    return result
-                }
-                // Si no existe lo creo
-                return db.artist.create({
-                    name: body.artista
-                })
-            })
-            .catch( e => console.log('ARTIST ERROR: ', e))
-            // Guardo el id del nuevo artista
-            productToUpdate.artist_id = newArtist.id;
-        }
-
-        // Si cambió el sello
-        if (productToUpdate.label.name != body.sello){
-            // Busco si existe el sello nuevo
-            let newLabel = await db.label.findOne(
-                {where : { name : body.sello}}
-            ).then( result => {
-                if (result) {
-                    return result
-                }
-                // Si no existe lo creo
-                return db.label.create({
-                    name: body.sello
-                })
-            })
-            .catch( e => console.log('LABEL ERROR: ', e))
-            // Guardo el id del sello nuevo
-            productToUpdate.label_id = newLabel.id;
-        }
-
-        // Si cambió el genero
-        if (productToUpdate.genre.name != body.genero){
-            // Busco si existe el genero nuevo
-            let newGenre = await db.genre.findOne(
-                {where : { name : body.genero}}
-            ).then( result => {
-                if (result) {
-                    return result
-                }
-                // Si no existe lo creo
-                return db.genre.create({
-                    name: body.genero
-                })
-            })
-            .catch( e => console.log('GENRE ERROR: ', e))
-            // Guardo el id del genero nuevo
-            productToUpdate.genre_id = newGenre.id;
-        }
-
-        // Busco si cambio el formato
-        if (productToUpdate.format.name != body.formato ||
-            productToUpdate.format.rpm != body.rpm ||
-            productToUpdate.format.diameter != body.pulgadas){
-            // Busco si existe el nuevo formato
-            let newformat = await db.format.findOne(
-                {where : { 
-                    name : body.formato,
-                    rpm: body.rpm,
-                    diameter: body.pulgadas
-                }}
-            ).then( result => {
-                if (result) {
-                    return result
-                }
-                // Si no existe lo creo
-                return db.format.create({
-                    name: body.formato,
-                    rpm: body.rpm,
-                    diameter: body.pulgadas
-                })
-            })
-            .catch( e => console.log('FORMAT ERROR: ', e))
-            // Guardo el id del nuevo formato
-            productToUpdate.format_id = newformat.id;
-        }
-
-        // Actualizo el producto editado
-        db.product.update( 
-            productToUpdate,
-            {
-                where: { id:productToUpdate.id }
-            }
-        )
-        .then( result => {
-            // Redirijo a la pagina de productos
-            res.redirect(`/`);
         })
-        .catch( e => console.log('UPDATE ERROR: ',e));
+        .catch( e => console.log('ERROR: ', e));
 
+        if (errors.isEmpty()){
+    
+            // Actualizo con valores del formulario
+            productToUpdate.title= body.titulo;
+            productToUpdate.price= body.precio;
+            productToUpdate.publish_date= body.fechaPublicacion;
+            productToUpdate.description= body.descripcion;
+            productToUpdate.stock= body.stock;
+            productToUpdate.highlight = body.highlight
+    
+            // Si hay que actualizar la tapa
+            if(req.file && req.file.filename) {
+                // Borro la tapa anterior
+                fs.unlinkSync(path.join(__dirname,'..','public','images','tapas',productToUpdate.cover))
+                // Guardo la nueva
+                productToUpdate.cover = req.file.filename;
+            }
+    
+            // Si cambió el artista
+            if (productToUpdate.artist.name != body.artista){
+                // Busco si existe el nuevo artista
+                let newArtist = await db.artist.findOne(
+                    {where : { name : body.artista}}
+                ).then( result => {
+                    if (result) {
+                        return result
+                    }
+                    // Si no existe lo creo
+                    return db.artist.create({
+                        name: body.artista
+                    })
+                })
+                .catch( e => console.log('ARTIST ERROR: ', e))
+                // Guardo el id del nuevo artista
+                productToUpdate.artist_id = newArtist.id;
+            }
+    
+            // Si cambió el sello
+            if (productToUpdate.label.name != body.sello){
+                // Busco si existe el sello nuevo
+                let newLabel = await db.label.findOne(
+                    {where : { name : body.sello}}
+                ).then( result => {
+                    if (result) {
+                        return result
+                    }
+                    // Si no existe lo creo
+                    return db.label.create({
+                        name: body.sello
+                    })
+                })
+                .catch( e => console.log('LABEL ERROR: ', e))
+                // Guardo el id del sello nuevo
+                productToUpdate.label_id = newLabel.id;
+            }
+    
+            // Si cambió el genero
+            if (productToUpdate.genre.name != body.genero){
+                // Busco si existe el genero nuevo
+                let newGenre = await db.genre.findOne(
+                    {where : { name : body.genero}}
+                ).then( result => {
+                    if (result) {
+                        return result
+                    }
+                    // Si no existe lo creo
+                    return db.genre.create({
+                        name: body.genero
+                    })
+                })
+                .catch( e => console.log('GENRE ERROR: ', e))
+                // Guardo el id del genero nuevo
+                productToUpdate.genre_id = newGenre.id;
+            }
+    
+            // Busco si cambio el formato
+            if (productToUpdate.format.name != body.formato ||
+                productToUpdate.format.rpm != body.rpm ||
+                productToUpdate.format.diameter != body.pulgadas){
+                // Busco si existe el nuevo formato
+                let newformat = await db.format.findOne(
+                    {where : { 
+                        name : body.formato,
+                        rpm: body.rpm,
+                        diameter: body.pulgadas
+                    }}
+                ).then( result => {
+                    if (result) {
+                        return result
+                    }
+                    // Si no existe lo creo
+                    return db.format.create({
+                        name: body.formato,
+                        rpm: body.rpm,
+                        diameter: body.pulgadas
+                    })
+                })
+                .catch( e => console.log('FORMAT ERROR: ', e))
+                // Guardo el id del nuevo formato
+                productToUpdate.format_id = newformat.id;
+            }
+    
+            // Actualizo el producto editado
+            db.product.update( 
+                productToUpdate,
+                {
+                    where: { id:productToUpdate.id }
+                }
+            )
+            .then( result => {
+                // Redirijo a la pagina de productos
+                res.redirect(`/products`);
+            })
+            .catch( e => console.log('UPDATE ERROR: ',e));
+        }
+        // si vinieron errores... 
+        else {
+            let product = {
+                id: req.params.id,
+                title: body.titulo,
+                artist: body.artista,
+                cover: productToUpdate.cover,
+                label: body.sello,
+                genre: body.genero,
+                price: body.precio,
+                stock: body.stock,
+                format: body.formato,
+                rpm: body.rpm,
+                diameter: body.pulgadas,
+                publishDate: body.fechaPublicacion,
+                description: body.descripcion,
+                highlight: body.highlight
+            }
+            console.log(errors.mapped());
+            res.render("./products/edit", { product: product, errors:errors.mapped()})
+        }
     },
     
     // Eliminar un producto existente

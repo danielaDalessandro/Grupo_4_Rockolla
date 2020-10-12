@@ -8,6 +8,14 @@ window.addEventListener("load", function () {
   let avatar = document.getElementById("avatar");
   const ALLOWED_IMAGES_EXT = ["jpeg", "jpg", "png", "gif"];
 
+  let handleFeedback = function (element, elementID, feedback) {
+    let feedbackElement = document.getElementById(elementID);
+    feedbackElement.innerHTML = feedback;
+    feedback
+      ? element.classList.add("input-error")
+      : element.classList.remove("input-error");
+  };
+
   let validateName = function () {
     let feedback = "";
     if (validator.isEmpty(name.value, { ignore_whitespace: true })) {
@@ -77,14 +85,6 @@ window.addEventListener("load", function () {
   password.addEventListener("blur", validatePassword);
   passwordConfirm.addEventListener("blur", validatePasswordConfirm);
   avatar.addEventListener("blur", validateAvatar);
-
-  let handleFeedback = function (element, elementID, feedback) {
-    let feedbackElement = document.getElementById(elementID);
-    feedbackElement.innerHTML = feedback;
-    feedback
-      ? element.classList.add("input-error")
-      : element.classList.remove("input-error");
-  };
 
   form.addEventListener("submit", function (submit) {
     if (

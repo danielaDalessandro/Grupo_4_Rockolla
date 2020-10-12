@@ -4,7 +4,7 @@
     <title>Editar Producto</title>
     <%- include('../partials/head')%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.1.17/validator.min.js" integrity="sha512-p1b+doSyVwyKqVTZeU1+XJtjpBSkhllBca2L6QTxPUjZZ0ELeZIHkAeQdtfNulbXxLdCwN4uKYGPpp78xeqwfQ==" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/js/edit.js"></script>
+    <script type="text/javascript" src="/js/edit-create.js"></script>
 </head>
 <body>
     <%- include('../partials/header') %>
@@ -16,6 +16,7 @@
     <main class="flex-box abm-products">
         <form
         class="flex-box"
+        id="form"
         action="/products/<%= product.id%>?_method=PUT"
         method="POST"
         enctype="multipart/form-data"
@@ -35,7 +36,11 @@
         <div class="col-xs-10 col-4">
             <div class="form-box left-align is-relative">
                 <label>Título: </label>
-                <p id="feedback-title" class="form-error"></p>
+            <p id="feedback-title" class="form-error">
+                <% if (locals.errors && errors.titulo){%>
+                    <%= errors.titulo.msg%>
+                <%}%>
+            </p>
                 <input
                 type="text"
                 id="titulo"
@@ -51,7 +56,11 @@
             
             <div class="form-box left-align">
                 <label>Artista: </label>
-                <p id="feedback-artist" class="form-error"></p>
+                <p id="feedback-artist" class="form-error">
+                    <% if (locals.errors && errors.artista){%>
+                        <%= errors.artista.msg%>
+                    <%}%>
+                </p>
                 <input
                 type="text"
                 id="artista"
@@ -65,7 +74,11 @@
             
             <div class="form-box left-align">
                 <label>Sello Discográfico: </label>
-                <p id="feedback-label" class="form-error"></p>
+                <p id="feedback-label" class="form-error">
+                    <% if (locals.errors && errors.sello){%>
+                        <%= errors.sello.msg%>
+                    <%}%>
+                </p>
                 <input
                 type="text"
                 name="sello"
@@ -79,7 +92,11 @@
             
             <div class="form-box left-align">
                 <label>Género: </label>
-                <p id="feedback-genre" class="form-error"></p>
+                <p id="feedback-genre" class="form-error">
+                    <% if (locals.errors && errors.genero){%>
+                        <%= errors.genero.msg%>
+                    <%}%>
+                </p>
                 <input
                 type="text"
                 name="genero"
@@ -93,7 +110,11 @@
             
             <div class="form-box left-align">
                 <label>Fecha de Publicación: </label>
-                <p id="feedback-publishing-date" class="form-error"></p>
+                <p id="feedback-publishing-date" class="form-error">
+                    <% if (locals.errors && errors.fechaPublicacion){%>
+                        <%= errors.fechaPublicacion.msg%>
+                    <%}%>
+                </p>
                 <input
                 type="date"
                 name="fechaPublicacion"
@@ -107,7 +128,11 @@
             
             <div class="form-box left-align">
                 <label>Precio: </label>
-                <p id="feedback-price" class="form-error"></p>
+                <p id="feedback-price" class="form-error">
+                    <% if (locals.errors && errors.precio){%>
+                        <%= errors.precio.msg%>
+                    <%}%>
+                </p>
                 <input
                 type="text"
                 name="precio"
@@ -120,7 +145,11 @@
 
             <div class="form-box left-align">
                 <label>Stock: </label>
-                <p id="feedback-stock" class="form-error"></p>
+                <p id="feedback-stock" class="form-error">
+                    <% if (locals.errors && errors.stock){%>
+                        <%= errors.stock.msg%>
+                    <%}%>
+                </p>
                 <input
                 type="number"
                 name="stock"
@@ -134,7 +163,11 @@
             
             <div class="form-box left-align">
                 <label for="formato">Formato: </label>
-                <p id="feedback-format" class="form-error"></p>
+                <p id="feedback-format" class="form-error">
+                    <% if (locals.errors && errors.formato){%>
+                        <%= errors.formato.msg%>
+                    <%}%>
+                </p>
                 <input
                 type="text"
                 name="formato"
@@ -147,7 +180,11 @@
 
             <div class="form-box left-align">
                 <label for="pulgadas">Pulgadas:</label>
-                <p id="feedback-inches" class="form-error"></p>
+                <p id="feedback-inches" class="form-error">
+                    <% if (locals.errors && errors.pulgadas){%>
+                        <%= errors.pulgadas.msg%>
+                    <%}%>
+                </p>
                 <select name="pulgadas" id="pulgadas">
                     <option value="7"
                     <%if(product.diameter == 7) {%>
@@ -166,7 +203,11 @@
                   >12"</option>
                 </select>
                 <label for="rpm">RPM's:</label>
-                <p id="feedback-rpm" class="form-error"></p>
+                <p id="feedback-rpm" class="form-error">
+                    <% if (locals.errors && errors.rpm){%>
+                        <%= errors.rpm.msg%>
+                    <%}%>
+                </p>
                 <select name="rpm" id="rpm">
                     <option value="33"
                     <%if(product.rpm == 33) {%>
@@ -188,8 +229,13 @@
             
             <div class="form-box left-align">
                 <p>Agrega una imagen nueva a la tapa del disco:</p>
-                <p id="feedback-cover" class="form-error"></p>
-                <input type="file" name="tapa" id="tapa" />
+                <p id="feedback-cover" class="form-error">
+                    <% if (locals.errors && errors.tapa){%>
+                        <%= errors.tapa.msg%>
+                    <%}%>
+                </p>
+                <input type="file" name="tapa" id="tapa" 
+                />
             </div>
         </div>
         
@@ -197,9 +243,16 @@
             <p>
                 <label>Descripción del producto: </label>
             </p>
-            <p id="feedback-description" class="form-error"></p>
+            <p id="feedback-description" class="form-error">
+                <% if (locals.errors && errors.descripcion){%>
+                    <%= errors.descripcion.msg%>
+                <%}%>
+            </p>
             <textarea
-            class="form-textarea"
+            class="form-textarea 
+                <% if (locals.errors && errors.tapa){%>
+                    <%="input-error" %>
+                <%}%>"
             name="descripcion"
             id = "descripcion"
             ><%= product.description%>

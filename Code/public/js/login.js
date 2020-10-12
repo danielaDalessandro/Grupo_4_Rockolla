@@ -3,6 +3,14 @@ window.addEventListener("load", function () {
   let email = document.getElementById("email");
   let password = document.getElementById("password");
 
+  let handleFeedback = function (element, elementID, feedback) {
+    let feedbackElement = document.getElementById(elementID);
+    feedbackElement.innerHTML = feedback;
+    feedback
+      ? element.classList.add("input-error")
+      : element.classList.remove("input-error");
+  };
+  
   let validateEmail = function () {
     let feedback = "";
     if (validator.isEmpty(email.value, { ignore_whitespace: true })) {
@@ -27,14 +35,6 @@ window.addEventListener("load", function () {
 
   email.addEventListener("blur", validateEmail);
   password.addEventListener("blur", validatePassword);
-
-  let handleFeedback = function (element, elementID, feedback) {
-    let feedbackElement = document.getElementById(elementID);
-    feedbackElement.innerHTML = feedback;
-    feedback
-      ? element.classList.add("input-error")
-      : element.classList.remove("input-error");
-  };
 
   form.addEventListener("submit", function (submit) {
     if (validateEmail() || validatePassword()) {

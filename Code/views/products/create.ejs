@@ -4,7 +4,7 @@
     <title>Crear Producto</title>
     <%- include('../partials/head')%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.1.17/validator.min.js" integrity="sha512-p1b+doSyVwyKqVTZeU1+XJtjpBSkhllBca2L6QTxPUjZZ0ELeZIHkAeQdtfNulbXxLdCwN4uKYGPpp78xeqwfQ==" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/js/create.js"></script>
+    <script type="text/javascript" src="/js/edit-create.js"></script>
 </head>
 <body>
     <%- include('../partials/header') %>
@@ -14,7 +14,7 @@
     </div>
 
     <main class="flex-box abm-products"> 
-        <form class="flex-box" action="/products" method="POST" enctype="multipart/form-data">
+        <form class="flex-box" id="form" action="/products" method="POST" enctype="multipart/form-data">
             <div class="col-6">
                 <div class= "form-box left-align" >
                     <label>Título: </label>
