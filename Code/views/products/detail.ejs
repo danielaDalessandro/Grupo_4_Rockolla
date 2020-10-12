@@ -3,11 +3,18 @@
 <head>
     <title><%= product.title%></title>
     <%- include('../partials/head') %>
+    <script type="text/javascript" src="/js/product-detail.js"></script>
 </head>
 <body>
     <%- include('../partials/header') %>
     
     <main class="flex-box">
+        <%if (locals.feedback) {%>
+        <div class="aviso col-s-10" id="feedback">
+            <i class="fas fa-check-circle"></i> <%= feedback%>
+        </div>
+        <%}%>
+
         <h2 class="col-s-12 align-center detalle-descripcion">
             <%= product.title%>
         </h2>
@@ -40,8 +47,12 @@
                     max="<%= product.stock%>"
                     value="1"
                     /><br>
-                    <button class="boton boton-primary" type="submit">
-                        Añadir al carrito
+                    <button id="cart-button" class="boton boton-primary" type="submit">
+                        <%if (locals.feedback) {%>
+                            Quitar del Carrito
+                        <%} else {%>
+                            Añadir al Carrito
+                        <%}%>
                     </button>
                     <button class="boton boton-secondary" type="submit"> 
                         Finalizar Compra

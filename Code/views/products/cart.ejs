@@ -3,16 +3,13 @@
 <head>
     <title>Carrito de compras</title>
     <%- include('../partials/head') %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/cart.js"></script>
 </head>
 <body>
     <%- include('../partials/header') %>
     
-    <main class="flex-box is-centered">
-        <div class="aviso col-s-10">
-            <i class="fas fa-check-circle"></i> Has añadido satisfactoriamente
-            "Oasis - (What's the story?) Morning Glory" a tu carrito de compras
-        </div>
-        
+    <main class="flex-box is-centered">        
         <section class="col-s-10">
             <h2>Finalizá tu compra:</h2>
         </section>
@@ -31,8 +28,10 @@
                     </section>
                     
                     <section class="col-s-6 col-7 detalle-producto is-relative">
-                        <i class="fas fa-times-circle eliminar-objeto"></i>
-                        <p><%= product.artist%> - <%= product.title%></p>
+                        <button class="eliminar-producto-carrito">
+                            <i class="fas fa-times-circle"></i><!--<%= product.id%>-->
+                        </button>    
+                        <p><strong><%= product.artist.name%> - <%= product.title%></strong></p>
                         <p>$<%= product.price%></p>
                         <p>
                             <strong>Cantidad: </strong>
@@ -43,18 +42,18 @@
                             id="cantidad"
                             step="1"
                             min="1"
-                            max="5"
-                            <%cart.forEach( prod => {%>
-                                <% if (prod.id == product.id) {%>
-                                value="<%= prod.ammount%>"
-                                <%}%>
-                            <%})%>
+                            max="<%= product.stock%>"
+                            value="<%= product.ammount%>"
                             />
                         </p>
-                        <p><strong>Subtotal: </strong> $<%= product.price%></p>
+                        <p><strong>Subtotal: </strong> $<%= product.price * product.ammount%></p>
                     </section>
                 </div>
                 <%})%>
+            <%} else {%>
+                <div class="col-s10">
+                    <h2>Aún no has agregado productos al carrito...</h2>
+                </div>
             <%}%>
             
             <div class="col-s-10 flex-box is-centered">

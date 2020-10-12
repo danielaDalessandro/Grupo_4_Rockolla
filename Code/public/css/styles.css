@@ -299,16 +299,25 @@ footer {
 	color: #2DF505
 }
 
-.producto-carrito:nth-child(odd){
+.producto-carrito {
+	padding: 1rem 0px;
+}
+
+.producto-carrito:hover{
 	background-color: #EFF3EF;
 }
 
-.eliminar-objeto{
+.eliminar-producto-carrito{
+	text-align: center;
 	position: absolute;
-	color: black;
+	background-color: transparent;
+	color: grey;
 	right: 1rem;
 	top: .2rem;
 	font-size: 1.5rem;
+	width: 2.5rem;
+	border: none;
+	cursor: pointer;
 }
 
 .producto{
@@ -577,6 +586,10 @@ footer {
 
 .is-active {
 	display: block;
+}
+
+.is-danger {
+	background-color: red;
 }
 
 .is-centered {
