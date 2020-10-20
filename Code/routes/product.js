@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/productController');
+const cartController = require('../controllers/cartController');
 const path = require('path');
 const clientRoute = require('../middlewares/clientRoute');
 const adminRoute = require("../middlewares/adminRoute");
@@ -13,7 +14,7 @@ const upload = multer('tapas', 'tapa');
 
 // Carrito
 router.get('/cart', clientRoute, controller.viewCart);
-router.post('/cart', clientRoute, controller.viewCart);
+router.post('/cart', cartController.processPurchase);
 
 // Agregar/Quitar producto del Carrito
 router.post('/cart/:id', clientRoute, controller.abmCart);

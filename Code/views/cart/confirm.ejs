@@ -33,31 +33,12 @@
           </section>
 
           <section class="col-s-6 col-7 detalle-producto is-relative">
-            <button class="eliminar-producto-carrito" value="<%= product.id%>">
-              <i class="fas fa-times-circle"></i>
-            </button>
-            <input
-              type="hidden"
-              id="product"
-              name="product"
-              value="<%= product.id%>"
-            />
             <p>
               <strong><%= product.artist.name%> - <%= product.title%></strong>
             </p>
             <p>$<%= product.price%></p>
             <p>
-              <strong>Cantidad: </strong>
-              <input
-                class="form-box"
-                type="number"
-                name="cantidad"
-                id="cantidad"
-                step="1"
-                min="1"
-                max="<%= product.stock%>"
-                value="<%= product.ammount%>"
-              />
+              <strong>Cantidad: <%= product.ammount%></strong>
             </p>
             <p>
               <strong>Subtotal: </strong> $<%= product.price * product.ammount%>
@@ -95,7 +76,7 @@
             <div class="col-s-6">$<%= total%></div>
           </div>
           <button id="submit" class="boton boton-primary" type="submit">
-            Finalizar Compra
+            Pagar
           </button>
         </div>
       </form>
