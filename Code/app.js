@@ -55,6 +55,12 @@ app.use('/user', userRoutes);
 const adminRoutes = require('./routes/admin');
 app.use('/admin', adminRoutes);
 
+const userAPIRoutes = require("./routes/api/user")
+app.use("/api/user", userAPIRoutes)
+
+const productsAPIRoutes = require("./routes/api/products")
+app.use("/api/product", productsAPIRoutes)
+
 app.get('*', (req, res) => {
     res.render('404');
 })
