@@ -42,6 +42,7 @@
               name="product"
               value="<%= product.id%>"
             />
+            <br />
             <p>
               <strong><%= product.artist.name%> - <%= product.title%></strong>
             </p>
@@ -64,12 +65,7 @@
             </p>
           </section>
         </div>
-        <%})%> <%} else {%>
-        <div class="col-s10">
-          <h2>Aún no has agregado productos al carrito...</h2>
-        </div>
-        <%}%>
-
+        <%})%>
         <div class="col-s-10 flex-box is-centered">
           <h2 class="col-s-12">Total a pagar:</h2>
 
@@ -98,6 +94,11 @@
             Finalizar Compra
           </button>
         </div>
+        <%} else {%>
+        <div class="col-s10">
+          <h2>Aún no has agregado productos al carrito...</h2>
+        </div>
+        <%}%>
       </form>
     </main>
 

@@ -75,6 +75,7 @@ a.boton-login:hover {
 }
 
 .boton-navbar {
+	position: relative;
 	display: block;
 	border: none;
 	border-radius: 0.5rem;
@@ -267,6 +268,10 @@ footer {
 /*----------MAIN----------*/
 
 /* Estilos main detalle del producto: */
+.filter {
+	background-color: #E8E6E4;
+}
+
 .detalle-product p{
 	font-size: 1.5rem;
 	font-weight: 700;
@@ -541,6 +546,25 @@ footer {
 .boton-primary{background-color: #F93001;}
 
 .boton-primary:hover{background-color: #A43015}
+
+.boton-carrito {
+	width: 50%;
+
+}
+
+.carrito-cant {
+    border-radius: 50%;
+    color: white;
+    background-color: #F93001;
+    font-size: 1rem;
+    position: absolute;
+    top: 1rem;
+    width: 1rem;
+}
+
+.boton-success {
+	background-color: blue;
+}
 
 .boton-secondary{background-color: #F93001;}
 

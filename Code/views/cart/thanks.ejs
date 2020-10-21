@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gracias por Comprar</title>
+    <%- include('../partials/head') %>
+    <script type="text/javascript" src="/js/thanks.js"></script>
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+
+    <main class="flex-box">
+      <div class="col-s-8 flex-box">
+        <h1 class="col-xs-10">¡¡Gracias por tu compra!!</h1>
+        <img
+          class="col-s-8 col-6"
+          src="/images/assets/thanks.png"
+          alt="Broken Vinyl"
+        />
+        <br />
+        <p class="col-">
+          ¡Podras ver la información de la compra reflejada en tu cuenta!
+        </p>
+        <p class="col-">
+          En <span id="counter">10</span> segundos te redigiremos al inicio...
+        </p>
+      </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>

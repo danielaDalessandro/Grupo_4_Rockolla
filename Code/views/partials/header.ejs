@@ -4,19 +4,21 @@
       <img class="logo" src="/images/logo.svg" />
     </a>
   </div>
-  
+
   <div class="col-xs-2 col-1 flex-box is-centered is-order-1">
     <% if (locals.user) { %>
-      <a class="boton-navbar" href="/user/logout"
-            ><i class="fas fa-user"></i
-      ></a>
+    <a class="boton-navbar" href="/user/logout"><i class="fas fa-user"></i></a>
     <% } else {%>
-        <a class="boton-navbar" style="background-image: '/images/users/default.jpg';" href="/user/login"
-            > <i class="fas fa-user"></i
-      > </a>
+    <a
+      class="boton-navbar"
+      style="background-image: '/images/users/default.jpg'"
+      href="/user/login"
+    >
+      <i class="fas fa-user"></i>
+    </a>
     <% }%>
   </div>
-  
+
   <div class="col-xs-2 header-hamburguesa flex-box is-centered">
     <button class="boton-navbar" id="hamburguer">
       <i class="fas fa-bars"></i>
@@ -40,49 +42,37 @@
 
   <div class="col-xs-2 col-1 flex-box is-centered is-order-2">
     <%if(!(locals.user && locals.user.role == 2)){%>
-      <a class="boton-navbar" href="/products/cart">
-        <i class="fas fa-shopping-cart"></i>
-      </a>
+    <a class="boton-navbar" href="/products/cart">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="carrito-cant">
+        <% if (locals.cart) {%> <%= locals.cart.length%> <%}%>
+      </span>
+    </a>
     <%}%>
   </div>
 
-
   <div class="col-11 nav-menu is-order-1" id="navbar-menu">
     <div class="item-navbar">
-      <a href="/">
-        Inicio
-      </a>
+      <a href="/"> Inicio </a>
     </div>
     <div class="item-navbar">
-      <a href="/products">
-        Productos
-      </a>
+      <a href="/products"> Productos </a>
     </div>
     <div class="item-navbar">
       <% if (locals.user) { %>
-        <a href="/user">
-          Mi Perfil
-        </a>
+      <a href="/user"> Mi Perfil </a>
       <% } else {%>
-        <a href="/user/registro">
-          Creá tu cuenta
-        </a>
+      <a href="/user/registro"> Creá tu cuenta </a>
       <% }%>
     </div>
     <div class="item-navbar">
-      <a href="/about">
-        Acerca de
-      </a>
+      <a href="/about"> Acerca de </a>
     </div>
     <div class="item-navbar">
       <% if (locals.user && locals.user.role == 2) { %>
-        <a href="/admin">
-          Administración
-        </a>      
+      <a href="/admin"> Administración </a>
       <% } else {%>
-        <a href="/contact">
-          Contacto
-        </a>
+      <a href="/contact"> Contacto </a>
       <%}%>
     </div>
   </div>

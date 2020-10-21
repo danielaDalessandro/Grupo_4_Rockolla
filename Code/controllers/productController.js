@@ -7,8 +7,8 @@ const { validationResult } = require("express-validator");
 
 module.exports = {
   // Listar todos los productos
-  list: (req, res) => {
-    let products = db.product.findAll({
+  list: async (req, res) => {
+    let products = await db.product.findAll({
       attributes: [
         "id",
         "cover",
@@ -18,10 +18,21 @@ module.exports = {
       ],
       include: ["artist"],
       raw: true,
-    });
-    products.then(function (products) {
-      return res.render("./products/list", { products: products });
-    });
+    })
+    .catch((e) => console.log("ERROR: ", e));
+
+    if (req.session.cart) {
+      let cart = req.session.cart;
+      products.map((product) => {
+        cart.forEach((element) => {
+          if (product.id == element.id) {
+            return (product.cart = true);
+          }
+        });
+      });
+    }
+
+    return res.render("./products/list", { products: products });
   },
 
   // Mostrar la vista de creación de productos
@@ -157,9 +168,7 @@ module.exports = {
           res.render("./404");
         }
       })
-      .catch((e) => {
-        console.log(e);
-      });
+      .catch((e) => console.log("ERROR: ", e));
   },
 
   // Editar producto existente
@@ -354,7 +363,8 @@ module.exports = {
     db.product
       .findByPk(req.params.id, {
         include: ["format", "artist", "label", "genre"],
-        nest:true, raw:true
+        nest: true,
+        raw: true,
       })
       .then(function (product) {
         // Si tengo el producto
@@ -426,27 +436,26 @@ module.exports = {
       // Busco los productos con los ids
       db.product
         .findAll({
-          include: [
-              "artist"
-          ],
+          include: ["artist"],
           where: {
             id: {
               [Op.or]: [...productIds],
             },
           },
-          nest:true,
+          nest: true,
           raw: true,
         })
         .then(function (products) {
           let total = 0;
-          products.forEach( product => {
-              product.ammount = cart.filter( item => {
-                  return item.id == product.id;
-              })[0].ammount;
-              total += product.price * product.ammount;
+          products.forEach((product) => {
+            product.ammount = cart.filter((item) => {
+              return item.id == product.id;
+            })[0].ammount;
+            total += product.price * product.ammount;
           });
           res.render("./products/cart", { products, cart, total });
-        });
+        })
+        .catch((e) => console.log("ERROR: ", e));
     } else {
       let products = [];
       let total = 0;
@@ -456,6 +465,9 @@ module.exports = {
 
   // Añadir producto al carrito de compras
   abmCart: (req, res) => {
+    if (!req.body.cantidad) {
+      req.body.cantidad = 1;
+    }
     // Producto a agregar...
     let productCart = {
       id: req.params.id,

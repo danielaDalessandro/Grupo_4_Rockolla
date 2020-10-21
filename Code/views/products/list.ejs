@@ -1,40 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Productos</title>
     <%- include('../partials/head') %>
-</head>
-<body>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"
+      integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg=="
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="/js/list.js"></script>
+  </head>
+  <body>
     <%- include('../partials/header') %>
     <main class="list-main flex-box">
-        <div class="filter"></div>
-        <div class="col-10 flex-box is-centered">
-            <%if (products.length >0){%>
-                <% products.forEach((product) => { %>
-                    <div class="disco-list-card col-3 col-s-6">
-                        <a href="/products/<%= product.id%>">
-                            <section>
-                                <img
-                                class="disco-list-tapa"
-                                src="/images/tapas/<%= product.cover%>"
-                                alt="Tapa del disco"
-                                />
-                            </section>
-                            <section class="descripcion-disco">
-                                <div><%= product.artist%></div>
-                                <div><strong><%= product.title%></strong></div>
-                                <div>$<%= product.price%></div>
-                            </section>
-                        </a>
-                    </div>
-                <%})%>
+     <!--  <div class="col-2 filter center-align">
+        Filtrar <i class="fas fa-filter"></i>
+        <form action="">
+          <input class="form-input" type="text" placeholder="Artista" />
+          <input class="form-input" type="text" placeholder="Genero" />
+          <input class="form-input" type="text" placeholder="Sello" />
+          <input class="form-input" type="text" placeholder="Formato" />
+          <input class="form-input" type="text" placeholder="Sello" />
+          <br />
+          <hr />
+          <label for="select-orden"></label>
+          <select name="select-orden">
+            <option value="value1">Artista A-Z</option>
+            <option value="value2" selected>Artista Z-A</option>
+            <option value="value3">Disco A-Z</option>
+            <option value="value3">Disco Z-A</option>
+          </select>
+        </form>
+      </div> -->
+      <div class="col-8 flex-box is-centered">
+        <%if (products.length >0){%> <% products.forEach((product) => { %>
+        <div class="disco-list-card col-3 col-s-6">
+          <form action="/products/cart/<%= product.id%>" method="POST">
+            <a href="/products/<%= product.id%>">
+              <section>
+                <img
+                  class="disco-list-tapa"
+                  src="/images/tapas/<%= product.cover%>"
+                  alt="Tapa del disco"
+                />
+              </section>
+              <section class="descripcion-disco">
+                <div><%= product.artist%></div>
+                <div><strong><%= product.title%></strong></div>
+                <div>$<%= product.price%></div>
+              </section>
+            </a>
+            <% if (product.cart == null) {%>
+            <button
+              id="cart-button"
+              class="boton boton-primary boton-carrito"
+              type="submit"
+              value="<%= product.id%>"
+            >
+              <i class="fas fa-shopping-cart"></i>
+            </button>
             <%} else {%>
-                <div>
-                    <h2>Perdon, no encontramos discos...</h2>
-                </div>
+            <button
+              id="cart-button"
+              class="boton boton-success boton-carrito"
+              type="submit"
+              value="<%= product.id%>"
+            >
+              <i class="fas fa-check"></i>
+            </button>
             <%}%>
+          </form>
         </div>
+        <%})%> <%} else {%>
+        <div>
+          <h2>Perdon, no encontramos discos...</h2>
+        </div>
+        <%}%>
+      </div>
     </main>
     <%- include('../partials/footer') %>
-</body>
+  </body>
 </html>

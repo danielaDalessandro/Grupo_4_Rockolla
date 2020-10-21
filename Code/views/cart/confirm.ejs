@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Carrito de compras</title>
+    <title>Finalizar Compra</title>
     <%- include('../partials/head') %>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"
@@ -18,7 +18,7 @@
         <h2>Finalizá tu compra:</h2>
       </section>
 
-      <form id="form" class="col-s-12 flex-box" action="cart" method="POST">
+      <form id="form" class="col-s-12 flex-box" action="cart/confirm" method="POST">
         <%if (products.length >0){%> <% products.forEach((product) => { %>
         <div class="producto-carrito col-s-10 flex-box">
           <section class="col-s-6 col-4">
@@ -52,30 +52,38 @@
         <%}%>
 
         <div class="col-s-10 flex-box is-centered">
-          <h2 class="col-s-12">Total a pagar:</h2>
+          <h2 class="col-s-12">Total a Pagar: $<%= total%></h2>
+          <h3 class="col-s-12">Número de Compra: <%= cart.id%></h3>
+          <input name="cart" type="hidden" value="<%= cart.id%>">
 
           <div class="col-s-12 flex-box">
-            <div class="col-s-6"><strong> Subtotal: </strong></div>
-            <div class="col-s-6">$<%= total%></div>
-          </div>
-          <div class="col-s-12 flex-box">
-            <div class="col-s-6"><strong>Envío: </strong></div>
+            <div class="col-s-6"><strong>Información de Pago: </strong></div>
             <div class="col-s-6 flex-box form-box">
               <input
-                class="col-"
+                class="col-xs-10"
                 type="text"
-                name="envio"
-                id="envio"
-                placeholder="Dirección de envio..."
-                required
+                name="tarjeta"
+                id="tarjeta"
+                placeholder="Número de Tarjeta"
               />
+              <input
+                class="col-xs-3"
+                type="text"
+                name="vencimiento"
+                id="vencimiento"
+                placeholder="MM/AA"
+              />
+              <input
+              class="col-xs-7"
+              type="text"
+              name="numSeguridad"
+              id="numSeguridad"
+              placeholder="Número de Seguridad de 3 dígitos"
+            />
             </div>
           </div>
-          <div class="col-s-12 flex-box">
-            <div class="col-s-6"><strong> Total: </strong></div>
-            <div class="col-s-6">$<%= total%></div>
-          </div>
-          <button id="submit" class="boton boton-primary" type="submit">
+          
+          <button id="submit" class="boton boton-primary col-xs-10 col-s-6" type="submit">
             Pagar
           </button>
         </div>
