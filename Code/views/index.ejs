@@ -38,22 +38,23 @@
 
 
 		<section class="home-section">
-			<div class="home-section-title">Los Más Buscado</div>
+			<div class="home-section-title">Lo Más Reciente</div>
 			
 			<div class="owl-carousel"> 
-				<% for (let i=0; i<=10; i++) {%>
+				<% recientes.forEach(product => {%>
 					<div class="disco-home-card">
-						<a href="/products/308">
-							<section class="portada-disco">
-								<img src="/images/ejemplo-disco-oasis.jpg">
+						<a href="/products/<%= product.id%>">
+							<section>
+								<img src="/images/tapas/<%= product.cover%>">
 							</section>
 							<section class="descripcion-disco">
-								<div>Oasis</div>
-								<div>(What's the Story) Morning Glory?</div>
+								<div><%= product.artist%></div>
+								<div><strong><%= product.title%></strong></div>
+								<div>$ <%= product.price%></div>
 							</section>
 						</a>
 					</div>
-				<%}%>
+				<%})%>
 			</div>
 		</section>
 	</main>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contacto</title>
+    <%- include('./partials/head') %>
+  </head>
+  <body>
+    <%- include('./partials/header') %>
+
+    <main class="flex-box">
+        <div class="col-s-8 flex-box">
+        <h1>En Rockolla estamos para ayudarte</h1>
+        <form class="form-box col-xs-10 col-6" action="/contact" method="POST">
+          <input
+            class="left-align"
+            type="text"
+            name="email"
+            placeholder="tuemail@mail.com"
+          />
+          <textarea
+            class="form-textarea"
+            name="message"
+            id="message"
+            rows="10"
+            placeholder="Acá dejanos tu mensaje..."
+          ></textarea>
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+    </main>
+
+    <%- include('./partials/footer') %>
+  </body>
+</html>
