@@ -13,6 +13,9 @@ const favicon = require("serve-favicon");
 app.use(favicon(path.join(__dirname, "/public/images/favicon.ico")));
 //View Engine ejs
 app.set("view engine", "ejs");
+// CORS
+const cors = require('cors');
+app.use(cors());
 //urlencoded para capturar información de formularios
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
