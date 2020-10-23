@@ -1,49 +1,46 @@
 const db = require("../../database/models");
 
-
 module.exports = {
-listUsers: async (req, res) => {
+  listUsers: async (req, res) => {
     // Traigo los usuarios clientes de la base de datos
     let users = await getUsers(1);
-    users.map(user => {
+    users.map((user) => {
       delete user.avatar;
-      user.detail = "/api/user/" + user.id
-    })
-    console.log(users);
+      user.detail = "/api/user/" + user.id;
+    });
+
     // Envío los clientes a la vista
     let respuesta = {
       meta: {
         status: 200,
-        total: users.length
+        total: users.length,
       },
-      data: users
-
-    }
+      data: users,
+    };
     res.json(respuesta);
   },
 
   detail: async (req, res) => {
-    let user = await db.user.findByPk(req.params.id)
-    console.log(user)
-      delete user.dataValues.password
-      delete user.dataValues.createdAt
-      delete user.dataValues.updatedAt
-      delete user.dataValues.deletedAt
-      if (user.dataValues.avatar == null){
-        user.dataValues.avatar = "/images/users/default.jpg"
-      } else {
-        user.dataValues.avatar = "/images/users/" + user.dataValues.avatar
-      }
+    let user = await db.user.findByPk(req.params.id);
+
+    delete user.dataValues.password;
+    delete user.dataValues.createdAt;
+    delete user.dataValues.updatedAt;
+    delete user.dataValues.deletedAt;
+    if (user.dataValues.avatar == null) {
+      user.dataValues.avatar = "/images/users/default.jpg";
+    } else {
+      user.dataValues.avatar = "/images/users/" + user.dataValues.avatar;
+    }
     let respuesta = {
       meta: {
-        status: 200
+        status: 200,
       },
-      data: user
-    }
-    res.json(respuesta)
-},
-
-}
+      data: user,
+    };
+    res.json(respuesta);
+  },
+};
 
 async function getUsers(role_id) {
   // Traigo los usuarios de la base de datos

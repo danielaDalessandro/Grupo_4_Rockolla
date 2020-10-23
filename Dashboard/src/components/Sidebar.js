@@ -4,7 +4,7 @@ function Sidebar() {
   return (
     <div>
       <ul
-        className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        className="navbar-nav bg-gradient-primary sticky-top sidebar sidebar-dark accordion"
         id="accordionSidebar"
       >
         <a
@@ -14,7 +14,7 @@ function Sidebar() {
           <div className="sidebar-brand-icon">
             <i className="fas fa-chart-line"></i>
           </div>
-          <div className="sidebar-brand-text mx-3">Admin</div>
+          <div className="sidebar-brand-text mx-3">Rockolla</div>
         </a>
 
         <hr className="sidebar-divider my-0" />

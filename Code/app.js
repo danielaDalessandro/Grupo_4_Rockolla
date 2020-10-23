@@ -57,12 +57,17 @@ app.use("/user", userRoutes);
 const adminRoutes = require("./routes/admin");
 app.use("/admin", adminRoutes);
 
+//---------------API ROUTES---------------//
 const userAPIRoutes = require("./routes/api/user");
 app.use("/api/user", userAPIRoutes);
 
 const productsAPIRoutes = require("./routes/api/products");
 app.use("/api/product", productsAPIRoutes);
 
+const secondaryTablesAPIRoutes = require("./routes/api/secondaryTables");
+app.use("/api/", secondaryTablesAPIRoutes);
+
+//---------------404 ROUTE---------------//
 app.get("*", (req, res) => {
   res.status(404);
   res.render("404");

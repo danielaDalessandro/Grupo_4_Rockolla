@@ -8,14 +8,7 @@ class Card extends React.Component {
     props,
     }
     }
-  componentDidMount() {
-    axios.get(`https://jsonplaceholder.typicode.com/users`)
-      .then(res => {
-        const products = res.data;
-        console.log(products);
-        this.setState({ products });
-      })
-  }
+  
   render () {
     return (
       <div className={`card border-left-${this.props.color} shadow h-100 py-2`}>
