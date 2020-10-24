@@ -1,5 +1,8 @@
 import React from "react";
 
+/*        COMPONENTS               */
+import NavItem from "./NavItem";
+
 function Sidebar() {
   return (
     <div>
@@ -19,37 +22,49 @@ function Sidebar() {
 
         <hr className="sidebar-divider my-0" />
 
-        <li className="nav-item active">
-          <a className="nav-link" href="/">
-            <i className="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
+        <NavItem
+          title="Dashboard"
+          link="/"
+          icon="fas fa-fw fa-tachometer-alt"
+        />
 
         <hr className="sidebar-divider" />
 
-        <div className="sidebar-heading">Actions</div>
+        <div className="sidebar-heading">Productos</div>
+        <NavItem 
+          title="Ver Productos" 
+          link="/products" 
+          icon="fas fa-table" 
+        />
+        <NavItem
+          title="Agregar Producto"
+          link="/products/create"
+          icon="fas fa-plus"
+        />
 
-        <li className="nav-item">
-          <a className="nav-link collapsed" href="/">
-            <i className="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
-          </a>
-        </li>
+        <div className="sidebar-heading">Ventas</div>
+        <NavItem 
+          title="Ver Ventas"
+          link="/sales" 
+          icon="fa fa-shopping-cart" 
+        />
+        <NavItem
+          title="Agregar Número Envío"
+          link="/shipping"
+          icon="fas fa-shipping-fast"
+        />
 
-        <li className="nav-item">
-          <a className="nav-link" href="/">
-            <i className="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span>
-          </a>
-        </li>
-
-        <li className="nav-item">
-          <a className="nav-link" href="/">
-            <i className="fas fa-fw fa-table"></i>
-            <span>Tables</span>
-          </a>
-        </li>
+        <div className="sidebar-heading">Usuarios</div>
+        <NavItem
+          title="Ver Usuarios"
+          link="/users"
+          icon="fas fa-address-book"
+        />
+        <NavItem
+          title="Agregar Administrador"
+          link="/admin"
+          icon="fas fa-key"
+        />
 
         <hr className="sidebar-divider d-none d-md-block" />
       </ul>

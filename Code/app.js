@@ -3,7 +3,10 @@ const app = express();
 const path = require("path");
 
 require("dotenv").config();
-const port = process.env.PORT;
+const port = (process.env.PORT);
+if (!port){
+  return (console.log("\n NO CONFIGURASTE EL PUERTO EN EL ARCHIVO .env"))
+}
 
 //-------------MIDDLEWARES-------------//
 //Archivos Estáticos

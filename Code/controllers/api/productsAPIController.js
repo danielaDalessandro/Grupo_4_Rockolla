@@ -41,7 +41,7 @@ module.exports = {
 
   latest: async (req, res) => {
     let product = await db.sequelize.query(
-      "SELECT * FROM rockolla_db.products where deleted_at is null order by created_at desc limit 1"
+      "SELECT * FROM products where deleted_at is null order by created_at desc limit 1"
     );
 
     delete product.createdAt;

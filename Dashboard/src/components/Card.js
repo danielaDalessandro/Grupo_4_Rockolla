@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 
 class Card extends React.Component {
   constructor(props){
