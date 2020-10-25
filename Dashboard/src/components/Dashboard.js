@@ -5,7 +5,7 @@ import axios from "axios";
 import Card from "./Card";
 import ContentCard from "./ContentCard";
 import CategoryCard from "./CategoryCard";
-import Table from "./Table";
+/* import Table from "./Table"; */
 
 export default class Dashboard extends React.Component {
     constructor(props) {
@@ -20,37 +20,34 @@ export default class Dashboard extends React.Component {
         };
       }
 
-      componentWillMount() {
+      componentDidMount() {
         axios
-          .get(`http://127.0.0.1:3001/api/product`)
+          .get(`${this.props.rockollaUrl}api/product`)
           .then((res) => {
             const products = res.data;
-            console.log(products);
             this.setState({ products });
             let capital = 0;
             products.data.forEach((product) => {
               capital += product.price * product.stock;
             });
             this.setState({ capital });
+            console.log(products)
           })
           .catch((e) => console.log(e));
     
         axios
-          .get(`http://127.0.0.1:3001/api/product/latest`)
+          .get(`${this.props.rockollaUrl}api/product/latest`)
           .then((res) => {
             const latest = res.data.data[0];
-            console.log(latest);
             this.setState({ latest });
-            console.log(latest.cover);
             this.setState({ cover: "images/tapas/" + latest.cover });
           })
           .catch((e) => console.log(e));
     
         axios
-          .get(`http://127.0.0.1:3001/api/user`)
+          .get(`${this.props.rockollaUrl}api/user`)
           .then((res) => {
             const users = res.data;
-            console.log(users);
             this.setState({ users });
           })
           .catch((e) => console.log(e));
@@ -61,14 +58,14 @@ export default class Dashboard extends React.Component {
     return (
       <React.Fragment>
         <div className="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 className="h3 mb-0 text-gray-800">App Dashboard</h1>
+          <h1 className="h3 mb-0 text-gray-800">Rockolla Dashboard</h1>
         </div>
 
         <div className="row">
           <div className="col-md-4 mb-4">
             <Card
               title="Discos en Base de Datos"
-              ammount={this.state.products.meta.total}
+              ammount={this.state.products.meta.total || ""}
               color="primary"
               icon="fa-clipboard-list"
             />
@@ -77,7 +74,7 @@ export default class Dashboard extends React.Component {
           <div className="col-md-4 mb-4">
             <Card
               title="Dinero en Productos"
-              ammount={this.state.capital}
+              ammount={this.state.capital || ""}
               color="success"
               icon="fa-dollar-sign"
             />
@@ -85,8 +82,8 @@ export default class Dashboard extends React.Component {
 
           <div className="col-md-4 mb-4">
             <Card
-              title="Users quantity"
-              ammount={this.state.users.meta.total}
+              title="Cantidad de Usuarios"
+              ammount={this.state.users.meta.total || ""}
               color="warning"
               icon="fa-user-check"
             />
@@ -110,7 +107,7 @@ export default class Dashboard extends React.Component {
               <p>{this.state.latest.description}</p>
               <a
                 target="_blank"
-                rel="nofollow"
+                rel="noopener noreferrer"
                 href={"http://localhost:3001/products/" + this.state.latest.id}
               >
                 Detalle del producto
@@ -126,9 +123,7 @@ export default class Dashboard extends React.Component {
                     "Artistas",
                     "Géneros",
                     "Formatos",
-                    "Category 04",
-                    "Category 05",
-                    "Category 06",
+                    "Sellos",
                   ]}
                 />
               </div>

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const productsAPIController = require("../../controllers/api/productsAPIController")
+const adminRoute = require("../../middlewares/adminRoute")
 
 router.get("/", productsAPIController.list)
 

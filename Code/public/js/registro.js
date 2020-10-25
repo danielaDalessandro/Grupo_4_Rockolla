@@ -72,7 +72,7 @@ window.addEventListener("load", function () {
   let validateAvatar = function () {
     let feedback = "";
     let ext = avatar.value.split(".")[1];
-    if (!ALLOWED_IMAGES_EXT.includes(ext)) {
+    if (ext && !ALLOWED_IMAGES_EXT.includes(ext)) {
       feedback = "Imagen de formato inválido";
     }
     handleFeedback(avatar, "feedback-avatar", feedback);

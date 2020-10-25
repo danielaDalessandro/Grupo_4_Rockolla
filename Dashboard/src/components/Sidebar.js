@@ -3,7 +3,7 @@ import React from "react";
 /*        COMPONENTS               */
 import NavItem from "./NavItem";
 
-function Sidebar() {
+function Sidebar(props) {
   return (
     <div>
       <ul
@@ -31,23 +31,17 @@ function Sidebar() {
         <hr className="sidebar-divider" />
 
         <div className="sidebar-heading">Productos</div>
-        <NavItem 
-          title="Ver Productos" 
-          link="/products" 
-          icon="fas fa-table" 
-        />
-        <NavItem
-          title="Agregar Producto"
-          link="/products/create"
-          icon="fas fa-plus"
-        />
+        <NavItem title="Ver Productos" link="/products" icon="fas fa-table" />
+
+        <li className={"nav-item"}>
+          <a href={`${props.rockollaUrl}products/create`} className="nav-link">
+            <i className="fas fa-plus"></i>
+            <span> "Agregar Producto"</span>
+          </a>
+        </li>
 
         <div className="sidebar-heading">Ventas</div>
-        <NavItem 
-          title="Ver Ventas"
-          link="/sales" 
-          icon="fa fa-shopping-cart" 
-        />
+        <NavItem title="Ver Ventas" link="/sales" icon="fa fa-shopping-cart" />
         <NavItem
           title="Agregar Número Envío"
           link="/shipping"

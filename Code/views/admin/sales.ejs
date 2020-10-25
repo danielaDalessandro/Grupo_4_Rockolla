@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Usuarios</title>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    <main class="list-main flex-box">
+        <div class="filter"></div>
+        <div class="col-11 flex-box is-centered">
+                <% sales.forEach((sale) => { %>
+                    <div class="disco-list-card col-4 col-s-6">
+                            <section>
+                                <img
+                                class="disco-list-tapa"
+                                alt="Avatar de Usuario"
+                                <% if(user.avatar) {%>
+                                src="/images/users/<%= user.avatar%>"
+                                <%} else {%>
+                                src="/images/users/default.jpg"
+                                <%}%>
+                                />
+                            </section>
+                            <section class="descripcion-disco">
+                                <div><%= user.fname%> <%= user.lname%></div>
+                                <div><strong><%= user.email%></strong></div>
+                            </section>
+                        </a>
+                    </div>
+                <%})%>
+        </div>
+    </main>
+    <%- include('../partials/footer') %>
+</body>
+</html>
