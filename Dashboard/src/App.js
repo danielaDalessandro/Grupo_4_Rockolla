@@ -46,7 +46,6 @@ class App extends React.Component {
               <Route exact path="/admin/dashboard/sales" component={Sales} />
               <Route exact path="/admin/dashboard/shipping" component={Shipping} />
               <Route exact path="/admin/dashboard/admin" component={NewAdmin} />
-              <Route exact path="/admin/dashboard/genre" component={CategoryTable} />
               <Route
                 exact path="/admin/dashboard/genre"
                 render={(props) => <CategoryTable {...props} table="genre" rockollaUrl={this.state.rockolla} />}

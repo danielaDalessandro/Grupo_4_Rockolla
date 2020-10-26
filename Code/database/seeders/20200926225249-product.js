@@ -605,7 +605,7 @@ module.exports = {
           genre_id: 3,
         },
         {
-          title: "Some Girsl",
+          title: "Some Girls",
           price: 2400,
           description: "Alguna descripcion...",
           cover: "tapa-1601183225097.jpg",

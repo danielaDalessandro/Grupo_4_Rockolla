@@ -5,6 +5,7 @@ const cartController = require('../controllers/cartController');
 const path = require('path');
 const clientRoute = require('../middlewares/clientRoute');
 const adminRoute = require("../middlewares/adminRoute");
+const loggedRoute = require('../middlewares/loggedRoute');
 
 const validate = require("../validators/products.js");
 
@@ -14,9 +15,9 @@ const upload = multer('tapas', 'tapa');
 
 // Carrito
 router.get('/cart', clientRoute, controller.viewCart);
-router.post('/cart', cartController.processPurchase);
+router.post('/cart', loggedRoute, cartController.processPurchase);
 // Compra Finalizada
-router.post('/cart/confirm', cartController.finishPurchase);
+router.post('/cart/confirm', clientRoute, cartController.finishPurchase);
 
 // Agregar/Quitar producto del Carrito
 router.post('/cart/:id', clientRoute, controller.abmCart);

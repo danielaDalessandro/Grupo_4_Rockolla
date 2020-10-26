@@ -10,8 +10,8 @@ function Navbar() {
         <i className="fa fa-bars"></i>
       </button>
 
-      <ul className="navbar-nav ml-auto">
-        <li className="nav-item dropdown no-arrow mx-1">
+       <ul className="navbar-nav ml-auto">
+{/*        <li className="nav-item dropdown no-arrow mx-1">
           <a className="nav-link dropdown-toggle" href="/" id="alertsDropdown">
             <i className="fas fa-bell fa-fw"></i>
 
@@ -29,14 +29,14 @@ function Navbar() {
 
             <span className="badge badge-danger badge-counter">7</span>
           </a>
-        </li>
+        </li> */}
 
         <div className="topbar-divider d-none d-sm-block"></div>
 
         <li className="nav-item dropdown no-arrow">
-          <a className="nav-link dropdown-toggle" href="/" id="userDropdown">
+          <a className="nav-link dropdown-toggle" href="/user/profile" id="userDropdown">
             <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-              Walter White
+              Administración
             </span>
             <img
               className="img-profile rounded-circle"

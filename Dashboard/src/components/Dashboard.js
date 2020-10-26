@@ -120,7 +120,7 @@ export default class Dashboard extends React.Component {
             <ContentCard header="Categories in Database">
               <div className="row">
                 <CategoryCard
-                  categories={["Artistas", "Géneros", "Formatos", "Sellos"]}
+                  categories={["Artist", "Genre", "Format", "Label"]}
                 />
               </div>
             </ContentCard>

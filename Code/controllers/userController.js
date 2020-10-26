@@ -204,7 +204,6 @@ module.exports = {
         .catch((e) => {
           console.log(e);
         });
-      console.log(user);
       await db.user.update(
         { password: newPassword },
         {
@@ -218,6 +217,53 @@ module.exports = {
     }
   },
 
+    // Cambiar o agregar domcilio
+    abmAddress: async (req, res) => {
+      if (req.session.user) {
+        let newAddress = {
+          street: req.body.street,
+          number: req.body.number,
+          apartment: req.body.apartment,
+          city: req.body.city,
+          province: req.body.province,
+          zip_code: req.body.zip_code,
+        };
+        console.log(newAddress)
+        let user = await db.user
+          .findOne({
+            where: {
+              email: req.session.user.email
+            },
+            raw: true,
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+        await db.user.update({ 
+          street:newAddress.street,
+          number: newAddress.number,
+          apartment: newAddress.apartment,
+          city: newAddress.city,
+          province: newAddress.province,
+          zip_code: newAddress.zip_code
+           },
+          {
+            where: {
+              id: user.id,
+            },
+          }
+        );
+
+        req.session.user.street= newAddress.street;
+        req.session.user.number= newAddress.number;
+        req.session.user.city= newAddress.city;
+        req.session.user.apartment= newAddress.apartment;
+        req.session.user.province= newAddress.province;
+        req.session.user.zip_code= newAddress.zip_code;
+        res.redirect("/user");
+      }
+    },
+  
   changeAvatar: async (req, res) => {
       // si subio un avatar
       if (req.file && req.file.filename) {

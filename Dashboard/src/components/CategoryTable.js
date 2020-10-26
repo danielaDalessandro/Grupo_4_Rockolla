@@ -34,6 +34,8 @@ export default class CategoryTable extends React.Component {
       <React.Fragment>
         <div className="row">
           <div className="col-lg-10 mb-6">
+            <h2>{`${this.state.tableToRender}s:`}</h2>
+            <h3>{`Total: ${this.state.renderTable && this.state.data.meta.total}`}</h3>
             {this.state.renderTable && <Table data={this.state.data} />}
           </div>
         </div>

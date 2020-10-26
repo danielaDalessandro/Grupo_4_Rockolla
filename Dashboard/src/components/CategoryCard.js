@@ -8,7 +8,7 @@ function CategoryCard(props) {
         <div className="col-lg-6 mb-4" key={ i }>
           <div className="card bg-info text-white shadow">
             <div className="card-body">
-              <Link to={`/admin/dashboard/${category}`} >
+              <Link to={`/admin/dashboard/${category.toString().toLowerCase()}`}>
                 {category}
               </Link>
             </div>
