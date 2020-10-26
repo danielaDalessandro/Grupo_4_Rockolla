@@ -24,7 +24,7 @@ function Sidebar(props) {
 
         <NavItem
           title="Dashboard"
-          link="/"
+          link="/admin/dashboard"
           icon="fas fa-fw fa-tachometer-alt"
         />
 
@@ -54,11 +54,12 @@ function Sidebar(props) {
           link="/admin/dashboard/users"
           icon="fas fa-address-book"
         />
-        <NavItem
-          title="Agregar Administrador"
-          link="/admin"
-          icon="fas fa-key"
-        />
+        <li className={"nav-item"}>
+          <a href={`${props.rockollaUrl}admin/create`} className="nav-link">
+            <i className="fas fa-key"></i>
+            <span> "Agregar Administrador"</span>
+          </a>
+        </li>
 
         <hr className="sidebar-divider d-none d-md-block" />
       </ul>

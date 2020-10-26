@@ -19,7 +19,6 @@ export default class Sales extends React.Component {
       .get(`http://127.0.0.1:3001/api/product`)
       .then((res) => {
         const products = res.data;
-        console.log(Object.keys(products.data[0]));
         this.setState({ products });
         let capital = 0;
         products.data.forEach((product) => {
@@ -30,14 +29,6 @@ export default class Sales extends React.Component {
       })
       .catch((e) => console.log(e));
 
-    /*         axios
-          .get(`http://127.0.0.1:3001/api/user`)
-          .then((res) => {
-            const users = res.data;
-            console.log(users);
-            this.setState({ users });
-          })
-          .catch((e) => console.log(e)); */
   }
   
     render() {

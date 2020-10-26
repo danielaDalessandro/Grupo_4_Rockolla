@@ -31,4 +31,8 @@ router.get("/", loggedRoute, controller.profile);
 // Cambiar contraseña
 router.post("/password", loggedRoute, controller.changePassword);
 
+// Cambiar avatar
+router.post("/avatar", loggedRoute, upload.single("avatar"), controller.changeAvatar);
+
+
 module.exports = router;

@@ -10,6 +10,7 @@ import Sales from "./components/Sales";
 import Shipping from "./components/Shipping";
 import Users from "./components/Users";
 import NewAdmin from "./components/NewAdmin";
+import CategoryTable from "./components/CategoryTable";
 
 class App extends React.Component {
   constructor(props) {
@@ -35,16 +36,33 @@ class App extends React.Component {
                 render={(props) => <Dashboard {...props} rockollaUrl={this.state.rockolla} />}
               />
               <Route
-                exact path="admin/dashboard/products"
+                exact path="/admin/dashboard/products"
                 render={(props) => <Products {...props} rockollaUrl={this.state.rockolla} />}
               />
               <Route
-                exact path="admin/dashboard/users"
+                exact path="/admin/dashboard/users"
                 render={(props) => <Users {...props} rockollaUrl={this.state.rockolla} />}
               />
-              <Route exact path="admin/dashboard/sales" component={Sales} />
-              <Route exact path="admin/dashboard/shipping" component={Shipping} />
-              <Route exact path="admin/dashboard/admin" component={NewAdmin} />
+              <Route exact path="/admin/dashboard/sales" component={Sales} />
+              <Route exact path="/admin/dashboard/shipping" component={Shipping} />
+              <Route exact path="/admin/dashboard/admin" component={NewAdmin} />
+              <Route exact path="/admin/dashboard/genre" component={CategoryTable} />
+              <Route
+                exact path="/admin/dashboard/genre"
+                render={(props) => <CategoryTable {...props} table="genre" rockollaUrl={this.state.rockolla} />}
+              />
+              <Route
+                exact path="/admin/dashboard/artist"
+                render={(props) => <CategoryTable {...props} table="artist" rockollaUrl={this.state.rockolla} />}
+              />
+              <Route
+                exact path="/admin/dashboard/format"
+                render={(props) => <CategoryTable {...props} table="format" rockollaUrl={this.state.rockolla} />}
+              />
+              <Route
+                exact path="/admin/dashboard/label"
+                render={(props) => <CategoryTable {...props} table="label" rockollaUrl={this.state.rockolla} />}
+              />
             </div>
 
             <Footer />

@@ -78,7 +78,6 @@ module.exports = {
   // Confirma el pago del usuario
   finishPurchase: (req, res) => {
     let payment = req.body;
-    console.log(payment);
 
     db.cart.update({ state_id: 2 }, {
       where: {

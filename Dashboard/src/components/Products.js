@@ -4,7 +4,7 @@ import axios from "axios";
 /*        COMPONENTS               */
 import Table from "./Table";
 
-export default class Dashboard extends React.Component {
+export default class Product extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

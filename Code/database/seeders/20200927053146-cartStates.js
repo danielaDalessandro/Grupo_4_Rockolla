@@ -5,6 +5,7 @@ module.exports = {
     await queryInterface.bulkInsert('cart_states', [
       {state_name: 'Pending'},
       {state_name: 'Paid'},
+      {state_name: 'Delivered'},
       {state_name: 'Canceled'}
   ], {});
   },

@@ -9,7 +9,7 @@
   <body>
     <%- include('../partials/header') %>
 
-    <main class="main-users">
+    <main class="flex-box">
       <div class="div-users">
         <h2>Registrate</h2>
 
@@ -129,9 +129,6 @@
               type="file"
               name="avatar"
               id="avatar"
-              <% if (locals.errors && errors.passwordConfirm) {%>
-                class="input-error" 
-              <%}%> 
             >
           </div>
 

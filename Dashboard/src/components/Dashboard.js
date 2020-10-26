@@ -8,51 +8,52 @@ import CategoryCard from "./CategoryCard";
 /* import Table from "./Table"; */
 
 export default class Dashboard extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          props,
-          products: { meta: { total: 0 } },
-          capital: 0,
-          users: { meta: { total: 0 } },
-          latest: { description: "" },
-          cover: "",
-        };
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      props,
+      products: { meta: { total: 0 } },
+      capital: 0,
+      users: { meta: { total: 0 } },
+      latest: { description: "" },
+      cover: "",
+      renderTable: false,
+      tableData: "",
+    };
+  }
 
-      componentDidMount() {
-        axios
-          .get(`${this.props.rockollaUrl}api/product`)
-          .then((res) => {
-            const products = res.data;
-            this.setState({ products });
-            let capital = 0;
-            products.data.forEach((product) => {
-              capital += product.price * product.stock;
-            });
-            this.setState({ capital });
-            console.log(products)
-          })
-          .catch((e) => console.log(e));
-    
-        axios
-          .get(`${this.props.rockollaUrl}api/product/latest`)
-          .then((res) => {
-            const latest = res.data.data[0];
-            this.setState({ latest });
-            this.setState({ cover: "images/tapas/" + latest.cover });
-          })
-          .catch((e) => console.log(e));
-    
-        axios
-          .get(`${this.props.rockollaUrl}api/user`)
-          .then((res) => {
-            const users = res.data;
-            this.setState({ users });
-          })
-          .catch((e) => console.log(e));
-      }
+  componentDidMount() {
+    axios
+      .get(`${this.props.rockollaUrl}api/product`)
+      .then((res) => {
+        const products = res.data;
+        this.setState({ products });
+        let capital = 0;
+        products.data.forEach((product) => {
+          capital += product.price * product.stock;
+        });
+        this.setState({ capital });
+        console.log(products);
+      })
+      .catch((e) => console.log(e));
 
+    axios
+      .get(`${this.props.rockollaUrl}api/product/latest`)
+      .then((res) => {
+        const latest = res.data.data[0];
+        this.setState({ latest });
+        this.setState({ cover: "images/tapas/" + latest.cover });
+      })
+      .catch((e) => console.log(e));
+
+    axios
+      .get(`${this.props.rockollaUrl}api/user`)
+      .then((res) => {
+        const users = res.data;
+        this.setState({ users });
+      })
+      .catch((e) => console.log(e));
+  }
 
   render() {
     return (
@@ -119,31 +120,10 @@ export default class Dashboard extends React.Component {
             <ContentCard header="Categories in Database">
               <div className="row">
                 <CategoryCard
-                  categories={[
-                    "Artistas",
-                    "Géneros",
-                    "Formatos",
-                    "Sellos",
-                  ]}
+                  categories={["Artistas", "Géneros", "Formatos", "Sellos"]}
                 />
               </div>
             </ContentCard>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-lg-6 mb-4">
-            {/*        <Table
-              cols = {[
-                div: "id",
-                "nombre",
-                "apellido"
-              ]}
-              rows = {[
-                {id:"1", nombre:"Facundo", apellido:"Erbin"}
-              ]}
-            
-            /> */}
           </div>
         </div>
       </React.Fragment>

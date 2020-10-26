@@ -31,7 +31,6 @@ module.exports = {
       let errors = validationResult(req)
       // si no hay errores...
       if(errors.isEmpty()){
-        console.log("it works\n\n")
           // creo el nuevo usuario
           let newUser = {
               fname: req.body.nombre,

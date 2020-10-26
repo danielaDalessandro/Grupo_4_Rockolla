@@ -14,12 +14,12 @@
                 <img class="disco-list-tapa" src="/images/users/<%= user.avatar%>" alt="avatar">
             </div>
 
-            <div class="col-xs-8 col-s-6 col-6 is-aligned-center">
-                <div>
+            <div class="col-xs-8 col-s-6 col-6 is-aligned-center flex-box">
+                <div class="col-">
                     <h2>¡Hola <%= user.fname%>!</h2>
                 </div>
 
-                <div>
+                <div class="col-">
                     <h3>Información de Usuario</h3>
                     <ul>
                         <li><strong>Nombre: </strong> <%= user.fname%> <%= user.lname%></li>
@@ -28,38 +28,88 @@
                     </ul>
                 </div>
 
-                <div>
+                <div class="col-">
                     <h3>Cambiar Contraseña</h3>
-                    <form class="form-box"action="/user/password" method="POST">
-                        <div>
+                    <form class="form-box flex-box"action="/user/password" method="POST">
+                        <div class="col-">
                             <input type="password" name="oldPassword" id="password" placeholder="Ingresa tu contraseña" 
                             autocomplete="true" required
                             <% if (locals.errors && (errors.password||errors.login)){%>
                                 class="input-error"
                             <%}%>>
+                            <br>
     
                             <input type="password" name="newPassword" id="password" placeholder="Nueva contraseña" 
                             autocomplete="true" required
                             <% if (locals.errors && (errors.password||errors.login)){%>
                                 class="input-error"
                             <%}%>>
+                            <br>
     
-                            <input type="password" name="passwordConfirm" id="password" placeholder="Confirmá tu nueva contraseña" 
+                            <input type="password" name="passwordConfirm" id="password" placeholder="Confirmar nueva contraseña" 
                             autocomplete="true" required
                             <% if (locals.errors && (errors.password||errors.login)){%>
                                 class="input-error"
                             <%}%>>
                         </div>
 
-                        <div>
+                        <div class="col-">
                             <button class= "boton boton-primary" type="submit"> Confirmar </button>
                         </div>
                     </form>
                 </div>
 
-            </div>
+                <div class="col-">
+                    <form action="/user/avatar" method="POST" enctype="multipart/form-data" id="form">
+                        <div class="form-box">
+                            <h3>Cambiar foto de perfil:</h3>
+                            <input
+                              type="file"
+                              name="avatar"
+                              id="avatar"
+                            >
+                          </div>
+                        <button class="boton boton-primary" type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div> 
 
+            <%if (user.role==1){%>
+            <div class="col- flex-box">
+                <div class="col-">
+                    <h2>Compras:</h2>
+                        <%if (carts.length!=0) {%>
+                        <table class="profile-table">
+                            <tr>
+                              <th>Id</th>
+                              <th>Monto</th>
+                              <th>Fecha</th>
+                              <th>Productos</th>
+                              <th>Estado</th>
+                            </tr>
+                            <% carts && carts.forEach(row => {%>
+                            <tr>
+                              <td><%= row.id %></td>
+                              <td><%= row.total %></td>
+                              <td><%= row.date.toString().slice(0, 24) %></td>
+                              <td>
+                                  <% row.products.forEach( product => {%>
+                                    <p><%= product.ammount%> X <%= product.product.title%> </p>
+                                  <%})%>
+                              </td>
+                              <td><%= row.cart_state.state_name %></td>
+                            </tr>
+                            <%})%>
+                        </table>
+                        <%} else {%>
+                            <h3>Aún no has realizado ninguna compra...</h3>
+                        <%}%>
+                </div>
+            </div>
+            <%}%>
         </div>
+
+    
 	</main>
 
 	<%- include('../partials/footer') %>

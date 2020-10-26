@@ -2,7 +2,6 @@ window.addEventListener("load", function () {
   let cartButtons = document.querySelectorAll(".boton-carrito");
   let cartCounter = document.querySelector(".carrito-cant");
 
-  console.log(cartButtons);
   cartButtons.forEach((button) => {
     button.addEventListener("click", function (event) {
       event.preventDefault();

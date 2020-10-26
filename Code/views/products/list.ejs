@@ -34,7 +34,7 @@
       </div> -->
       <div class="col-8 flex-box is-centered">
         <%if (products.length >0){%> <% products.forEach((product) => { %>
-        <div class="disco-list-card col-3 col-s-6">
+        <div class="disco-list-card col-4 col-s-6">
           <form action="/products/cart/<%= product.id%>" method="POST">
             <a href="/products/<%= product.id%>">
               <section>
