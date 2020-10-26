@@ -31,20 +31,20 @@ class App extends React.Component {
             </div>
             <div className="container-fluid">
               <Route
-                exact path="/"
+                exact path="/admin/dashboard"
                 render={(props) => <Dashboard {...props} rockollaUrl={this.state.rockolla} />}
               />
               <Route
-                exact path="/products"
+                exact path="admin/dashboard/products"
                 render={(props) => <Products {...props} rockollaUrl={this.state.rockolla} />}
               />
               <Route
-                exact path="/users"
+                exact path="admin/dashboard/users"
                 render={(props) => <Users {...props} rockollaUrl={this.state.rockolla} />}
               />
-              <Route exact path="/sales" component={Sales} />
-              <Route exact path="/shipping" component={Shipping} />
-              <Route exact path="/admin" component={NewAdmin} />
+              <Route exact path="admin/dashboard/sales" component={Sales} />
+              <Route exact path="admin/dashboard/shipping" component={Shipping} />
+              <Route exact path="admin/dashboard/admin" component={NewAdmin} />
             </div>
 
             <Footer />

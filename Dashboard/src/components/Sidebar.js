@@ -31,7 +31,7 @@ function Sidebar(props) {
         <hr className="sidebar-divider" />
 
         <div className="sidebar-heading">Productos</div>
-        <NavItem title="Ver Productos" link="/products" icon="fas fa-table" />
+        <NavItem title="Ver Productos" link="/admin/dashboard/products" icon="fas fa-table" />
 
         <li className={"nav-item"}>
           <a href={`${props.rockollaUrl}products/create`} className="nav-link">
@@ -41,7 +41,7 @@ function Sidebar(props) {
         </li>
 
         <div className="sidebar-heading">Ventas</div>
-        <NavItem title="Ver Ventas" link="/sales" icon="fa fa-shopping-cart" />
+        <NavItem title="Ver Ventas" link="/admin/dashboard/sales" icon="fa fa-shopping-cart" />
         <NavItem
           title="Agregar Número Envío"
           link="/shipping"
@@ -51,7 +51,7 @@ function Sidebar(props) {
         <div className="sidebar-heading">Usuarios</div>
         <NavItem
           title="Ver Usuarios"
-          link="/users"
+          link="/admin/dashboard/users"
           icon="fas fa-address-book"
         />
         <NavItem

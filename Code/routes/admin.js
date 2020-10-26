@@ -10,7 +10,7 @@ const validate = require("../validators/users.js");
 
 router.get("/", adminRoute, controller.dashboard);
 
-router.get("/dashboard", adminRoute, (req, res)=> res.sendFile(path.join(__dirname, "..", "build", "index.html")));
+router.get("/dashboard", adminRoute, (req, res)=> res.sendFile(path.join(__dirname, "..", "public", "admin", "index.html")));
 
 router.get("/users", adminRoute, controller.listUsers);
 

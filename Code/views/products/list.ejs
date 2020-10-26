@@ -47,28 +47,32 @@
               <section class="descripcion-disco">
                 <div><%= product.artist%></div>
                 <div><strong><%= product.title%></strong></div>
-                <div>$<%= product.price%></div>
               </section>
+              <div>$<%= product.price%></div>
             </a>
-            <% if (product.cart == null) {%>
-            <button
-              id="cart-button"
-              class="boton boton-primary boton-carrito"
-              type="submit"
-              value="<%= product.id%>"
-            >
-              <i class="fas fa-shopping-cart"></i>
-            </button>
-            <%} else {%>
-            <button
-              id="cart-button"
-              class="boton boton-success boton-carrito"
-              type="submit"
-              value="<%= product.id%>"
-            >
-              <i class="fas fa-check"></i>
-            </button>
+
+            <% if (!(locals.user && locals.user.role == 2)) {%>
+              <% if (product.cart == null) {%>
+              <button
+                id="cart-button"
+                class="boton boton-primary boton-carrito"
+                type="submit"
+                value="<%= product.id%>"
+              >
+                <i class="fas fa-shopping-cart"></i>
+              </button>
+              <%} else {%>
+              <button
+                id="cart-button"
+                class="boton boton-success boton-carrito"
+                type="submit"
+                value="<%= product.id%>"
+              >
+                <i class="fas fa-check"></i>
+              </button>
+              <%}%>
             <%}%>
+
           </form>
         </div>
         <%})%> <%} else {%>

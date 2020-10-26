@@ -16,7 +16,17 @@ module.exports = {
       {name: 'Capitol'},
       {name: 'Track'},
       {name: 'Food'},
-      {name: 'Atlantic'}
+      {name: 'Atlantic'},
+      {name: 'Reprise'},
+      {name: 'Fantasy'},
+      {name: 'Geffen'},
+      {name: 'Mercury'},
+      {name: 'CBS'},
+      {name: 'PMG'},
+      {name: 'Domino'},
+      {name: 'MCA'},
+      {name: 'DGC'},
+      {name: 'RSO'}
   ], {});
   },
 

@@ -4,7 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('artists', [
       {name: 'Oasis'},
-      {name: 'Red Hot Chily Peppers'},
+      {name: 'Red Hot Chili Peppers'},
       {name: 'The Rolling Stones'},
       {name: 'Charly Garcia'},
       {name: 'Pescado Rabioso'},
@@ -28,8 +28,8 @@ module.exports = {
       {name: 'Bon Jovi'},
       {name: 'Soda Stereo'},
       {name: 'Gustavo Cerati'},
-      {name: 'Luis Alberto Spineta'},
-      {name: 'Los Fabulosos Cadillac'},
+      {name: 'Luis Alberto Spinetta'},
+      {name: 'Los Fabulosos Cadillacs'},
       {name: 'Aerosmith'},
       {name: 'John Mayer'},
       {name: 'Nirvana'},

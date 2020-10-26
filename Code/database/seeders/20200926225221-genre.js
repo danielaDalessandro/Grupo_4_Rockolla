@@ -23,7 +23,9 @@ module.exports = {
       {name: 'Hard Rock'},
       {name: 'Glam Rock'},
       {name: 'Symph Rock'},
-      {name: 'Other'},
+      {name: 'Folk'},
+      {name: 'Indie Rock'},
+      {name: 'Other'}
   ], {});
   },
 
