@@ -443,6 +443,7 @@ module.exports = {
           "cover",
           "title",
           "price",
+          "stock",
           [Sequelize.col("artist.name"), "artist"], // alias para artist.name as artist
           [Sequelize.col("genre.name"), "genre"],
         ],

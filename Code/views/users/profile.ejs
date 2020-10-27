@@ -163,7 +163,18 @@
                                     <p><%= product.ammount%> X <%= product.product.title%> </p>
                                   <%})%>
                               </td>
-                              <td><%= row.cart_state.state_name %></td>
+                              <td>
+                                <% if (row.cart_state.state_name == "Pending") { %>
+                                    <form action="/products/cart/pay" METHOD = "POST">
+                                    <input name="cart" type="hidden" value="<%= row.id%>">
+                                    <button type="submit">Pending</button>
+                                    </form>
+                                    
+                                <%} else {%>
+                                    <%= row.cart_state.state_name %>
+                                <%}%>
+                            </td>
+
                             </tr>
                             <%})%>
                         </table>
