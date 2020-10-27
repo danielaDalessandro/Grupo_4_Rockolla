@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Acerca de</title>
+	<%- include('./partials/head') %>
+</head>
+<body>
+	<%- include('./partials/header') %>
+
+	<main class="flex-box">
+		<div class="col- flex-box">
+            <h1 class="col-">GRUPO 4 - Rockolla</h1>
+            <br>
+			<img class="col-s-8 col-4" src="/images/assets/about.jpeg" alt="About us">
+        </div>
+        <div class="col-s-10">
+            <p>
+                Proyecto del Grupo 4 del curso de Digital House Web Full Stack. <br>
+                El objetivo es crear una pagina web de ecomerce que se centre en la compra y venta de vinilos. <br> 
+                Esto sitio web apunta a todos los amantes de la musica. 
+            </p>
+            <h2>PÚBLICO</h2>
+            <p>
+                Con la revalorización que se le ha dado la música en vinilo, apuntamos a este <br>
+                mercado de gente que busca comprar música en un formato tangible y de excelente calidad analógica. <br> 
+                Vemos en este mercado un nicho prometedor con potencial de crecimiento.
+            </p>
+            <h2>INTEGRANTES DEL EQUIPO</h2>
+            <ul>
+                <li>    
+                    <strong>Daniela D'Alessandro:</strong> Tengo 21 años y estoy estudiando Relaciones Internacionales.                     
+                </li>
+                <li> 
+                    <strong>Facundo Erbin:</strong> Tengo 25 años, soy estudiante de Ingenieria en Sistemas, de hobby soy músico.
+                </li>
+                <li>
+                    <strong>Felipe Lopez Marsiglia:</strong> Tengo 21 años y estudio Abogacía.
+                </li>
+            </ul>
+            <h2>SITIOS DE REFERENCIA</h2>
+            <ul>
+                <li>
+                    1. Jarana Records: <a href="https://jaranarecords.com.ar/es/">https://jaranarecords.com.ar/es/</a>
+                </li>
+                <li>
+                    2. Music Jungle: <a href="https://musicjungle.cl/">https://musicjungle.cl/</a>
+                </li>
+                <li>
+                    3. Amazon Music: <a href=" https://www.amazon.es/Tienda-Vinilos/b?ie=UTF8&node=2384825031"> https://www.amazon.es/Tienda-Vinilos/b?ie=UTF8&node=2384825031</a>
+                </li>
+                <li>
+                    4. Baires Rocks:  <a href="https://www.baires.rocks">https://www.baires.rocks</a> 
+                </li>
+                <li>
+                    5. La Casa del Disco: <a href="https://www.lacasadeldisco.es/j/vargas-blues-band-camiseta-del-sur-portada/">https://www.lacasadeldisco.es/j/vargas-blues-band-camiseta-del-sur-portada/</a>
+                </li>
+                <li>
+                    5. La Casa del Disco: <a href="https://www.lacasadeldisco.es/j/vargas-blues-band-camiseta-del-sur-portada/">https://www.lacasadeldisco.es/j/vargas-blues-band-camiseta-del-sur-portada/</a>
+                </li>
+                <li>
+                    6. CyJ Discos: <a href="http://cyjdiscos.com.ar/">http://cyjdiscos.com.ar/</a> 
+                </li>
+                <li>
+                    7. Zivals: <a href="https://www.zivals.com.ar/">https://www.zivals.com.ar/</a> 
+                </li>               
+            </ul>
+            <h2>TECNOLOGÍAS</h2>
+            <p>
+                El proyecto esta desarrollado en Javascript usando el runtime NodeJS para el Backend. Se utiliza un servidor web Express. Para iniciar el proyecto, 
+                instale las dependencias con "npm install" en la carpete /Code y luego ejecute el proyecto con "node app.js" o "npm run dev" para hacer uso del middleware 
+                Nodemon.
+            </p>
+            <h2>TABLERO DE TRABAJO</h2>
+            <p>
+                <a href="https://trello.com/b/yje419TK/grupo-4">https://trello.com/b/yje419TK/grupo-4</a>
+            </p>
+            <h2>PARA ARRANCAR EL PROYECTO</h2>
+            <p>
+            <ul>
+                <li>
+                    1. Instalar dependencias: desde la carpeta /Code ejecutar el comando
+                npm install.
+                </li>
+                <li>
+                    2. Configurar base de datos: para el proyecto utilizamos una base de datos MySQL, 
+                    primero deberas configurarla desde el archivo .env del directorio /Code, deberas crear 
+                    el archivo .env y copiarle el contenido del archivo .envexample, luego modificar las 
+                    variables de usuario, contraseña y puerto de base de datos del mismo. Tener en cuenta que el 
+                    usuario que ingrese debe existir en su instancia de MySQL y debe poseer privilegios 
+                    para crear y modificar bases de datos.
+                </li>
+                <li>
+                    3. Crear la base de datos: deberas contar con sequelize-cli instalado globalmente en el sistema (sudo npm install sequelize-cli -g). Luego desde la 
+                    carpeta /Code ejecutá los comandoa
+                            sequelize db:create     (crear db)
+                            sequelize db:migrate    (migrar modelo a base de datos)
+                            sequelize db:seed:all   (poblar db con datos de ejemplo)
+                </li>
+                <li>
+                    4. Iniciar servidor: ahora ya podes iniciar el servidor con
+                            npm run startdev
+                </li>
+                <li>
+                    5. Ingresá al sitio: podrás acceder al sitio desde el navegador en la dirección
+                            localhost:3000
+                </li>
+                <li>                  
+                    6. Algunas consideraciones: podrás acceder las cuentas de usuario con la conntraseña cosmefulanito para cualquier usuario, excepto admin@mail.com 
+                    cuya contraseña es mysecretpassword. Cada tipo de usuario puede navegar por ciertos sitios de la página, y tiene restringido el acceso a otros.
+                </li>
+            </ul>
+    
+            </p>
+        </div>
+	</main>
+
+	<%- include('./partials/footer') %>
+</body>
+</html>

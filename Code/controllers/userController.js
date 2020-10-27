@@ -161,6 +161,7 @@ module.exports = {
   // Muestra la vista del perfil de usuario
   profile: async (req, res) => {
     let carts = null;
+    console.log(req.session.user)
     if (req.session.user.role == 1) {
       let user = await db.user.findOne({
         where: { email: req.session.user.email },
