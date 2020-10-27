@@ -47,8 +47,9 @@ module.exports = {
       .catch((e) => console.log("ERROR: ", e));
 
     // Creo el envio correspondiente a la compra
-    let shipping = await db.shipping.create({ price: 0 })
-    .catch((e) => console.log("ERROR: ", e));
+    let shipping = await db.shipping
+      .create({ price: 0 })
+      .catch((e) => console.log("ERROR: ", e));
 
     // Creo el carrito en base de datos
     let createdCart = await db.cart
@@ -72,14 +73,16 @@ module.exports = {
         })
         .catch((e) => console.log("ERROR: ", e));
 
-      db.product.update(
-        { stock: product.stock - product.ammount },
-        {
-          where: {
-            id: product.id,
-          },
-        }
-      ).catch((e) => console.log("ERROR: ", e));
+      db.product
+        .update(
+          { stock: product.stock - product.ammount },
+          {
+            where: {
+              id: product.id,
+            },
+          }
+        )
+        .catch((e) => console.log("ERROR: ", e));
     });
 
     // Elimino el carrito de la session del navegador del usuario
@@ -97,14 +100,16 @@ module.exports = {
   finishPurchase: async (req, res) => {
     let payment = req.body;
 
-    db.cart.update(
-      { state_id: 2 },
-      {
-        where: {
-          id: payment.cart,
-        },
-      }
-    ).catch((e) => console.log("ERROR: ", e));
+    db.cart
+      .update(
+        { state_id: 2 },
+        {
+          where: {
+            id: payment.cart,
+          },
+        }
+      )
+      .catch((e) => console.log("ERROR: ", e));
 
     res.render("./cart/thanks");
   },
@@ -112,30 +117,31 @@ module.exports = {
   payPending: async (req, res) => {
     let cart = await db.cart.findByPk(req.body.cart);
     let cartProduct = await db.cart_product.findAll({
-      where: {cart_id: cart.id},
-      include: [{model: db.product, paranoid: false}],
-      raw: true, 
-      nest: true
-    })
-    console.log(cartProduct)
-    let products = [];
+      where: { cart_id: cart.id },
+      include: [
+        {
+          model: db.product,
+          include: { model: db.artist, raw: true },
+          nest: true,
+          raw: true,
+          paranoid: false,
+        },
+      ],
+      raw: true,
+      nest: true,
+    });
 
-    for(let product of [...cartProduct.product]) {
-      products.push(product.product)
-    }
-    
-    for(product in products){
-      console.log(product)
-      product.artist = await db.artist.findByPk(product.artist_id)
-      console.log(product.artist)
-    }
+    let products = [];
+    cartProduct.forEach((product) => {
+      console.log(product);
+      product.product.ammount = product.ammount;
+      products.push(product.product);
+    });
 
     res.render("./cart/confirm", {
       products,
       total: cart.total,
       cart,
     });
-
-  }
+  },
 };
-
