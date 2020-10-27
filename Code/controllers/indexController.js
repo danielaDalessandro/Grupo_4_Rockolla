@@ -1,5 +1,6 @@
 const db = require("../database/models");
 const Sequelize = require("sequelize");
+const { Op } = require("sequelize");
 
 module.exports = {
   index: async (req, res) => {
@@ -15,6 +16,9 @@ module.exports = {
         include: ["artist"],
         where: {
           highlight: 1,
+          stock: {
+            [Op.gt]: 0 // Mayor que
+          }
         },
         raw: true,
       })
@@ -24,7 +28,7 @@ module.exports = {
 
     let recientes = await db.sequelize
       .query(
-        "SELECT * FROM rockolla_db.products where deleted_at is null order by updated_at desc limit 15"
+        "SELECT * FROM rockolla_db.products where deleted_at is null and stock > 0 order by updated_at desc limit 15"
       )
       .catch((e) => {
         console.log("INDEX; ", e);
@@ -35,5 +39,9 @@ module.exports = {
 
   contact: (req, res) => {
     res.render("contact");
+  },
+
+  about: (req, res) => {
+    res.render("about")
   }
 };

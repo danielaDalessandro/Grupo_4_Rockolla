@@ -41,6 +41,12 @@ module.exports = {
               email: user.email,
               role: user.role_id,
               avatar: user.avatar,
+              street: user.street,
+              number: user.number,
+              city: user.city,
+              province: user.province,
+              zip_code: user.zip_code,
+              apartment: user.apartment,
             };
 
             // si desea permanecer logueado
@@ -161,6 +167,7 @@ module.exports = {
   // Muestra la vista del perfil de usuario
   profile: async (req, res) => {
     let carts = null;
+
     if (req.session.user.role == 1) {
       let user = await db.user.findOne({
         where: { email: req.session.user.email },
@@ -183,7 +190,6 @@ module.exports = {
           nest: true,
           raw: true,
         });
-        console.log(carts[0].products);
       }
     }
 
@@ -217,57 +223,58 @@ module.exports = {
     }
   },
 
-    // Cambiar o agregar domcilio
-    abmAddress: async (req, res) => {
-      if (req.session.user) {
-        let newAddress = {
-          street: req.body.street,
-          number: req.body.number,
-          apartment: req.body.apartment,
-          city: req.body.city,
-          province: req.body.province,
-          zip_code: req.body.zip_code,
-        };
-        console.log(newAddress)
-        let user = await db.user
-          .findOne({
-            where: {
-              email: req.session.user.email
-            },
-            raw: true,
-          })
-          .catch((e) => {
-            console.log(e);
-          });
-        await db.user.update({ 
-          street:newAddress.street,
+  // Cambiar o agregar domcilio
+  abmAddress: async (req, res) => {
+    if (req.session.user) {
+      let newAddress = {
+        street: req.body.street,
+        number: req.body.number,
+        apartment: req.body.apartment,
+        city: req.body.city,
+        province: req.body.province,
+        zip_code: req.body.zip_code,
+      };
+      console.log(newAddress);
+      let user = await db.user
+        .findOne({
+          where: {
+            email: req.session.user.email,
+          },
+          raw: true,
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      await db.user.update(
+        {
+          street: newAddress.street,
           number: newAddress.number,
           apartment: newAddress.apartment,
           city: newAddress.city,
           province: newAddress.province,
-          zip_code: newAddress.zip_code
-           },
-          {
-            where: {
-              id: user.id,
-            },
-          }
-        );
+          zip_code: newAddress.zip_code,
+        },
+        {
+          where: {
+            id: user.id,
+          },
+        }
+      );
 
-        req.session.user.street= newAddress.street;
-        req.session.user.number= newAddress.number;
-        req.session.user.city= newAddress.city;
-        req.session.user.apartment= newAddress.apartment;
-        req.session.user.province= newAddress.province;
-        req.session.user.zip_code= newAddress.zip_code;
-        res.redirect("/user");
-      }
-    },
-  
+      req.session.user.street = newAddress.street;
+      req.session.user.number = newAddress.number;
+      req.session.user.city = newAddress.city;
+      req.session.user.apartment = newAddress.apartment;
+      req.session.user.province = newAddress.province;
+      req.session.user.zip_code = newAddress.zip_code;
+      res.redirect("/user");
+    }
+  },
+
   changeAvatar: async (req, res) => {
-      // si subio un avatar
-      if (req.file && req.file.filename) {
-        console.log(req.file);
+    // si subio un avatar
+    if (req.file && req.file.filename) {
+      console.log(req.file);
       let user = await db.user.findOne({
         where: { email: req.session.user.email },
         raw: true,
@@ -281,7 +288,7 @@ module.exports = {
           },
         }
       );
-      req.session.user.avatar= newAvatar;
+      req.session.user.avatar = newAvatar;
     }
     res.redirect("/user");
   },

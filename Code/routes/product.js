@@ -17,10 +17,12 @@ const upload = multer('tapas', 'tapa');
 router.get('/cart', clientRoute, controller.viewCart);
 router.post('/cart', loggedRoute, cartController.processPurchase);
 // Compra Finalizada
-router.post('/cart/confirm', clientRoute, cartController.finishPurchase);
+router.post('/cart/confirm', cartController.finishPurchase);
 
 // Agregar/Quitar producto del Carrito
 router.post('/cart/:id', clientRoute, controller.abmCart);
+
+router.get('/carts', clientRoute, cartController.listCarts);
 
 // Buscar productos
 router.get('/search', controller.search);
