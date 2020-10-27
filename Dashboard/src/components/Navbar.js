@@ -34,7 +34,7 @@ function Navbar() {
         <div className="topbar-divider d-none d-sm-block"></div>
 
         <li className="nav-item dropdown no-arrow">
-          <a className="nav-link dropdown-toggle" href="/user/profile" id="userDropdown">
+          <a className="nav-link dropdown-toggle" href="/user" id="userDropdown">
             <span className="mr-2 d-none d-lg-inline text-gray-600 small">
               Administración
             </span>
