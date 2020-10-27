@@ -32,7 +32,7 @@ module.exports = {
         .findAll({
           where: {
             stock: {
-              [Op.gt]: 0, // Mayor que
+              [Op.gt]: 0 // Mayor que
             },
           },
           attributes: [
@@ -432,12 +432,6 @@ module.exports = {
 
     db.product
       .findAll({
-        where: {
-          deleted_at: null,
-          stock: {
-            [Op.gt]: 0 // Mayor que
-          }
-        },
         attributes: [
           "id",
           "cover",
@@ -454,6 +448,9 @@ module.exports = {
             "$artist.name$": { [Op.like]: "%" + query + "%" },
             "$genre.name$": { [Op.like]: "%" + query + "%" },
           },
+          stock: {
+            [Op.gt]: 0 // Mayor que
+          }
         },
         raw: true,
       })
