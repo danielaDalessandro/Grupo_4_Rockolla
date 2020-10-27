@@ -24,3 +24,4 @@ De que estamos orgullosos:
 •	Personalmente, haber aprendido una nueva herramienta que antes de ingresar al curso no tenia ningún conocimiento sobre ella. 
 •	Todos los conocimientos que teníamos y que fuimos aprendiendo a lo largo del curso, poder desarrollarlos en un solo proyecto y que haya funcionado bien. 
 •	Poder haber trabajado con un proyecto y relacionarlo a una de nuestras pasiones como es la música. 
+
