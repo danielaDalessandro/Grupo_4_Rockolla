@@ -435,14 +435,15 @@ module.exports = {
         where: {
           deleted_at: null,
           stock: {
-            [Op.gt]: 0, // Mayor que
-          },
+            [Op.gt]: 0 // Mayor que
+          }
         },
         attributes: [
           "id",
           "cover",
           "title",
           "price",
+          "stock",
           [Sequelize.col("artist.name"), "artist"], // alias para artist.name as artist
           [Sequelize.col("genre.name"), "genre"],
         ],
