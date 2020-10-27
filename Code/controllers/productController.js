@@ -8,18 +8,46 @@ const { validationResult } = require("express-validator");
 module.exports = {
   // Listar todos los productos
   list: async (req, res) => {
-    let products = await db.product.findAll({
-      attributes: [
-        "id",
-        "cover",
-        "title",
-        "price",
-        [Sequelize.col("artist.name"), "artist"],
-      ],
-      include: ["artist"],
-      raw: true,
-    })
-    .catch((e) => console.log("ERROR: ", e));
+    let products;
+    if (req.session.user && req.session.user.role == 2) {
+      products = await db.product
+        .findAll({
+          where: {
+            deleted_at: null,
+          },
+          attributes: [
+            "id",
+            "cover",
+            "title",
+            "price",
+            "stock",
+            [Sequelize.col("artist.name"), "artist"],
+          ],
+          include: ["artist"],
+          raw: true,
+        })
+        .catch((e) => console.log("ERROR: ", e));
+    } else {
+      products = await db.product
+        .findAll({
+          where: {
+            stock: {
+              [Op.gt]: 0, // Mayor que
+            },
+          },
+          attributes: [
+            "id",
+            "cover",
+            "title",
+            "price",
+            "stock",
+            [Sequelize.col("artist.name"), "artist"],
+          ],
+          include: ["artist"],
+          raw: true,
+        })
+        .catch((e) => console.log("ERROR: ", e));
+    }
 
     if (req.session.cart) {
       let cart = req.session.cart;

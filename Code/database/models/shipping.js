@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
   };
   Shipping.init({
     price: DataTypes.INTEGER,
-    dispatch_date: DataTypes.DATE
+    dispatch_date: DataTypes.DATE/* ,
+    address: DataTypes.STRING,
+    tracking_number: DataTypes.INTEGER */
   }, {
     sequelize,
     modelName: 'shipping',

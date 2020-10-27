@@ -40,7 +40,13 @@ recordameMiddleware = async function(req, res, next){
                     lname: user.lname,
                     email: user.email,
                     role: user.role_id,
-                    avatar: user.avatar
+                    avatar: user.avatar,
+                    street: user.street,
+                    number: user.number,
+                    city: user.city,
+                    province: user.province,
+                    zip_code: user.zip_code,
+                    apartment: user.apartment
                 };
             } 
             // si no encuentro el usuario

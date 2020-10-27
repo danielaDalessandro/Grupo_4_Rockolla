@@ -48,7 +48,11 @@
                 <div><%= product.artist%></div>
                 <div><strong><%= product.title%></strong></div>
               </section>
+              <% if (product.stock>=1) {%>
               <div>$<%= product.price%></div>
+              <%} else {%>
+              <div class="input-error"><strong>SIN STOCK</strong></div>
+              <%}%>
             </a>
 
             <% if (!(locals.user && locals.user.role == 2)) {%>
