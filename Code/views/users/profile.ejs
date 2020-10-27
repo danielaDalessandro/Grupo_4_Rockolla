@@ -24,6 +24,7 @@
                     <ul>
                         <li><strong>Nombre: </strong> <%= user.fname%> <%= user.lname%></li>
                         <li><strong>Email: </strong> <%= user.email%></li>
+                        <%if (user.role==1){%>
                         <li><strong>Dirección: </strong></li>
                         <form class="form-box flex-box"action="/user/address" method="POST">
                             <div class="col-">
@@ -86,13 +87,16 @@
                                 <button class= "boton boton-primary" type="submit"> Confirmar </button>
                             </div>
                         </form>
+                        <%}%>
                     </ul>
                 </div>
+            </div> 
 
-                <div class="col-">
+            <div class="flex-box">
+                <div class="col-s-6">
                     <h3>Cambiar Contraseña</h3>
                     <form class="form-box flex-box"action="/user/password" method="POST">
-                        <div class="col-">
+                        <div class="col- flex-box">
                             <input type="password" name="oldPassword" id="password" placeholder="Ingresa tu contraseña" 
                             autocomplete="true" required
                             <% if (locals.errors && (errors.password||errors.login)){%>
@@ -120,20 +124,21 @@
                     </form>
                 </div>
 
-                <div class="col-">
+                <div class="col-s-6">
                     <form action="/user/avatar" method="POST" enctype="multipart/form-data" id="form">
-                        <div class="form-box">
+                        <div class="form-box flex-box">
                             <h3>Cambiar foto de perfil:</h3>
                             <input
                               type="file"
                               name="avatar"
                               id="avatar"
+                              class="col-"
                             >
                           </div>
                         <button class="boton boton-primary" type="submit">Enviar</button>
                     </form>
                 </div>
-            </div> 
+            </div>
 
             <%if (user.role==1){%>
             <div class="col- flex-box">

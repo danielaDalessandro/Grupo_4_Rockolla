@@ -32,10 +32,14 @@ router.get("/", loggedRoute, controller.profile);
 router.post("/password", loggedRoute, controller.changePassword);
 
 // Cambiar avatar
-router.post("/avatar", loggedRoute, upload.single("avatar"), controller.changeAvatar);
+router.post(
+  "/avatar",
+  loggedRoute,
+  upload.single("avatar"),
+  controller.changeAvatar
+);
 
 // Cambiar o agregar domicilio
 router.post("/address", loggedRoute, controller.abmAddress);
-
 
 module.exports = router;

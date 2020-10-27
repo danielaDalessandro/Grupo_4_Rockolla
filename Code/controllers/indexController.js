@@ -33,7 +33,7 @@ module.exports = {
       .catch((e) => {
         console.log("INDEX; ", e);
       });
-    console.log(recientes);
+      
     res.render("index", { destacados, recientes: recientes[0] });
   },
 

@@ -27,47 +27,54 @@ module.exports = {
     res.render("./admin/create");
   },
 
-  createAdmin: async (req, res)=> {
-      let errors = validationResult(req)
-      // si no hay errores...
-      if(errors.isEmpty()){
-          // creo el nuevo usuario
-          let newUser = {
-              fname: req.body.nombre,
-              lname: req.body.apellido,
-              email: req.body.email,
-              password: bcrypt.hashSync(req.body.password, 10),
-              role_id:2
-              }
-          // si subio un avatar
-          if (req.file && req.file.filename){
-              newUser.avatar = req.file.filename;
-          }
-          // si no le asigno uno por defecto
-          else { 
-              newUser.avatar = 'default.jpg';
-          }
-          // lo guardo en db
-          db.user.create( newUser )
-          .then( (user) => {
-             // redirijo al inicio
-             return res.redirect('/');
-          })
-          .catch( e => console.log("ADMIN CREATE ERROR: ", e));
-      } 
-      else { // si hay errores..
-          // elimino el archivo que se subió
-          if (req.file) {
-              fs.unlink(req.file.path, ()=>{
-                  // retorno los errores en la misma vista
-                  res.render("./users/registro", {errors:errors.mapped(), values: req.body});
-              });
-          } else {
-              // si no hay archivo retorno los errores en la misma vista
-              res.render("./users/registro", {errors:errors.mapped(), values: req.body});
-          }
+  createAdmin: async (req, res) => {
+    let errors = validationResult(req);
+    // si no hay errores...
+    if (errors.isEmpty()) {
+      // creo el nuevo usuario
+      let newUser = {
+        fname: req.body.nombre,
+        lname: req.body.apellido,
+        email: req.body.email,
+        password: bcrypt.hashSync(req.body.password, 10),
+        role_id: 2,
+      };
+      // si subio un avatar
+      if (req.file && req.file.filename) {
+        newUser.avatar = req.file.filename;
       }
-  }
+      // si no le asigno uno por defecto
+      else {
+        newUser.avatar = "default.jpg";
+      }
+      // lo guardo en db
+      db.user
+        .create(newUser)
+        .then((user) => {
+          // redirijo al inicio
+          return res.redirect("/");
+        })
+        .catch((e) => console.log("ADMIN CREATE ERROR: ", e));
+    } else {
+      // si hay errores..
+      // elimino el archivo que se subió
+      if (req.file) {
+        fs.unlink(req.file.path, () => {
+          // retorno los errores en la misma vista
+          res.render("./users/registro", {
+            errors: errors.mapped(),
+            values: req.body,
+          });
+        });
+      } else {
+        // si no hay archivo retorno los errores en la misma vista
+        res.render("./users/registro", {
+          errors: errors.mapped(),
+          values: req.body,
+        });
+      }
+    }
+  },
 };
 
 async function getUsers(role_id) {

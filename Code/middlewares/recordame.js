@@ -7,57 +7,59 @@
 
 const db = require("../database/models");
 
-recordameMiddleware = async function(req, res, next){
-    // Verifico si el usuario tiene cookies y no sesión
-    if(req.cookies.userToken && !req.session.user){
-        // Busco el token en la base de datos
-        let token = await db.user_token.findOne({
-            where: { 
-                token: req.cookies.userToken
-            },
-            raw: true,
-            nest: true
-        })
-        .catch( e => console.log("TOKEN ERROR: \n", e));
-        
-        // Si encuentro el token 
-        if (token) {
-            // Busco el usuario en la base de datos
-            let user = await db.user.findByPk(token.user_id, {raw:true})
-            .catch( e => console.log("USER ERROR: \n", e));
-            
-            // Si encuentro el usuario
-            if(user){
-                // Elimino lo que no quiero mandar a la vista
-                delete user.password;
-                delete user.createdAt;
-                delete user.updatedAt;
-                delete user.deletedAt;
-                
-                // Creo la sesión y mando datos a la vista
-                req.session.user = {
-                    fname: user.fname,
-                    lname: user.lname,
-                    email: user.email,
-                    role: user.role_id,
-                    avatar: user.avatar,
-                    street: user.street,
-                    number: user.number,
-                    city: user.city,
-                    province: user.province,
-                    zip_code: user.zip_code,
-                    apartment: user.apartment
-                };
-            } 
-            // si no encuentro el usuario
-            else { 
-                // Borro la cookie del navegador del usuario
-                res.clearCookie("usersTokens")
-            }
-        }
-    }
-    // Continuo con el proximo Middleware
-    next()
-}
+recordameMiddleware = async function (req, res, next) {
+  // Verifico si el usuario tiene cookies y no sesión
+  if (req.cookies.userToken && !req.session.user) {
+    // Busco el token en la base de datos
+    let token = await db.user_token
+      .findOne({
+        where: {
+          token: req.cookies.userToken,
+        },
+        raw: true,
+        nest: true,
+      })
+      .catch((e) => console.log("TOKEN ERROR: \n", e));
 
-module.exports = recordameMiddleware
+    // Si encuentro el token
+    if (token) {
+      // Busco el usuario en la base de datos
+      let user = await db.user
+        .findByPk(token.user_id, { raw: true })
+        .catch((e) => console.log("USER ERROR: \n", e));
+
+      // Si encuentro el usuario
+      if (user) {
+        // Elimino lo que no quiero mandar a la vista
+        delete user.password;
+        delete user.createdAt;
+        delete user.updatedAt;
+        delete user.deletedAt;
+
+        // Creo la sesión y mando datos a la vista
+        req.session.user = {
+          fname: user.fname,
+          lname: user.lname,
+          email: user.email,
+          role: user.role_id,
+          avatar: user.avatar,
+          street: user.street,
+          number: user.number,
+          city: user.city,
+          province: user.province,
+          zip_code: user.zip_code,
+          apartment: user.apartment,
+        };
+      }
+      // si no encuentro el usuario
+      else {
+        // Borro la cookie del navegador del usuario
+        res.clearCookie("usersTokens");
+      }
+    }
+  }
+  // Continuo con el proximo Middleware
+  next();
+};
+
+module.exports = recordameMiddleware;
