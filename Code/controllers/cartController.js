@@ -108,4 +108,34 @@ module.exports = {
 
     res.render("./cart/thanks");
   },
+
+  payPending: async (req, res) => {
+    let cart = await db.cart.findByPk(req.body.cart);
+    let cartProduct = await db.cart_product.findAll({
+      where: {cart_id: cart.id},
+      include: [{model: db.product, paranoid: false}],
+      raw: true, 
+      nest: true
+    })
+    console.log(cartProduct)
+    let products = [];
+
+    for(let product of [...cartProduct.product]) {
+      products.push(product.product)
+    }
+    
+    for(product in products){
+      console.log(product)
+      product.artist = await db.artist.findByPk(product.artist_id)
+      console.log(product.artist)
+    }
+
+    res.render("./cart/confirm", {
+      products,
+      total: cart.total,
+      cart,
+    });
+
+  }
 };
+
