@@ -22,10 +22,10 @@ module.exports = {
     products.then(async function (products) {
       let artist = await db.sequelize.query(
         "SELECT  artists.name, COUNT(*) as Quantity FROM products join artists on artist_id = artists.id GROUP BY artists.id"
-      );
+      ).catch((e) => console.log("ERROR: ", e));
       let genre = await db.sequelize.query(
         "SELECT  genres.name, COUNT(*) as Quantity FROM products join genres on genre_id = genres.id GROUP BY genres.id"
-      );
+      ).catch((e) => console.log("ERROR: ", e));
       let respuesta = {
         meta: {
           status: 200,
@@ -42,7 +42,7 @@ module.exports = {
   latest: async (req, res) => {
     let product = await db.sequelize.query(
       "SELECT * FROM products where deleted_at is null order by created_at desc limit 1"
-    );
+    ).catch((e) => console.log("ERROR: ", e));
 
     delete product.createdAt;
     delete product.updatedAt;
@@ -66,7 +66,7 @@ module.exports = {
       include: ["format", "artist", "label", "genre"],
       nest: true,
       raw: true,
-    });
+    }).catch((e) => console.log("ERROR: ", e));
 
     delete product.createdAt;
     delete product.updatedAt;

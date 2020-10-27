@@ -161,7 +161,8 @@ module.exports = {
         })
         .then(function (newProduct) {
           res.redirect("/products/" + newProduct.id);
-        }));
+        })
+        .catch((e) => console.log("ERROR: ", e)));
     });
   },
 
@@ -270,9 +271,11 @@ module.exports = {
               return result;
             }
             // Si no existe lo creo
-            return db.label.create({
-              name: body.sello,
-            });
+            return db.label
+              .create({
+                name: body.sello,
+              })
+              .catch((e) => console.log("ERROR: ", e));
           })
           .catch((e) => console.log("LABEL ERROR: ", e));
         // Guardo el id del sello nuevo
@@ -289,9 +292,11 @@ module.exports = {
               return result;
             }
             // Si no existe lo creo
-            return db.genre.create({
-              name: body.genero,
-            });
+            return db.genre
+              .create({
+                name: body.genero,
+              })
+              .catch((e) => console.log("ERROR: ", e));
           })
           .catch((e) => console.log("GENRE ERROR: ", e));
         // Guardo el id del genero nuevo
@@ -318,11 +323,13 @@ module.exports = {
               return result;
             }
             // Si no existe lo creo
-            return db.format.create({
-              name: body.formato,
-              rpm: body.rpm,
-              diameter: body.pulgadas,
-            });
+            return db.format
+              .create({
+                name: body.formato,
+                rpm: body.rpm,
+                diameter: body.pulgadas,
+              })
+              .catch((e) => console.log("ERROR: ", e));
           })
           .catch((e) => console.log("FORMAT ERROR: ", e));
         // Guardo el id del nuevo formato
@@ -445,7 +452,8 @@ module.exports = {
       })
       .then(function (results) {
         res.render("./products/list", { products: results });
-      });
+      })
+      .catch((e) => console.log("ERROR: ", e));
   },
 
   // Mostrar la vista del carrito de compras

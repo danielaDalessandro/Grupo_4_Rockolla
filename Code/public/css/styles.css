@@ -357,8 +357,8 @@ footer {
 }
 
 .profile-table {
-	border-radius: 1em;
-	overflow: hidden;
+  border-radius: 1em;
+  overflow: hidden;
 }
 
 .profile-table th,
@@ -367,8 +367,8 @@ footer {
 }
 
 .profile-table tr {
-	text-align:left;
-  }
+  text-align: left;
+}
 
 .profile-table tr:nth-child(odd) {
   background-color: #d9d6d3;

@@ -4,12 +4,11 @@
  * de la vista su información de req.session en locals.user
  */
 
-
 module.exports = (req, res, next) => {
-    // si el usuario tiene sesión iniciada
-    if (req.session.user) {
-        // le paso sus datos a la vista
-        res.locals.user = req.session.user;
-    }
-    next();
+  // si el usuario tiene sesión iniciada
+  if (req.session.user) {
+    // le paso sus datos a la vista
+    res.locals.user = req.session.user;
+  }
+  next();
 };

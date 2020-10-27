@@ -33,7 +33,6 @@ export default class Dashboard extends React.Component {
           capital += product.price * product.stock;
         });
         this.setState({ capital });
-        console.log(products);
       })
       .catch((e) => console.log(e));
 

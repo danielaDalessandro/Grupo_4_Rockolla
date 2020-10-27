@@ -172,7 +172,7 @@ module.exports = {
       let user = await db.user.findOne({
         where: { email: req.session.user.email },
         raw: true,
-      });
+      }).catch((e) => console.log("ERROR: ", e));
 
       carts = await db.cart.findAll({
         where: {
@@ -181,15 +181,15 @@ module.exports = {
         include: ["cart_state", "shipping"],
         raw: true,
         nest: true,
-      });
+      }).catch((e) => console.log("ERROR: ", e));
 
       for (let cart of carts) {
         cart.products = await db.cart_product.findAll({
           where: { cart_id: cart.id },
-          include: ["product"],
+          include: [{model: db.product, paranoid:false}],
           nest: true,
           raw: true,
-        });
+        }).catch((e) => console.log("ERROR: ", e));
       }
     }
 
@@ -217,7 +217,7 @@ module.exports = {
             id: user.id,
           },
         }
-      );
+      ).catch((e) => console.log("ERROR: ", e));
 
       res.redirect("/user");
     }
@@ -234,7 +234,7 @@ module.exports = {
         province: req.body.province,
         zip_code: req.body.zip_code,
       };
-      console.log(newAddress);
+
       let user = await db.user
         .findOne({
           where: {
@@ -259,7 +259,7 @@ module.exports = {
             id: user.id,
           },
         }
-      );
+      ).catch((e) => console.log("ERROR: ", e));
 
       req.session.user.street = newAddress.street;
       req.session.user.number = newAddress.number;
@@ -274,11 +274,10 @@ module.exports = {
   changeAvatar: async (req, res) => {
     // si subio un avatar
     if (req.file && req.file.filename) {
-      console.log(req.file);
       let user = await db.user.findOne({
         where: { email: req.session.user.email },
         raw: true,
-      });
+      }).catch((e) => console.log("ERROR: ", e));
       newAvatar = req.file.filename;
       await db.user.update(
         { avatar: newAvatar },
@@ -287,7 +286,7 @@ module.exports = {
             id: user.id,
           },
         }
-      );
+      ).catch((e) => console.log("ERROR: ", e));
       req.session.user.avatar = newAvatar;
     }
     res.redirect("/user");

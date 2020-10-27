@@ -21,7 +21,8 @@ module.exports = {
   },
 
   detail: async (req, res) => {
-    let user = await db.user.findByPk(req.params.id);
+    let user = await db.user.findByPk(req.params.id)
+    .catch((e) => console.log("ERROR: ", e));
 
     delete user.dataValues.password;
     delete user.dataValues.createdAt;

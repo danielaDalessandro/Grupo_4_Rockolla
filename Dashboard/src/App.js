@@ -43,7 +43,10 @@ class App extends React.Component {
                 exact path="/admin/dashboard/users"
                 render={(props) => <Users {...props} rockollaUrl={this.state.rockolla} />}
               />
-              <Route exact path="/admin/dashboard/sales" component={Sales} />
+               <Route
+                exact path="/admin/dashboard/sales"
+                render={(props) => <Sales {...props} rockollaUrl={this.state.rockolla} />}
+              />
               <Route exact path="/admin/dashboard/shipping" component={Shipping} />
               <Route exact path="/admin/dashboard/admin" component={NewAdmin} />
               <Route

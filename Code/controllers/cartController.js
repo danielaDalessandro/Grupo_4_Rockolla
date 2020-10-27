@@ -46,9 +46,9 @@ module.exports = {
       })
       .catch((e) => console.log("ERROR: ", e));
 
-    console.log(req.body);
     // Creo el envio correspondiente a la compra
-    let shipping = await db.shipping.create({ price: 0 });
+    let shipping = await db.shipping.create({ price: 0 })
+    .catch((e) => console.log("ERROR: ", e));
 
     // Creo el carrito en base de datos
     let createdCart = await db.cart
@@ -79,7 +79,7 @@ module.exports = {
             id: product.id,
           },
         }
-      );
+      ).catch((e) => console.log("ERROR: ", e));
     });
 
     // Elimino el carrito de la session del navegador del usuario
@@ -104,30 +104,8 @@ module.exports = {
           id: payment.cart,
         },
       }
-    );
+    ).catch((e) => console.log("ERROR: ", e));
 
     res.render("./cart/thanks");
-  },
-
-  listCarts: async (req, res) => {
-    let carts = await db.cart.findAll({
-      include: ["cart_state", "shipping"],
-      raw: true,
-      nest: true,
-    });
-
-    for (let cart of carts) {
-      cart.products = await db.cart_product.findAll({
-        where: {
-          cart_id: cart.id
-        },
-        include: [{model:product, paranoid:false}],
-        paranoid: false,
-        nest: true,
-        raw: true,
-      });
-    }
-
-    res.send(carts);
   },
 };

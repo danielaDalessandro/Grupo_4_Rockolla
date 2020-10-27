@@ -10,7 +10,7 @@ window.addEventListener("load", function () {
       ? element.classList.add("input-error")
       : element.classList.remove("input-error");
   };
-  
+
   let validateEmail = function () {
     let feedback = "";
     if (validator.isEmpty(email.value, { ignore_whitespace: true })) {
@@ -30,7 +30,7 @@ window.addEventListener("load", function () {
       feedback = "Por favor la contraseña debe tener más de 7 caracteres";
     }
     handleFeedback(password, "feedback-password", feedback);
-    return feedback
+    return feedback;
   };
 
   email.addEventListener("blur", validateEmail);
