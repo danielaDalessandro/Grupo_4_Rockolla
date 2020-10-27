@@ -139,6 +139,9 @@ window.addEventListener("load", function () {
     if (cover.value && !ALLOWED_IMAGES_EXT.includes(ext)) {
       feedback = "Tapa de formato inválido";
     }
+    if (!cover.value) {
+      feedback = "Por Favor ingrese una imagen de la tapa";
+    }
     handleFeedback(cover, "feedback-cover", feedback);
     return feedback;
   };
