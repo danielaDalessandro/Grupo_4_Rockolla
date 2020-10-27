@@ -136,8 +136,14 @@ module.exports = {
             fname: user.dataValues.fname,
             lname: user.dataValues.lname,
             email: user.dataValues.email,
-            role: user.dataValues.role_id,
+            role: 1,
             avatar: user.dataValues.avatar,
+            street: user.street,
+            number: user.number,
+            city: user.city,
+            province: user.province,
+            zip_code: user.zip_code,
+            apartment: user.apartment
           };
           // redirijo al inicio
           return res.redirect("/");
@@ -169,27 +175,33 @@ module.exports = {
     let carts = null;
 
     if (req.session.user.role == 1) {
-      let user = await db.user.findOne({
-        where: { email: req.session.user.email },
-        raw: true,
-      }).catch((e) => console.log("ERROR: ", e));
+      let user = await db.user
+        .findOne({
+          where: { email: req.session.user.email },
+          raw: true,
+        })
+        .catch((e) => console.log("ERROR: ", e));
 
-      carts = await db.cart.findAll({
-        where: {
-          user_id: user.id,
-        },
-        include: ["cart_state", "shipping"],
-        raw: true,
-        nest: true,
-      }).catch((e) => console.log("ERROR: ", e));
+      carts = await db.cart
+        .findAll({
+          where: {
+            user_id: user.id,
+          },
+          include: ["cart_state", "shipping"],
+          raw: true,
+          nest: true,
+        })
+        .catch((e) => console.log("ERROR: ", e));
 
       for (let cart of carts) {
-        cart.products = await db.cart_product.findAll({
-          where: { cart_id: cart.id },
-          include: [{model: db.product, paranoid:false}],
-          nest: true,
-          raw: true,
-        }).catch((e) => console.log("ERROR: ", e));
+        cart.products = await db.cart_product
+          .findAll({
+            where: { cart_id: cart.id },
+            include: [{ model: db.product, paranoid: false }],
+            nest: true,
+            raw: true,
+          })
+          .catch((e) => console.log("ERROR: ", e));
       }
     }
 
@@ -210,14 +222,16 @@ module.exports = {
         .catch((e) => {
           console.log(e);
         });
-      await db.user.update(
-        { password: newPassword },
-        {
-          where: {
-            id: user.id,
-          },
-        }
-      ).catch((e) => console.log("ERROR: ", e));
+      await db.user
+        .update(
+          { password: newPassword },
+          {
+            where: {
+              id: user.id,
+            },
+          }
+        )
+        .catch((e) => console.log("ERROR: ", e));
 
       res.redirect("/user");
     }
@@ -245,21 +259,23 @@ module.exports = {
         .catch((e) => {
           console.log(e);
         });
-      await db.user.update(
-        {
-          street: newAddress.street,
-          number: newAddress.number,
-          apartment: newAddress.apartment,
-          city: newAddress.city,
-          province: newAddress.province,
-          zip_code: newAddress.zip_code,
-        },
-        {
-          where: {
-            id: user.id,
+      await db.user
+        .update(
+          {
+            street: newAddress.street,
+            number: newAddress.number,
+            apartment: newAddress.apartment,
+            city: newAddress.city,
+            province: newAddress.province,
+            zip_code: newAddress.zip_code,
           },
-        }
-      ).catch((e) => console.log("ERROR: ", e));
+          {
+            where: {
+              id: user.id,
+            },
+          }
+        )
+        .catch((e) => console.log("ERROR: ", e));
 
       req.session.user.street = newAddress.street;
       req.session.user.number = newAddress.number;
@@ -274,19 +290,23 @@ module.exports = {
   changeAvatar: async (req, res) => {
     // si subio un avatar
     if (req.file && req.file.filename) {
-      let user = await db.user.findOne({
-        where: { email: req.session.user.email },
-        raw: true,
-      }).catch((e) => console.log("ERROR: ", e));
+      let user = await db.user
+        .findOne({
+          where: { email: req.session.user.email },
+          raw: true,
+        })
+        .catch((e) => console.log("ERROR: ", e));
       newAvatar = req.file.filename;
-      await db.user.update(
-        { avatar: newAvatar },
-        {
-          where: {
-            id: user.id,
-          },
-        }
-      ).catch((e) => console.log("ERROR: ", e));
+      await db.user
+        .update(
+          { avatar: newAvatar },
+          {
+            where: {
+              id: user.id,
+            },
+          }
+        )
+        .catch((e) => console.log("ERROR: ", e));
       req.session.user.avatar = newAvatar;
     }
     res.redirect("/user");

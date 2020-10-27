@@ -521,6 +521,10 @@ footer {
   text-align: center;
 }
 
+.pt-2 {
+  padding-top: 2rem:
+}
+
 /*Grid Rules*/
 /* For mobile phones: */
 [class*="col-"] {
