@@ -432,6 +432,12 @@ module.exports = {
 
     db.product
       .findAll({
+        where: {
+          deleted_at: null,
+          stock: {
+            [Op.gt]: 0, // Mayor que
+          },
+        },
         attributes: [
           "id",
           "cover",
